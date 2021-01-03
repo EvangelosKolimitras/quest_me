@@ -1,4 +1,3 @@
-import { users, questions } from './services'
 
 export const App: React.FC = () => {
 	return (
