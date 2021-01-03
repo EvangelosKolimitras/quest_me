@@ -1,6 +1,6 @@
 import { Provider } from 'react-redux';
 import ReactDOM from 'react-dom'
-import { App } from './app'
+import { App } from './App'
 import { initStore } from './store'
 import { usersAction } from './actions';
 import { users } from './services';
