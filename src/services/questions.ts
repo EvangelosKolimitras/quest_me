@@ -1,4 +1,4 @@
-import { IQuestions } from './declarations';
+import { IQuestions } from './declarations'
 
 export let questions: IQuestions = {
 	"8xf0y6ziyjabvozdd253nd": {
@@ -75,7 +75,7 @@ export let questions: IQuestions = {
 			text: 'write JavaScript',
 		},
 		optionTwo: {
-			votes: ['tylermcginnis'],
+			votes: ['evangeloskolimitras'],
 			text: 'write Swift'
 		}
 	},

@@ -1,0 +1,5 @@
+
+export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS'
+export type RECEIVE_QUESTIONS_TYPE = typeof RECEIVE_QUESTIONS;
+
+export type actionTypes = RECEIVE_QUESTIONS_TYPE 
