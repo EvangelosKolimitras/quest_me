@@ -1,6 +1,11 @@
 {
   "name": "quest_me",
-  "version": "0.1.0",
+  "version": "1.0.0",
+  "author": {
+    "name": "Evangelos Kolimitras",
+    "email": "evangeloskolimitras@outlook.com"
+  },
+  "description": "Quest me is an application where a user is being asked a question with two possible answers to choose from. His answer is recorded is such a way where his choices will be reflected in a global ranking table.",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
