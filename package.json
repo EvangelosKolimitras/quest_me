@@ -8,6 +8,8 @@
   "description": "Quest me is an application where a user is being asked a question with two possible answers to choose from. His answer is recorded is such a way where his choices will be reflected in a global ranking table.",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.11.2",
+    "@material-ui/icons": "^4.11.2",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
