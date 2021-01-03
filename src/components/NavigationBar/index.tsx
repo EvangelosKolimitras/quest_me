@@ -9,7 +9,7 @@ export const NavigationBar: React.FC = () => {
 				<IconButton edge="start" color="inherit" aria-label="menu">
 					<MenuIcon />
 				</IconButton>
-				<Typography variant="h6" >
+				<Typography variant="h5" >
 					Quest Me
     	</Typography>
 			</Toolbar>
