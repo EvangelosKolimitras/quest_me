@@ -1,8 +1,10 @@
+import { QuestionsReducer } from './questions';
 import { UsersReducer } from './users'
 
 // Reducers API
 const api = {
-	users: UsersReducer
+	users: UsersReducer,
+	questions: QuestionsReducer
 }
 
 // A custome hook for creating reducers

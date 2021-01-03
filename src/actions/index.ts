@@ -1,1 +1,2 @@
-export { userAction } from './users'
+export { usersAction } from './users'
+export { questionsAction } from './questions'

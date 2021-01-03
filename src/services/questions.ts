@@ -1,5 +1,6 @@
+import { IQuestions } from './declarations'
 
-export let questions = {
+export let questions: IQuestions = {
 	"8xf0y6ziyjabvozdd253nd": {
 		id: '8xf0y6ziyjabvozdd253nd',
 		author: 'sarahedo',

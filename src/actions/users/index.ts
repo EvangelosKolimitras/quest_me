@@ -13,4 +13,4 @@ const api = {
 }
 
 // A custome hook for creating user actions
-export const userAction = () => () => api
+export const usersAction = () => api
