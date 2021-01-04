@@ -11,14 +11,11 @@ type question = IQuestion;
 export const addQuestion = (question: question) => AC({ type: Actions.ADD_QUESTION, payload: question })
 
 interface QuestionsAPI {
-	receiveQuestions?: Function
-	addQuestion?: Function
+	receiveQuestions: Function
+	addQuestion: Function
 }
 
-const API: QuestionsAPI = {};
-
-API.receiveQuestions = receiveQuestions
-API.addQuestion = addQuestion
+const API: QuestionsAPI = { receiveQuestions, addQuestion };
 
 // A custome hook for creating question actions
-export const questionsAction = () => () => API
+export const questionsAction = () => API

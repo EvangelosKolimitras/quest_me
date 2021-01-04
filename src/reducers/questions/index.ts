@@ -1,7 +1,8 @@
 import { RECEIVE_QUESTIONS, ADD_QUESTION } from './../../actions/questions/actions';
+import { QuestionsActionProps } from '../../actions/questions/actionCreators';
 
 const initialState = {};
-export const QuestionsReducer = (state: any = initialState, action: any) => {
+export const QuestionsReducer = (state: any = initialState, action: QuestionsActionProps) => {
 	const { type, payload } = action;
 	switch (type) {
 
@@ -14,7 +15,7 @@ export const QuestionsReducer = (state: any = initialState, action: any) => {
 		case ADD_QUESTION:
 			return {
 				...state,
-				[payload.id]: payload
+				[payload.id as string]: payload
 			}
 
 		default:
