@@ -1,9 +1,10 @@
-import { IUsers } from '../../services/declarations'
-import { actionTypes } from './actions'
+import { IQuestion, IUsers } from '../../services/declarations'
+import { actionType } from './actions'
 
+type payload = IUsers | IQuestion
 interface Props {
-	type: actionTypes,
-	payload: IUsers
+	type: actionType,
+	payload: payload
 }
 
 // Custom hook for creating action creators

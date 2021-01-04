@@ -2,4 +2,7 @@
 export const RECEIVE_USERS = 'RECEIVE_USERS';
 export type RECEIVE_USERS_TYPE = typeof RECEIVE_USERS;
 
-export type actionTypes = RECEIVE_USERS_TYPE 
+export const ADD_USER_QUESTION = 'ADD_USER_QUESTION';
+export type ADD_USER_QUESTION_TYPE = typeof ADD_USER_QUESTION;
+
+export type actionType = RECEIVE_USERS_TYPE | ADD_USER_QUESTION_TYPE
