@@ -1,9 +1,10 @@
+import { Container } from '@material-ui/core'
 import React from 'react'
 
 export const Dashboard: React.FC = () => {
 	return (
-		<div>
+		<Container maxWidth="md">
 			<h1>Dashboard</h1>
-		</div>
+		</Container>
 	)
 }
