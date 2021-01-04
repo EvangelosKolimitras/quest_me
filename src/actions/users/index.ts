@@ -1,19 +1,20 @@
-
 import * as Actions from './actions';
 import { createActionCreator } from './actionCreators';
-import { IQuestion, IUsers } from '../../services/declarations';
+import { IQuestions, IUsers } from '../../services/declarations';
 
 const AC = createActionCreator();
 
 type users = IUsers;
-type question = IQuestion;
+type questions = IQuestions;
 export const receiveUsers = (users: users) => AC({ type: Actions.RECEIVE_USERS, payload: users })
-export const addUserQuestion = (question: question) => AC({ type: Actions.ADD_USER_QUESTION, payload: question })
+export const addUserQuestions = (questions: questions) => AC({ type: Actions.ADD_USER_QUESTIONS, payload: questions })
 
-const api = {
-	receiveUsers,
-	addUserQuestion
+type API_TYPE = {
+	receiveUsers: Function
+	addUserQuestions: Function
 }
 
+const API: API_TYPE = { receiveUsers, addUserQuestions };
+
 // A custome hook for creating user actions
-export const usersAction = () => api
+export const usersAction = () => API

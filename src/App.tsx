@@ -10,7 +10,7 @@ interface DefaultRootState {
 }
 
 export const App: React.FC = React.memo(() => {
-	const users = useSelector((state: DefaultRootState) => state.users)
+	useSelector((state: DefaultRootState) => state.users)
 	return (
 		<div>
 			<NavigationBar />

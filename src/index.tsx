@@ -2,14 +2,16 @@ import { Provider } from 'react-redux';
 import ReactDOM from 'react-dom'
 import { App } from './App'
 import { initStore } from './store'
-import { usersAction } from './actions';
+import { usersAction, questionsAction, authedUserAction } from './actions';
 import { users } from './services';
 import { BrowserRouter } from 'react-router-dom';
 
-const { receiveUsers } = usersAction();
+import { questions } from './services/questions';
 
 const store = initStore()
-store.dispatch(receiveUsers(users));
+store.dispatch(usersAction().receiveUsers(users));
+store.dispatch(questionsAction().receiveQuestions(questions));
+store.dispatch(authedUserAction().setAuthedUser(users["evangeloskolimitras"]));
 
 ReactDOM.render(
 	<BrowserRouter>
