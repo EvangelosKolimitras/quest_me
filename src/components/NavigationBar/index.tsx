@@ -1,14 +1,12 @@
 import React from 'react'
-import { AppBar, Button, IconButton, Toolbar, Typography, } from '@material-ui/core'
-import MenuIcon from '@material-ui/icons/Menu';
+import { AppBar, Toolbar, Typography, } from '@material-ui/core'
+import { LogoIcon } from '../Logo';
 
 export const NavigationBar: React.FC = () => {
 	return (
 		<AppBar position="static">
 			<Toolbar>
-				<IconButton edge="start" color="inherit" aria-label="menu">
-					<MenuIcon />
-				</IconButton>
+				<LogoIcon />
 				<Typography variant="h5" >
 					Quest Me
     	</Typography>
