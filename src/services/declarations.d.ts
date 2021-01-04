@@ -27,3 +27,7 @@ export interface IUser {
 export interface IUsers {
 	[key: string]: IUser
 }
+
+export type IAuthedUser = {
+	[key: string]: IUser
+}

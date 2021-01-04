@@ -2,4 +2,7 @@
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS'
 export type RECEIVE_QUESTIONS_TYPE = typeof RECEIVE_QUESTIONS;
 
-export type actionTypes = RECEIVE_QUESTIONS_TYPE 
+export const ADD_QUESTION = 'ADD_QUESTION'
+export type ADD_QUESTION_TYPE = typeof ADD_QUESTION;
+
+export type actionTypes = RECEIVE_QUESTIONS_TYPE | ADD_QUESTION_TYPE
