@@ -1,9 +1,9 @@
-import { IQuestions } from '../../services/declarations'
+import { IQuestion, IQuestions } from '../../services/declarations'
 import { actionTypes } from './actions'
 
 interface Props {
 	type: actionTypes,
-	payload: IQuestions
+	payload: IQuestions | IQuestion
 }
 
 // Custom hook for creating action creators
