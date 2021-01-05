@@ -31,3 +31,5 @@ export interface IUsers {
 export type IAuthedUser = {
 	[key: string]: IUser
 }
+
+export type AnswerType = string
