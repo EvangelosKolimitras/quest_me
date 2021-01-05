@@ -32,6 +32,22 @@ export type IAuthedUser = {
 	[key: string]: IUser
 }
 
-export interface AnswerType {
+export interface AnswersType {
 	[key: string]: string
+}
+
+export export interface AddedAnswer {
+	[key: string]: {
+		authedUser: IAuthedUser,
+		qid: AnswersType,
+		answer: AnswersType
+	}
+}
+
+export interface IAnswer {
+	[key: string]: {
+		[key: string]: {
+			votes: any
+		}
+	}
 }
