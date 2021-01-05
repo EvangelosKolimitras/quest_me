@@ -1,4 +1,4 @@
-import { RECEIVE_QUESTIONS, ADD_QUESTION } from './../../actions/questions/actions';
+import { RECEIVE_QUESTIONS, ADD_QUESTION, ADD_ANSWER } from './../../actions/questions/actions';
 import { QuestionsActionProps } from '../../actions/questions/actionCreators';
 
 const initialState = {};
@@ -16,6 +16,18 @@ export const QuestionsReducer = (state: any = initialState, action: QuestionsAct
 			return {
 				...state,
 				[payload.id as string]: payload
+			}
+
+		case ADD_ANSWER:
+			return {
+				...state,
+				[action.answer.qid]: {
+					...state[action.answer.qid],
+					[action.answer.answer]: {
+						...state[action.answer.qid][action.answer.answer],
+						votes: state[action.answer.qid][action.answer.answer].votes.concat([action.answer.authedUser])
+					}
+				}
 			}
 
 		default:

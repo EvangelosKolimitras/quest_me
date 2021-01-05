@@ -1,7 +1,8 @@
+import { UsersProps } from '../../actions/users/actionCreators';
 import { ADD_USER_ANSWER, ADD_USER_QUESTIONS, RECEIVE_USERS } from './../../actions/users/actions';
 
 const initialState: any = {};
-export const UsersReducer = (state: any = initialState, action: any) => {
+export const UsersReducer = (state: any = initialState, action: UsersProps) => {
 	const { type, payload } = action;
 	switch (type) {
 		case RECEIVE_USERS:
@@ -13,20 +14,20 @@ export const UsersReducer = (state: any = initialState, action: any) => {
 		case ADD_USER_QUESTIONS:
 			return {
 				...state,
-				[payload.question.author]: {
-					...state[payload.question.author],
-					questions: state[payload.question.author].questions.concat([payload.question.id])
+				[payload.author as string]: {
+					...state[payload.author as string],
+					questions: state[payload.author as string].questions.concat([payload.id as string])
 				}
 			}
 
 		case ADD_USER_ANSWER:
 			return {
 				...state,
-				[payload.answer.authedUser]: {
-					...state[payload.answer.authedUser],
+				[payload.authedUser as string]: {
+					...state[payload.authedUser as string],
 					answers: {
-						...state[payload.answer.authedUser].answers,
-						[payload.answer.qid]: payload.answer.answer
+						...state[payload.authedUser as string].answers,
+						[payload.qid as string]: payload.answer as string
 					}
 				}
 			}

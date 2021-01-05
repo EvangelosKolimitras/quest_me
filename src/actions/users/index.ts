@@ -1,6 +1,6 @@
 import * as Actions from './actions';
 import { createActionCreator } from './actionCreators';
-import { IQuestions, IUsers, AnswerType } from '../../services/declarations';
+import { IQuestions, IUsers, AnswersType } from '../../services/declarations';
 
 const AC = createActionCreator();
 
@@ -10,7 +10,7 @@ export const receiveUsers = (users: users) => AC({ type: Actions.RECEIVE_USERS, 
 type questions = IQuestions;
 export const addUserQuestions = (questions: questions) => AC({ type: Actions.ADD_USER_QUESTIONS, payload: questions })
 
-type answer = AnswerType;
+type answer = AnswersType;
 export const addUserAnswer = (answer: answer) => AC({ type: Actions.ADD_USER_ANSWER, payload: answer })
 
 type API_TYPE = {
