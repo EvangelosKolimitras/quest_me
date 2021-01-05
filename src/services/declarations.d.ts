@@ -19,7 +19,7 @@ export interface IQuestions {
 export interface IUser {
 	id: string
 	name: string
-	avatarURL: null
+	avatarURL: string
 	answers: { [key: string]: string }
 	questions: string[]
 }
