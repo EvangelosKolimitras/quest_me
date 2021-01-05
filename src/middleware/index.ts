@@ -1,6 +1,8 @@
 import { applyMiddleware } from "redux";
-import { log } from "./logger";
+import { Logger } from "./logger";
+import { Thunk } from './thunk'
 
 export const middleware = () => applyMiddleware(
-	log().logger
+	Logger().logger,
+	Thunk().thunk
 )

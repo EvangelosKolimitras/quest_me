@@ -1,4 +1,4 @@
 
 import logger from 'redux-logger'
 
-export const log = () => ({ logger })
+export const Logger = () => ({ logger })
