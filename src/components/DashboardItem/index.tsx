@@ -8,12 +8,9 @@ import { IAuthedUser, IUsers } from '../../services/declarations'
 
 interface DefaultRootState { users?: IUsers, authedUser: IAuthedUser }
 interface Props { id: string }
-export function DashboardItem(props: Props): JSX.Element {
+export const DashboardItem = (props: Props) => {
 	const users = useSelector((state: DefaultRootState) => state.users)
 	const currentUser = users![props.id];
-
-	//const authedUser = useSelector((state: DefaultRootState) => state.authedUser)
-	// const isAuthed = (authedUser as unknown as string) === currentUser.id
 
 	const user = {
 		name: currentUser.name,
@@ -32,7 +29,6 @@ export function DashboardItem(props: Props): JSX.Element {
 
 	return render(user, rows, total);
 }
-
 
 const calculate = (elements: number[]) => elements.reduce((acc: any, current: any) => acc + current, 0)
 
