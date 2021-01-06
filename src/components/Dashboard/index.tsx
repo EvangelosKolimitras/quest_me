@@ -2,7 +2,6 @@ import { Container } from '@material-ui/core'
 import { useSelector } from 'react-redux'
 import { IUsers } from '../../services/declarations'
 import { DashboardItem } from '../DashboardItem'
-import { Questions } from '../Questions'
 
 interface DefaultRootState { users: IUsers }
 export function Dashboard() {
@@ -12,9 +11,8 @@ export function Dashboard() {
 function render(users: any[]) {
 	return (
 		<Container maxWidth="md">
-			<h1>Dashboard</h1>
+			<h1>Leaderboard</h1>
 			{users.map(uid => <DashboardItem key={uid} id={uid} />)}
-			<Questions />
 		</Container>
 	)
 }

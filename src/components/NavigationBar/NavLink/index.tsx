@@ -1,5 +1,6 @@
 import { Box, Link } from '@material-ui/core';
 import { makeStyles } from "@material-ui/core/styles";
+import { Link as RouterLink } from 'react-router-dom';
 
 export const NavLink = () => {
 	const useStyles = makeStyles({
@@ -14,14 +15,16 @@ export const NavLink = () => {
 		<>
 			<Box ml={2}>
 				<Link
-					component="button"
+					component={RouterLink}
+					to="/"
 					underline="none"
 					className={useStyles().link}
-				> Leaderboard </Link >
+				> Leaderboard  </Link >
 			</Box>
 			<Box ml={2}>
 				<Link
-					component="button"
+					component={RouterLink}
+					to="/questions"
 					underline="none"
 					className={useStyles().link}
 				> Questions </Link >
