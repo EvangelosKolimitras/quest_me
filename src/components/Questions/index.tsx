@@ -2,6 +2,7 @@ import { Container } from '@material-ui/core'
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { IQuestions } from '../../services/declarations'
+import { QuestionItem } from '../QuestionItem'
 
 interface DefaultRootState {
 	questions: IQuestions
@@ -13,10 +14,9 @@ export const Questions: React.FC = () => render(useSelector((state: DefaultRootS
 const render = (questions: any) => {
 	return (
 		<Container>
-			<h1>Answered</h1>
-			{ questions(true).map(((answer: any) => <p key={answer.id}>{answer.author}</p>))}
-			<h1>Not Answered</h1>
-			{ questions(false).map(((answer: any) => <p key={answer.id}>{answer.author}</p>))}
+			<h1>Questions</h1>
+			{ questions(true).map(((answer: any) => <QuestionItem key={answer.id} id={answer.id} />))}
+			{ questions(false).map(((answer: any) => <QuestionItem key={answer.id} id={answer.id} />))}
 		</Container>
 	)
 }
