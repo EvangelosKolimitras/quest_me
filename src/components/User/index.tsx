@@ -15,9 +15,9 @@ export const User: React.FC<Props> = (props) => {
 const render = (user: { name: string, avatar: string }): JSX.Element => (
 	<Card className='card'>
 		<CardContent>
-			<img src={user.avatar} className='card-img-top' alt={`Avatar of ${User.name}`} />
+			<img src={user.avatar} className='card-img-top' alt={`Avatar of ${user.name}`} />
 			<div className='card-body'>
-				<h5 className='card-title'>{User.name}</h5>
+				<h5 className='card-title'>{user.name}</h5>
 			</div>
 		</CardContent>
 	</Card>
