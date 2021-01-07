@@ -3,10 +3,10 @@ import { IQuestions } from './declarations'
 export let questions: IQuestions = {
 	"8xf0y6ziyjabvozdd253nd": {
 		id: '8xf0y6ziyjabvozdd253nd',
-		author: 'sarahedo',
+		author: 'jane_smith',
 		timestamp: 1467166872634,
 		optionOne: {
-			votes: ['sarahedo'],
+			votes: ['jane_smith'],
 			text: 'have horrible short term memory',
 		},
 		optionTwo: {
@@ -23,20 +23,20 @@ export let questions: IQuestions = {
 			text: 'become a superhero',
 		},
 		optionTwo: {
-			votes: ['johndoe', 'sarahedo'],
+			votes: ['johndoe', 'jane_smith'],
 			text: 'become a supervillain'
 		}
 	},
 	"am8ehyc8byjqgar0jgpub9": {
 		id: 'am8ehyc8byjqgar0jgpub9',
-		author: 'sarahedo',
+		author: 'jane_smith',
 		timestamp: 1488579767190,
 		optionOne: {
 			votes: [],
 			text: 'be telekinetic',
 		},
 		optionTwo: {
-			votes: ['sarahedo'],
+			votes: ['jane_smith'],
 			text: 'be telepathic'
 		}
 	},
@@ -49,7 +49,7 @@ export let questions: IQuestions = {
 			text: 'be a front-end developer',
 		},
 		optionTwo: {
-			votes: ['sarahedo'],
+			votes: ['jane_smith'],
 			text: 'be a back-end developer'
 		}
 	},
