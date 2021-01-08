@@ -3,6 +3,12 @@
 import { users } from './users'
 import { questions } from './questions'
 
+export const _getUsers = () =>
+	new Promise((res, rej) => setTimeout(() => res({ ...users }), 1000))
+
+export const _getQuestions = () =>
+	new Promise((res, rej) => setTimeout(() => res({ ...questions }), 1000))
+
 const generateUID = (): string =>
 	Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
 
@@ -19,7 +25,6 @@ const formatQuestion = ({ optionOne, optionTwo, author }: any) => ({
 		text: optionTwo,
 	}
 })
-
 
 const _saveQuestion = (question: any) =>
 	new Promise((res, rej) => {
@@ -42,7 +47,6 @@ const _saveQuestion = (question: any) =>
 			res(formattedQuestion)
 		}, 1000)
 	})
-
 
 export const saveQuestion = (question: any) => _saveQuestion(question)
 export { users, questions }
