@@ -3,10 +3,19 @@
 import { users } from './users'
 import { questions } from './questions'
 
-export const _getUsers = () =>
+export const initializations = () =>
+	Promise.all([
+		_getUsers(),
+		_getQuestions(),
+	]).then(([users, questions]) => ({
+		users,
+		questions,
+	}))
+
+const _getUsers = () =>
 	new Promise((res, rej) => setTimeout(() => res({ ...users }), 1000))
 
-export const _getQuestions = () =>
+const _getQuestions = () =>
 	new Promise((res, rej) => setTimeout(() => res({ ...questions }), 1000))
 
 const generateUID = (): string =>
@@ -26,6 +35,7 @@ const formatQuestion = ({ optionOne, optionTwo, author }: any) => ({
 	}
 })
 
+export const saveQuestion = (question: any) => _saveQuestion(question)
 const _saveQuestion = (question: any) =>
 	new Promise((res, rej) => {
 		const authedUser = question.author;
@@ -48,5 +58,4 @@ const _saveQuestion = (question: any) =>
 		}, 1000)
 	})
 
-export const saveQuestion = (question: any) => _saveQuestion(question)
 export { users, questions }
