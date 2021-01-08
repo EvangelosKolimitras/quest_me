@@ -12,8 +12,8 @@ const useStyles = makeStyles({
 
 const home = (link: string | undefined) => <Box ml={2}>
 	<Link
-		component={RouterLink}
 		to="/"
+		component={RouterLink}
 		underline="none"
 		className={link}
 	> Leaderboard  </Link >
@@ -21,26 +21,27 @@ const home = (link: string | undefined) => <Box ml={2}>
 
 const questions = (link: string | undefined) => <Box ml={2}>
 	<Link
-		component={RouterLink}
 		to="/questions"
+		component={RouterLink}
 		underline="none"
 		className={link}
 	> Questions </Link >
 </Box>
 
-const profile = (link: string | undefined) => <Box ml={2}>
+const newQuestion = (link: string | undefined) => <Box ml={2}>
 	<Link
-		component="button"
+		to="/new"
+		component={RouterLink}
 		underline="none"
 		className={link}
-	> Profile </Link >
+	> New </Link >
 </Box>
 
 const jsx = (link: string | undefined) =>
 	<>
+		{newQuestion(link)}
 		{home(link)}
 		{questions(link)}
-		{profile(link)}
 	</>
 
 export const NavLink: React.FC = () => jsx(useStyles().link)
