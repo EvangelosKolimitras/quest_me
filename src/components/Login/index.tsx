@@ -3,7 +3,7 @@ import { Typography } from '@material-ui/core'
 import { Card } from '@material-ui/core'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { authedUserAction, setAuthedUser } from '../../actions/authedUser'
+import { setAuthedUser } from '../../actions/authedUser'
 import { IAuthedUser, IUser, IUsers } from '../../services/declarations'
 import { User } from '../User'
 
@@ -26,14 +26,11 @@ const jsx = (loginHandler: Function, users: IUser[]) => (
 			<Typography variant="h6">Please pick up a user to login</Typography>
 			<Box>
 				{
-					users.map((user: IUser) => {
-						console.log(user);
-						return <User
-							id={user.id}
-							key={user.id}
-							loginHandler={loginHandler}
-						/>
-					}
+					users.map((user: IUser) => <User
+						id={user.id}
+						key={user.id}
+						loginHandler={loginHandler}
+					/>
 					)
 				}
 			</Box>

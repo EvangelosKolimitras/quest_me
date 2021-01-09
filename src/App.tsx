@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Switch, Route } from 'react-router-dom'
 import { initiliazer } from "./actions";
-import { setAuthedUser } from "./actions/authedUser";
 import { Dashboard } from "./components/Dashboard";
 import { Home } from "./components/Home";
 import { Login } from "./components/Login";
@@ -26,14 +25,14 @@ export const App: React.FC = React.memo(() => {
 
 	useEffect(() => {
 		dispatch(initiliazer())
-	}, [])
+	}, [dispatch])
 	return jsx(isInitialized, isAuthed)
 })
 
 const jsx = (isInitialized: any, isAuthed: any) =>
 	<>
 		{
-			isInitialized && <NavigationBar />
+			(isAuthed && isInitialized) && <NavigationBar />
 		}
 		{
 			(isAuthed && isInitialized) &&
