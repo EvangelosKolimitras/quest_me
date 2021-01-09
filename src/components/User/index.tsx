@@ -1,24 +1,47 @@
-import { CardContent, Card } from '@material-ui/core'
+import { CardContent, Card, CardMedia, makeStyles, Typography, Button } from '@material-ui/core'
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { IUsers } from '../../services/declarations'
+import { IUser, IUsers } from '../../services/declarations'
 
 interface DefaultRootState { users: IUsers }
-interface Props { id: string }
+interface Props { loginHandler: Function, id: string }
 
-export const User: React.FC<Props> = (props) => {
+export const User: React.FC<Props> = ({ id, loginHandler }) => {
 	const users = useSelector((state: DefaultRootState) => state.users)
-	const u = users[props.id];
-	return render({ avatar: u.avatarURL, name: u.name, })
+	const useStyles = makeStyles({
+		card: {
+			width: "30%",
+			margin: 10,
+			float: "left",
+			textAlign: "center",
+			padding: 10
+		},
+		img: {
+			maxWidth: 250,
+			height: 250,
+			margin: "auto"
+		}
+	})
+
+	const classes = useStyles();
+	const loginClickHandler = (e: Event) => loginHandler(id)
+	return render(users[id], classes, loginClickHandler)
 }
 
-const render = (user: { name: string, avatar: string }): JSX.Element => (
-	<Card className='card'>
-		<CardContent>
-			<img src={user.avatar} className='card-img-top' alt={`Avatar of ${user.name}`} />
-			<div className='card-body'>
-				<h5 className='card-title'>{user.name}</h5>
-			</div>
-		</CardContent>
-	</Card>
-)
+const render = (user: IUser, classes: any, loginClickHandler: Function): JSX.Element =>
+	<Card className={classes.card}> {content(classes, user, loginClickHandler)} </Card>
+
+const content = (classes: any, user: any, loginClickHandler: Function) => <CardContent>
+	{renderAvatar(classes.img, user.avatarURL, user.name)}
+	{renderName(user.name)}
+	{loginClickHandler && renderLoginBtn("primary", "contained", loginClickHandler)}
+</CardContent>
+
+const renderLoginBtn = (color: any, variant: any, fn: Function): JSX.Element =>
+	<Button variant={variant} color={color} onClick={() => fn}> Login </Button>
+
+const renderAvatar = (classes: any, image: string, name: string): JSX.Element =>
+	<CardMedia className={classes} image={image} title={name} />
+
+const renderName = (name: string): JSX.Element =>
+	<Typography variant="h5"> {name} </Typography>

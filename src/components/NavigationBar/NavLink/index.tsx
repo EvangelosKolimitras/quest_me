@@ -16,6 +16,15 @@ const home = (link: string | undefined) => <Box ml={2}>
 		component={RouterLink}
 		underline="none"
 		className={link}
+	> Home </Link >
+</Box>
+
+const leaderboard = (link: string | undefined) => <Box ml={2}>
+	<Link
+		to="/leaderboard"
+		component={RouterLink}
+		underline="none"
+		className={link}
 	> Leaderboard  </Link >
 </Box>
 
@@ -39,8 +48,9 @@ const newQuestion = (link: string | undefined) => <Box ml={2}>
 
 const jsx = (link: string | undefined) =>
 	<>
-		{newQuestion(link)}
 		{home(link)}
+		{newQuestion(link)}
+		{leaderboard(link)}
 		{questions(link)}
 	</>
 

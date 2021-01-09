@@ -3,6 +3,9 @@
 import { users } from './users'
 import { questions } from './questions'
 
+let Q = questions;
+let U = users;
+
 export const initializations = () =>
 	Promise.all([
 		_getUsers(),
@@ -40,18 +43,16 @@ const _saveQuestion = (question: any) =>
 	new Promise((res, rej) => {
 		const authedUser = question.author;
 		const formattedQuestion = formatQuestion(question)
-		let q = questions;
-		let u = users;
 		setTimeout(() => {
-			q = {
-				...q,
+			Q = {
+				...Q,
 				[formattedQuestion.id]: formattedQuestion
 			}
-			u = {
+			U = {
 				...users,
 				[authedUser]: {
-					...u[authedUser],
-					questions: u[authedUser].questions.concat([formattedQuestion.id])
+					...U[authedUser],
+					questions: U[authedUser].questions.concat([formattedQuestion.id])
 				}
 			}
 			res(formattedQuestion)
