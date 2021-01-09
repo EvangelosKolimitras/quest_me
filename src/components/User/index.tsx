@@ -24,21 +24,43 @@ export const User: React.FC<Props> = ({ id, loginHandler }) => {
 	})
 
 	const classes = useStyles();
-	const loginClickHandler = (e: Event) => loginHandler(id)
-	return jsx(users[id], classes, loginClickHandler)
+	const loginClickHandler = () => {
+		console.log('3');
+		return loginHandler(id)
+	}
+
+	// return jsx(users[id], classes, loginClickHandler)
+	return <Card className={classes.card}>
+		<CardContent>
+			{renderAvatar(classes.img, users[id].avatarURL, users[id].name)}
+			{renderName(users[id].name)}
+			{/* <Button variant={"contained"} color={"primary"} onClick={() => loginClickHandler}> Login </Button> */}
+			<button onClick={loginClickHandler}>ok</button>
+		</CardContent>
+	</Card>
 }
 
-const jsx = (user: IUser, classes: any, loginClickHandler: Function): JSX.Element =>
-	<Card className={classes.card}> {content(classes, user, loginClickHandler)} </Card>
+// const jsx = (user: IUser, classes: any, loginClickHandler: Function): JSX.Element =>
+// <Card className={classes.card}>
+// 	{/* {content(classes, user, loginClickHandler)} */}
+// 	<CardContent>
+// 		{renderAvatar(classes.img, user.avatarURL, user.name)}
+// 		{renderName(user.name)}
+// 		{/* {loginClickHandler && renderLoginBtn("primary", "contained", loginClickHandler)} */}
+// 		<Button variant={"contained"} color={"primary"} onClick={() => loginClickHandler}> Login </Button>
+// 	</CardContent>
+// </Card>
 
-const content = (classes: any, user: any, loginClickHandler: Function) => <CardContent>
-	{renderAvatar(classes.img, user.avatarURL, user.name)}
-	{renderName(user.name)}
-	{loginClickHandler && renderLoginBtn("primary", "contained", loginClickHandler)}
-</CardContent>
+// const content = (classes: any, user: any, loginClickHandler: Function) =>
+// 	<CardContent>
+// 		{renderAvatar(classes.img, user.avatarURL, user.name)}
+// 		{renderName(user.name)}
+// 		{/* {loginClickHandler && renderLoginBtn("primary", "contained", loginClickHandler)} */}
+// 		<Button variant={"contained"} color={"primary"} onClick={() => loginClickHandler}> Login </Button>
+// 	</CardContent>
 
-const renderLoginBtn = (color: any, variant: any, fn: Function): JSX.Element =>
-	<Button variant={variant} color={color} onClick={() => fn}> Login </Button>
+// const renderLoginBtn = (color: any, variant: any, fn: Function): JSX.Element =>
+// 	<Button variant={variant} color={color} onClick={() => fn}> Login </Button>
 
 const renderAvatar = (classes: any, image: string, name: string): JSX.Element =>
 	<CardMedia className={classes} image={image} title={name} />

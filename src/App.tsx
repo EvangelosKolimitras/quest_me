@@ -1,6 +1,8 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Switch, Route } from 'react-router-dom'
+import { initiliazer } from "./actions";
+import { setAuthedUser } from "./actions/authedUser";
 import { Dashboard } from "./components/Dashboard";
 import { Home } from "./components/Home";
 import { Login } from "./components/Login";
@@ -15,30 +17,34 @@ interface DefaultRootState {
 }
 
 export const App: React.FC = React.memo(() => {
+	const dispatch = useDispatch();
 	const authedUser = useSelector((state: DefaultRootState) => state.authedUser)
 	const users = useSelector((state: DefaultRootState) => state.users)
 	const questions = useSelector((state: DefaultRootState) => state.questions)
-	const isAuthed = authedUser !== null
+	const isAuthed = authedUser != null
 	const isInitialized = [Object.keys(users), Object.keys(questions)].every((el: any[]) => el.length > 0)
-	const check = isInitialized && isAuthed
-	return jsx(check)
+
+	useEffect(() => {
+		dispatch(initiliazer())
+	}, [])
+	return jsx(isInitialized, isAuthed)
 })
 
-const jsx = (check: any) =>
+const jsx = (isInitialized: any, isAuthed: any) =>
 	<>
-		{ifAuthedRenderNav(check)}
-		<Switch>
-			{ifAuthedRenderHome(check)}
-			{ifAuthedRenderQuestions(check)}
-			{ifAuthedRendeLeaders(check)}
-			{ifAuthedRenderNewQuestion(check)}
-			{ifNotAuthed(check)}
-		</Switch>
+		{
+			isInitialized && <NavigationBar />
+		}
+		{
+			(isAuthed && isInitialized) &&
+			<Switch>
+				<Route exact path="/" component={Home} />
+				<Route path="/questions" component={Questions} />
+				<Route path="/leaderboard" component={Dashboard} />
+				<Route path="/new" component={NewQuestion} />
+			</Switch>
+		}
+		{
+			(!isAuthed && isInitialized) && <Login />
+		}
 	</>
-
-const ifAuthedRenderNav = (authed: any) => authed && <NavigationBar />
-const ifAuthedRenderHome = (authed: any) => authed && <Route exact path="/" component={Home} />
-const ifAuthedRenderQuestions = (authed: any) => authed && <Route path="/questions" component={Questions} />
-const ifAuthedRendeLeaders = (authed: any) => authed && <Route path="/leaderboard" component={Dashboard} />
-const ifAuthedRenderNewQuestion = (authed: any) => authed && <Route path="/new" component={NewQuestion} />
-const ifNotAuthed = (authed: any) => !authed && <Route redirect="/login" component={Login} />

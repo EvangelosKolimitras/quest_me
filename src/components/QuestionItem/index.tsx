@@ -30,6 +30,7 @@ export const QuestionItem: React.FC<Props> = (props) => {
 
 	const users = useSelector((state: DefaultRootState) => state.users);
 	const questions = useSelector((state: DefaultRootState) => state.questions);
+	console.log(questions);
 
 	const classes = useStyles();
 
