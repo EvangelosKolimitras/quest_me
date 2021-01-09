@@ -1,4 +1,4 @@
-import { CardContent, Card, CardMedia, makeStyles, Typography, Button } from '@material-ui/core'
+import { CardContent, Card, CardMedia, makeStyles, Typography, Button, Grid } from '@material-ui/core'
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { IUser, IUsers } from '../../services/declarations'
@@ -10,16 +10,23 @@ export const User: React.FC<Props> = ({ id, loginHandler }) => {
 	const users = useSelector((state: DefaultRootState) => state.users)
 	const useStyles = makeStyles({
 		card: {
-			width: "30%",
 			margin: 10,
+			width: 200,
+			height: 275,
 			float: "left",
 			textAlign: "center",
 			padding: 10
 		},
 		img: {
-			maxWidth: 250,
-			height: 250,
+			width: "100%",
+			height: 150,
 			margin: "auto"
+		},
+		name: {
+			marginTop: 20
+		},
+		btn: {
+			marginTop: 20
 		}
 	})
 
@@ -28,13 +35,23 @@ export const User: React.FC<Props> = ({ id, loginHandler }) => {
 }
 
 const jsx = (user: IUser, classes: any, loginClickHandler: Function): JSX.Element =>
-	<Card className={classes.card}>
-		<CardContent>
-			{renderAvatar(classes.img, user.avatarURL, user.name)}
-			{renderName(user.name)}
-			{renderLoginBtn(loginClickHandler)}
-		</CardContent>
-	</Card>
+	<Grid className={classes.container} container xs={12} sm={6} md={3} justify="center">
+		<Card className={classes.card}>
+			<Grid item>
+				<CardContent>
+					<Grid item>
+						{renderAvatar(classes.img, user.avatarURL, user.name)}
+					</Grid>
+					<Grid item className={classes.name}>
+						{renderName(user.name.split(" ")[0])}
+					</Grid>
+					<Grid item className={classes.btn}>
+						{renderLoginBtn(loginClickHandler)}
+					</Grid>
+				</CardContent>
+			</Grid>
+		</Card>
+	</Grid>
 
 const renderLoginBtn = (fn: Function): JSX.Element =>
 	<Button variant="contained" color="primary" onClick={() => fn()}>Login</Button>

@@ -1,6 +1,5 @@
-import { Box, CardContent } from '@material-ui/core'
+import { Container, Grid, makeStyles } from '@material-ui/core'
 import { Typography } from '@material-ui/core'
-import { Card } from '@material-ui/core'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setAuthedUser } from '../../actions/authedUser'
@@ -13,18 +12,30 @@ export const Login: React.FC = () => {
 	const dispatch = useDispatch();
 	const usrs = useSelector((state: DefaultRootState) => state.users)
 	const users = Object.values(usrs)
+	const useStyles = makeStyles({
+		loginRoot: {
+			marginTop: 50,
+		}
+	})
 
 	const loginHandler = (userId: IAuthedUser) => dispatch(setAuthedUser(userId))
-	return jsx(loginHandler, users)
+	return jsx(useStyles(), loginHandler, users)
 }
 
-const jsx = (loginHandler: Function, users: IUser[]) => (
-	<Card>
-		<CardContent>
-			<Typography variant="h3"> Login </Typography>
-			<Typography variant="h4">In order to use this application you must be authenticated.</Typography>
-			<Typography variant="h6">Please pick up a user to login</Typography>
-			<Box>
+const jsx = (classes: any, loginHandler: Function, users: IUser[]) => (
+	<Container maxWidth="md" className={classes.loginRoot}>
+		<Grid container justify="center">
+			<Grid container md={12} justify="center" >
+				<Grid item>
+					<Typography variant="h3"> Login </Typography>
+				</Grid>
+			</Grid>
+			<Grid container justify="center">
+				<Grid item>
+					<Typography variant="inherit" component="p">Please pick up a user to login</Typography>
+				</Grid>
+			</Grid>
+			<Grid container justify="center">
 				{
 					users.map((user: IUser) => <User
 						id={user.id}
@@ -33,7 +44,7 @@ const jsx = (loginHandler: Function, users: IUser[]) => (
 					/>
 					)
 				}
-			</Box>
-		</CardContent>
-	</Card >
+			</Grid>
+		</Grid>
+	</Container >
 )
