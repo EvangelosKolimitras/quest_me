@@ -25,10 +25,10 @@ export const User: React.FC<Props> = ({ id, loginHandler }) => {
 
 	const classes = useStyles();
 	const loginClickHandler = (e: Event) => loginHandler(id)
-	return render(users[id], classes, loginClickHandler)
+	return jsx(users[id], classes, loginClickHandler)
 }
 
-const render = (user: IUser, classes: any, loginClickHandler: Function): JSX.Element =>
+const jsx = (user: IUser, classes: any, loginClickHandler: Function): JSX.Element =>
 	<Card className={classes.card}> {content(classes, user, loginClickHandler)} </Card>
 
 const content = (classes: any, user: any, loginClickHandler: Function) => <CardContent>
