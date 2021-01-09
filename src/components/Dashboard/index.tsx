@@ -10,7 +10,6 @@ const jsx = (users: any[]) =>
 	<Container maxWidth="md">
 		<h1>Leaderboard</h1>
 		{users.map(uid => <DashboardItem key={uid} id={uid} />)}
-		<Login />
 	</Container>
 
 const sortUsers = (users: IUsers) => Object.keys(users).sort((a, b) => sort(users)(a, b))
