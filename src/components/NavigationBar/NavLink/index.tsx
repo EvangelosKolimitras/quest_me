@@ -1,5 +1,6 @@
-import { Box, Link } from '@material-ui/core';
+import { Box, Grid, Link } from '@material-ui/core';
 import { makeStyles } from "@material-ui/core/styles";
+import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 
 const useStyles = makeStyles({
@@ -47,11 +48,17 @@ const newQuestion = (link: string | undefined) => <Box ml={2}>
 </Box>
 
 const jsx = (link: string | undefined) =>
-	<>
+	<Grid container justify="center">
 		{home(link)}
-		{newQuestion(link)}
-		{leaderboard(link)}
-		{questions(link)}
-	</>
+		<Grid item>
+			{newQuestion(link)}
+		</Grid>
+		<Grid item>
+			{leaderboard(link)}
+		</Grid>
+		<Grid item>
+			{questions(link)}
+		</Grid>
+	</Grid>
 
 export const NavLink: React.FC = () => jsx(useStyles().link)
