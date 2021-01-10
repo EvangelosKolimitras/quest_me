@@ -66,7 +66,7 @@ export const QuestionItem: React.FC<Props> = (props) => {
 				</Typography>
 
 				<CardActionArea>
-					<Link to={`/questions/${props.id}`}>Open</Link>
+					<Link to={`/questions/${props.id}`}>Open question</Link>
 				</CardActionArea>
 			</CardContent>
 		</Card >

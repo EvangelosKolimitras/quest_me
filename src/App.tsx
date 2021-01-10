@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { Switch, Route } from 'react-router-dom'
 import { initiliazer } from "./actions";
 import { Dashboard } from "./components/Dashboard";
-import { Home } from "./components/Home";
 import { Login } from "./components/Login";
 import { NavigationBar } from "./components/NavigationBar";
 import { NewQuestion } from "./components/NewQuestion";
+import { QuestionDetail } from "./components/QuestionDetail";
 import { Questions } from "./components/Questions";
 
 interface DefaultRootState {
@@ -39,7 +39,8 @@ const jsx = (isInitialized: any, isAuthed: any) =>
 				(isAuthed && isInitialized) &&
 				<>
 					<Route exact path="/" component={Questions} />
-					<Route path="/questions" component={Questions} />
+					<Route exact path="/questions" component={Questions} />
+					<Route path="/questions/:id" component={QuestionDetail} />
 					<Route path="/leaderboard" component={Dashboard} />
 					<Route path="/new" component={NewQuestion} />
 				</>
