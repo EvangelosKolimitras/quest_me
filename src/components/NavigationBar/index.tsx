@@ -1,5 +1,5 @@
 import React from 'react'
-import { AppBar, Avatar, Box, Button, Toolbar, Typography, } from '@material-ui/core'
+import { AppBar, Avatar, Box, Button, Menu, MenuItem, Toolbar, Typography, } from '@material-ui/core'
 import { LogoIcon } from '../Logo';
 import { NavLink } from './NavLink';
 import { IAuthedUser, IUser, IUsers } from '../../services/declarations';
@@ -30,8 +30,27 @@ interface Props {
 	avatar: string
 	name: string
 }
-const AvatarImage: React.FC<Props> = ({ avatar, name }) => <Box ml={2}>
-	<Button>
-		<Avatar alt={name} src={avatar} />
-	</Button>
-</Box>
+const AvatarImage: React.FC<Props> = ({ avatar, name }) => {
+	const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+
+	const handleClose = () => setAnchorEl(null)
+
+	return (
+		<Box ml={2}>
+			<Button
+				aria-controls="logout"
+				aria-haspopup="true"
+				onClick={(e) => setAnchorEl(e.currentTarget)}>
+				<Avatar alt={name} src={avatar} />
+			</Button>
+			<Menu
+				id="logout"
+				anchorEl={anchorEl}
+				keepMounted
+				open={Boolean(anchorEl)}
+				onClose={handleClose} >
+				<MenuItem onClick={handleClose}>Logout</MenuItem>
+			</Menu>
+		</Box>
+	)
+}
