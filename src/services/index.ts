@@ -59,4 +59,36 @@ const _saveQuestion = (question: any) =>
 		}, 1000)
 	})
 
+export const saveQuestionAnswer = (info: any) =>
+	_saveQuestionAnswer(info)
+
+function _saveQuestionAnswer({ authedUser, qid, answer }: any) {
+	return new Promise<void>((res, rej) => {
+		setTimeout(() => {
+			U = {
+				...U,
+				[authedUser]: {
+					...U[authedUser],
+					answers: {
+						...U[authedUser].answers,
+						[qid]: answer
+					}
+				}
+			}
+
+			Q = {
+				...Q,
+				[qid]: {
+					...Q[qid],
+					[answer]: {
+						...Q[qid][answer],
+						votes: Q[qid][answer].votes.concat([authedUser])
+					}
+				}
+			}
+			res()
+		}, 500)
+	})
+}
+
 export { users, questions }

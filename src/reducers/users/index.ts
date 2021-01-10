@@ -16,7 +16,7 @@ export const UsersReducer = (state: any = initialState, action: UsersProps) => {
 				...state,
 				[payload.author as string]: {
 					...state[payload.author as string],
-					questions: state[payload.author as string].questions.concat([payload.id as string])
+					questions: state[payload.author as string].questions.concat([payload.id])
 				}
 			}
 
@@ -27,7 +27,7 @@ export const UsersReducer = (state: any = initialState, action: UsersProps) => {
 					...state[payload.authedUser as string],
 					answers: {
 						...state[payload.authedUser as string].answers,
-						[payload.qid as string]: payload.answer as string
+						[payload.qid as string]: payload.answer
 					}
 				}
 			}

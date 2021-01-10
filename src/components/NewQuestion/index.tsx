@@ -41,6 +41,7 @@ export const NewQuestion = () => {
 		option01: { value: option01, fn: setOption01 },
 		option02: { value: option02, fn: setOption02 },
 	}
+
 	const classes = useStyles();
 
 	if (backToHome === true)

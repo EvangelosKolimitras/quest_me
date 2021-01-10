@@ -19,13 +19,12 @@ export const DashboardItem = (props: Props) => {
 		number_of_answers: Object.keys(currentUser.answers).length,
 	}
 
+	const createData = (stats: string, total: number, answers: number, questions: number) =>
+		({ stats, total, answers, questions })
+
 	const total = calculate([user.number_of_answers, user.number_of_questions])
 
-	function createData(stats: string, total: number, answers: number, questions: number) {
-		return { stats, total, answers, questions };
-	}
-
-	const rows = [createData('Total', total, user.number_of_answers, user.number_of_questions),];
+	const rows = [createData('Total', total, user.number_of_answers, user.number_of_questions)];
 
 	return render(user, rows, total);
 }
