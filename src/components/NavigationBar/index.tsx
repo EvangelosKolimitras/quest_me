@@ -3,7 +3,8 @@ import { AppBar, Avatar, Box, Button, Menu, MenuItem, Toolbar, Typography, } fro
 import { LogoIcon } from '../Logo';
 import { NavLink } from './NavLink';
 import { IAuthedUser, IUser, IUsers } from '../../services/declarations';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { unsetAuthedUser } from '../../actions/authedUser';
 
 interface DefaultRootState {
 	users: IUsers
@@ -30,11 +31,18 @@ interface Props {
 	avatar: string
 	name: string
 }
+
 const AvatarImage: React.FC<Props> = ({ avatar, name }) => {
 	const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+	const dispatch = useDispatch()
+	const authedUser = useSelector((state: DefaultRootState) => state.authedUser)
 
-	const handleClose = () => setAnchorEl(null)
-
+	const logoutHandler = (event: { currentTarget: any }) => {
+		if (authedUser !== null) {
+			dispatch(unsetAuthedUser())
+			return
+		}
+	}
 	return (
 		<Box ml={2}>
 			<Button
@@ -48,8 +56,9 @@ const AvatarImage: React.FC<Props> = ({ avatar, name }) => {
 				anchorEl={anchorEl}
 				keepMounted
 				open={Boolean(anchorEl)}
-				onClose={handleClose} >
-				<MenuItem onClick={handleClose}>Logout</MenuItem>
+				onClose={() => setAnchorEl(null)}
+			>
+				<MenuItem onClick={logoutHandler}>Logout</MenuItem>
 			</Menu>
 		</Box>
 	)

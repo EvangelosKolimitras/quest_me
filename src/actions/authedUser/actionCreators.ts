@@ -3,7 +3,7 @@ import { actionTypes } from './actions'
 
 export interface AuthedUserProps {
 	type: actionTypes,
-	payload: IAuthedUser
+	payload?: IAuthedUser
 }
 
 // Custom hook for creating action creators

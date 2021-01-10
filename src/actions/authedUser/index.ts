@@ -7,8 +7,10 @@ const AC = createActionCreator();
 type authedUser = IAuthedUser
 export const setAuthedUser = (authedUser: authedUser) => AC({ type: Actions.SET_AUTHED_USER, payload: authedUser })
 
-type API_TYPE = { setAuthedUser: Function }
-const API: API_TYPE = { setAuthedUser };
+export const unsetAuthedUser = () => AC({ type: Actions.UNSET_AUTHED_USER })
+
+type API_TYPE = { setAuthedUser: Function, unsetAuthedUser: Function }
+const API: API_TYPE = { setAuthedUser, unsetAuthedUser };
 
 // A custome hook for creating question actions
 export const authedUserAction = () => API

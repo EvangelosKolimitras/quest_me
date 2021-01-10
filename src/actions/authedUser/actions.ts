@@ -1,4 +1,7 @@
 export const SET_AUTHED_USER = 'SET_AUTHED_USER';
 export type SET_AUTHED_USER_TYPE = typeof SET_AUTHED_USER;
 
-export type actionTypes = SET_AUTHED_USER_TYPE;
+export const UNSET_AUTHED_USER = 'UNSET_AUTHED_USER';
+export type UNSET_AUTHED_USER_TYPE = typeof UNSET_AUTHED_USER;
+
+export type actionTypes = SET_AUTHED_USER_TYPE | UNSET_AUTHED_USER_TYPE;
