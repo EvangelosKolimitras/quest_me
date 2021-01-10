@@ -34,16 +34,19 @@ const jsx = (isInitialized: any, isAuthed: any) =>
 		{
 			(isAuthed && isInitialized) && <NavigationBar />
 		}
-		{
-			(isAuthed && isInitialized) &&
-			<Switch>
-				<Route exact path="/" component={Home} />
-				<Route path="/questions" component={Questions} />
-				<Route path="/leaderboard" component={Dashboard} />
-				<Route path="/new" component={NewQuestion} />
-			</Switch>
-		}
-		{
-			(!isAuthed && isInitialized) && <Login />
-		}
+		<Switch>
+			{
+				(isAuthed && isInitialized) &&
+				<>
+					<Route exact path="/" component={Questions} />
+					<Route path="/questions" component={Questions} />
+					<Route path="/leaderboard" component={Dashboard} />
+					<Route path="/new" component={NewQuestion} />
+				</>
+			}
+			{
+				(!isAuthed && isInitialized) &&
+				<Route redirect="/login" component={Login} />
+			}
+		</Switch>
 	</>

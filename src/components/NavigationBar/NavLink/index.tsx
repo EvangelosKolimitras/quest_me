@@ -11,15 +11,6 @@ const useStyles = makeStyles({
 	}
 });
 
-const home = (link: string | undefined) => <Box ml={2}>
-	<Link
-		to="/"
-		component={RouterLink}
-		underline="none"
-		className={link}
-	> Home </Link >
-</Box>
-
 const leaderboard = (link: string | undefined) => <Box ml={2}>
 	<Link
 		to="/leaderboard"
@@ -49,7 +40,6 @@ const newQuestion = (link: string | undefined) => <Box ml={2}>
 
 const jsx = (link: string | undefined) =>
 	<Grid container justify="center">
-		{home(link)}
 		<Grid item>
 			{newQuestion(link)}
 		</Grid>

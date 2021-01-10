@@ -2,6 +2,7 @@ import { Button, Card, CardContent, CardHeader, Container, makeStyles, TextField
 import { red } from '@material-ui/core/colors';
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import { addQuestionHandler } from '../../actions/';
 
 interface DefaultRootState { authedUser: string }
@@ -11,6 +12,7 @@ export const NewQuestion = () => {
 	const dispatch = useDispatch()
 	const [option01, setOption01] = useState("")
 	const [option02, setOption02] = useState("")
+	const [backToHome, setBackToHome] = useState(false)
 
 	const useStyles = makeStyles({
 		container: {
@@ -32,6 +34,7 @@ export const NewQuestion = () => {
 		//Reset form
 		setOption01("")
 		setOption02("")
+		setBackToHome(true)
 	}
 
 	const options = {
@@ -39,6 +42,10 @@ export const NewQuestion = () => {
 		option02: { value: option02, fn: setOption02 },
 	}
 	const classes = useStyles();
+
+	if (backToHome === true)
+		return <Redirect to='/questions' />
+
 	return jsx(submitHandler, options, classes);
 }
 
