@@ -12,25 +12,26 @@ interface DefaultRootState {
 export const NavigationBar: React.FC = () => {
 	const users = useSelector((state: DefaultRootState) => state.users)
 	const authedUser = useSelector((state: DefaultRootState) => state.authedUser)
-	const { avatarURL: avatar } = users[Object.keys(users).filter((el: any) => el === authedUser)[0]]
+	const { avatarURL: avatar, name } = users[Object.keys(users).filter((el: any) => el === authedUser)[0]]
 
-	return jsx(avatar)
+	return jsx(avatar, name)
 }
 
-const jsx = (avatar: string) => <AppBar position="static">
+const jsx = (avatar: string, name: string) => <AppBar position="static">
 	<Toolbar>
 		<LogoIcon />
 		<Typography variant="h5">Quest Me</Typography>
 		<NavLink />
-		{<AvatarImage avatar={avatar} />}
+		{<AvatarImage avatar={avatar} name={`${name} avatar`} />}
 	</Toolbar>
 </AppBar >
 
 interface Props {
 	avatar: string
+	name: string
 }
-const AvatarImage: React.FC<Props> = ({ avatar }) => <Box ml={2}>
+const AvatarImage: React.FC<Props> = ({ avatar, name }) => <Box ml={2}>
 	<Button>
-		<Avatar aria-label="recipe" src={avatar} />
+		<Avatar alt={name} src={avatar} />
 	</Button>
 </Box>

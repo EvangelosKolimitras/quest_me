@@ -26,7 +26,7 @@ const leaderboard = (link: string | undefined) => <Box ml={2}>
 		component={RouterLink}
 		underline="none"
 		className={link}
-	> Leaderboard  </Link >
+	> Leaderboard</Link >
 </Box>
 
 const questions = (link: string | undefined) => <Box ml={2}>
@@ -35,7 +35,7 @@ const questions = (link: string | undefined) => <Box ml={2}>
 		component={RouterLink}
 		underline="none"
 		className={link}
-	> Questions </Link >
+	> Questions</Link >
 </Box>
 
 const newQuestion = (link: string | undefined) => <Box ml={2}>
