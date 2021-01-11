@@ -1,15 +1,16 @@
-import { Button, Container, Typography, makeStyles, Box } from '@material-ui/core'
+import { Button, Container, Typography, makeStyles, Box, Fab } from '@material-ui/core'
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { IQuestions } from '../../services/declarations'
 import { QuestionItem } from '../QuestionItem'
+import AddIcon from '@material-ui/icons/Add';
 
 interface DefaultRootState {
 	questions: IQuestions
 	authedUser: string
 }
 
-export const Questions: React.FC = () => {
+export const Questions: React.FC = (props: any) => {
 	const useStyles = makeStyles({
 		header: {
 			margin: "2rem auto",
@@ -23,14 +24,19 @@ export const Questions: React.FC = () => {
 			marginTop: "1.2rem",
 			marginLeft: ".5rem",
 			marginRight: ".5rem",
+		},
+		addIcon: {
+			position: "fixed",
+			bottom: "5%",
+			right: "5%"
 		}
 	})
 
 	const classes = useStyles();
-	return render(classes, useSelector((state: DefaultRootState) => check(state.authedUser)(state.questions)))
+	return render(props, classes, useSelector((state: DefaultRootState) => check(state.authedUser)(state.questions)))
 }
 
-const render = (classes: { header: string, heading: string, button: string }, questions: any) => {
+const render = (props: { match: { url: any } }, classes: { header: string, heading: string, button: string, addIcon: any }, questions: any) => {
 	return (
 		<Container>
 			<Box component="div" className={classes.header}>
@@ -47,6 +53,9 @@ const render = (classes: { header: string, heading: string, button: string }, qu
 			</Box>
 			{ questions(true).map(((answer: any) => <QuestionItem key={answer.id} id={answer.id} />))}
 			{ questions(false).map(((answer: any) => <QuestionItem key={answer.id} id={answer.id} />))}
+			<Fab className={classes.addIcon} size="large" color="primary" aria-label="add">
+				<AddIcon />
+			</Fab>
 		</Container>
 	)
 }
