@@ -35,7 +35,7 @@ export const User: React.FC<Props> = ({ id, loginHandler }) => {
 }
 
 const jsx = (user: IUser, classes: any, loginClickHandler: Function): JSX.Element =>
-	<Grid className={classes.container} item xs={12} sm={6} md={3} justify="center">
+	<Grid className={classes.container} item xs={12} sm={6} md={3}>
 		<Card className={classes.card}>
 			<Grid item >
 				<CardContent>

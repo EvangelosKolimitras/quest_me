@@ -25,8 +25,8 @@ export const Login: React.FC = () => {
 const jsx = (classes: any, loginHandler: Function, users: IUser[]) => (
 	<Container maxWidth="md" className={classes.loginRoot}>
 		<Grid container justify="center">
-			<Grid container md={12} justify="center" >
-				<Grid item>
+			<Grid container justify="center" >
+				<Grid item >
 					<Typography variant="h3"> Login </Typography>
 				</Grid>
 			</Grid>
