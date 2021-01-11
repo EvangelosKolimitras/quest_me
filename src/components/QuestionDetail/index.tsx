@@ -1,4 +1,4 @@
-import { Avatar, Card, CardContent, CardHeader, IconButton, makeStyles, Typography } from '@material-ui/core';
+import { Avatar, Box, Card, CardContent, CardHeader, Grid, IconButton, makeStyles, Typography } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { addAnswerHandler } from '../../actions';
 import { IAuthedUser, IQuestion, IQuestions, IUsers } from '../../services/declarations';
@@ -31,7 +31,8 @@ export const QuestionDetail = (props: any) => {
 		card: {
 			marginTop: 50,
 			margin: "auto",
-			width: "75%"
+			width: "75%",
+			maxWidth: 900,
 		}
 	})
 
@@ -41,30 +42,38 @@ export const QuestionDetail = (props: any) => {
 		<>
 			{
 				isQuestion &&
-				<Card className={classes.card} >
-					{createHeader(user!.name, user!.avatarURL)}
-					{createContent(question, vote, saveQuestionAnswer)}
-				</Card>
+				<Grid container justify="center">
+					<Card className={classes.card} >
+						<Grid item>{createHeader(user!.id, user!.name, user!.avatarURL, question.timestamp)}</Grid>
+						<Grid item>{createContent(question, vote, saveQuestionAnswer)}</Grid>
+					</Card>
+				</Grid>
 			}
 		</>
 	)
 }
 
-const createHeader = (name: string, avatar: string) =>
+const createHeader = (id: string, name: string, avatar: string, timestamp: number) =>
 	<CardHeader
 		avatar={<Avatar aria-label="recipe" src={avatar} ></Avatar>}
-		action={
-			<IconButton aria-label="settings">
-			</IconButton>
+		action={<IconButton aria-label="settings"> </IconButton>}
+		title={
+			<>
+				<Typography variant="body1" color="primary" component="p">
+					{name}
+					<Box style={{ fontSize: 12 }} color="textSecondary" component="span"> @{id} </Box>
+				</Typography>
+			</>
 		}
-		title={name}
+		subheader={
+			<Typography variant="caption" color="textSecondary" component="p">
+				{formatDate(timestamp)}
+			</Typography>
+		}
 	/>
 
 const createContent = (question: IQuestion, vote: any, saveQuestionAnswer: (selectedQuestion?: any) => {}) =>
 	<CardContent>
-		<Typography variant="caption" color="textSecondary" component="p">
-			{formatDate(question.timestamp)}
-		</Typography>
 		<SummaryQuestionDetailedItem question={question} vote={vote} />
 		<VoteQuestionDetailedItem question={question} saveQuestionAnswer={saveQuestionAnswer} />
 	</CardContent>

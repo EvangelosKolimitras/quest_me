@@ -1,6 +1,8 @@
+import { FormControl, RadioGroup, FormControlLabel, Radio, Button, makeStyles, Grid } from "@material-ui/core";
+import React from "react";
 import { useState } from "react";
 import { IQuestion } from "../../services/declarations";
-
+import SendIcon from '@material-ui/icons/Send';
 interface PropsVoteQuestionDetailedItem {
 	question: IQuestion
 	saveQuestionAnswer: (selectedQuestion?: any) => void
@@ -9,6 +11,21 @@ interface PropsVoteQuestionDetailedItem {
 export const VoteQuestionDetailedItem: React.FC<PropsVoteQuestionDetailedItem> = ({ question, saveQuestionAnswer }) => {
 
 	const [currentOption, setCurrentOption] = useState("");
+	const useStyles = makeStyles({
+		btn: {
+			marginTop: 25,
+			width: "50%",
+			fontSize: 20
+		},
+		radios: {
+			display: "block",
+			margin: "auto",
+			padding: 25,
+			color: "black",
+			borderRadius: 10
+		}
+	})
+	const classes = useStyles();
 
 	const handleChange = (e: any) => setCurrentOption(e.currentTarget.value)
 
@@ -20,43 +37,41 @@ export const VoteQuestionDetailedItem: React.FC<PropsVoteQuestionDetailedItem> =
 	return (
 		<>
 			<form onSubmit={handleSubmit}>
-				<div className="form-check">
-					<input
-						className="form-check-input"
-						type='radio'
-						id='optionOne'
-						value='optionOne'
-						onChange={handleChange}
-						name='answer'
-						checked={currentOption === 'optionOne' ? true : false}
+				<Grid container justify="center">
+					<FormControl className={classes.radios} component="fieldset">
+						<RadioGroup row>
+							<FormControlLabel
+								labelPlacement="end"
+								control={<Radio value="optionOne"
+									name='answer'
+									id='optionOne'
+									onChange={handleChange}
+									checked={currentOption === 'optionOne' ? true : false} color="default" />}
+								label="Option 1"
+							/>
+							<FormControlLabel
+								labelPlacement="start"
+								control={<Radio name='answer'
+									value="optionTwo"
+									onChange={handleChange}
+									id='optionTwo'
+									checked={currentOption === 'optionTwo' ? true : false} color="default" />}
+								label="Option 2"
+							/>
+						</RadioGroup>
+					</FormControl>
+				</Grid>
+				<Grid container justify="center">
+					<Button
+						className={classes.btn}
+						type='submit'
+						variant="contained"
+						color="primary"
+						endIcon={<SendIcon style={{ fontSize: 30 }} />}
 					>
-					</input>
-					<label
-						className="form-check-label"
-						htmlFor='optionOne'>{question.optionOne.text}
-					</label>
-				</div>
-				<div className="form-check">
-					<input
-						className="form-check-input"
-						type='radio'
-						id='optionTwo'
-						value='optionTwo'
-						onChange={handleChange}
-						name='answer'
-						checked={currentOption === 'optionOne' ? true : false}
-					>
-					</input>
-					<label
-						className="form-check-label"
-						htmlFor='optionTwo'>{question.optionTwo.text}
-					</label>
-				</div>
-				<button
-					className='btn btn-primary'
-					type='submit'
-				>Submit
-            </button>
+						Submit
+					</Button>
+				</Grid>
 			</form>
 		</>
 	)

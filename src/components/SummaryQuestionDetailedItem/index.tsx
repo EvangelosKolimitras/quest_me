@@ -1,4 +1,4 @@
-import { Button, Card, makeStyles } from "@material-ui/core";
+import { Button, Card, Grid, makeStyles } from "@material-ui/core";
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { BarChar } from "../Char";
@@ -6,7 +6,7 @@ import ArrowBackIosRoundedIcon from '@material-ui/icons/ArrowBackIosRounded';
 
 interface PropsSummaryQuestionDetailedItem {
 	question: any,
-	vote: any
+	vote: any,
 }
 
 export const SummaryQuestionDetailedItem: React.FC<PropsSummaryQuestionDetailedItem> = ({ question, vote }) => {
@@ -20,8 +20,8 @@ export const SummaryQuestionDetailedItem: React.FC<PropsSummaryQuestionDetailedI
 
 	const useStyles = makeStyles({
 		card: {
-			padding: 25,
-			marginBottom: 25,
+			padding: 10,
+			marginBottom: 0,
 		},
 	})
 	const classes = useStyles();
@@ -32,13 +32,15 @@ export const SummaryQuestionDetailedItem: React.FC<PropsSummaryQuestionDetailedI
 
 	return <Card className={classes.card}>
 		<BarChar data={data} percentages={percentages} />
-		<Button
-			variant="outlined"
-			color="primary"
-			size="large"
-			startIcon={<ArrowBackIosRoundedIcon fontSize="inherit" />}
-		>
-			<NavLink to='/' exact className='btn btn-primary'> Back</NavLink>
-		</Button>
+		<Grid container justify="flex-end">
+			<NavLink style={{ textDecoration: "none", marginTop: 10 }} to='/questions' exact>
+				<Button
+					variant="outlined"
+					color="primary"
+					size="large"
+					startIcon={<ArrowBackIosRoundedIcon fontSize="inherit" />}
+				> Back </Button>
+			</NavLink>
+		</Grid>
 	</Card>
 }

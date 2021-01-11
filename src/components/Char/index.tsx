@@ -6,7 +6,10 @@ import { Box } from '@material-ui/core';
 
 interface PropsBarChar {
 	data: any,
-	percentages: { q1: number, q2: number }
+	percentages: {
+		q1: number,
+		q2: number
+	}
 }
 
 export const BarChar: React.FC<PropsBarChar> = (props) => {
@@ -37,8 +40,8 @@ export const BarChar: React.FC<PropsBarChar> = (props) => {
 						valueField="value"
 						argumentField="label"
 					/>
-					<Title text="Would you rather ?" />
 					<Legend />
+					<Title text="Would you rather ?" />
 					<Animation />
 					<EventTracker onClick={click} />
 					<SelectionState selection={selection} />
