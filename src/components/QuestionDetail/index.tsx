@@ -1,16 +1,26 @@
-import { Avatar, Card, CardContent, CardHeader, IconButton, makeStyles, Typography } from '@material-ui/core';
+import { Avatar, Box, Button, Card, CardContent, CardHeader, IconButton, makeStyles, Typography } from '@material-ui/core';
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { addAnswerHandler } from '../../actions';
 import { IAuthedUser, IQuestion, IQuestions, IUsers } from '../../services/declarations';
 import { formatDate } from '../QuestionItem';
+import ArrowBackIosRoundedIcon from '@material-ui/icons/ArrowBackIosRounded';
+import Paper from '@material-ui/core/Paper';
+import {
+	Chart,
+	Legend,
+	PieSeries,
+	Title,
+} from '@devexpress/dx-react-chart-material-ui';
+import { Animation, EventTracker, SelectionState } from '@devexpress/dx-react-chart';
 
 interface DefaultRootState {
 	authedUser: IAuthedUser
 	questions: IQuestions
 	users: IUsers
 }
+
 
 export const QuestionDetail = (props: any) => {
 	const dispatch = useDispatch()
@@ -35,11 +45,13 @@ export const QuestionDetail = (props: any) => {
 	const useStyles = makeStyles({
 		card: {
 			marginTop: 50,
-			width: "50%"
+			margin: "auto",
+			width: "75%"
 		}
 	})
 
 	const classes = useStyles();
+
 	return (
 		<>
 			{
@@ -76,27 +88,37 @@ interface PropsSummaryQuestionDetailedItem {
 	question: any,
 	vote: any
 }
+
 const SummaryQuestionDetailedItem: React.FC<PropsSummaryQuestionDetailedItem> = ({ question, vote }) => {
 	const q1Votes = question.optionOne.votes.length
 	const q2Votes = question.optionTwo.votes.length;
 	const totalAnswers = q1Votes + q2Votes;
 	const q1Percentage = q1Votes === 0 ? 0 : Math.round((q1Votes / totalAnswers) * 100);
 	const q2Percentage = q2Votes === 0 ? 0 : Math.round((q2Votes / totalAnswers) * 100);
-	const q1Style = { width: `${q1Percentage}%` }
-	const q2Styles = { width: `${q2Percentage}%` }
 
-	return <p>
-		<h3>Would you rather ?</h3>
-		<p>{question.optionOne.text} {vote === 'optionOne' && (<span>Your choice</span>)}</p>
-		<div> <div style={q1Style}></div> </div>
-		<p>Voted by: {q1Votes} people</p>
-		<p>{q1Percentage}%</p>
-		<p >{question.optionTwo.text} {vote === 'optionTwo' && (<span>Your choice</span>)}</p>
-		<div> <div style={q2Styles}></div> </div>
-		<p>Voted by: {q2Votes} people</p>
-		<p>{q2Percentage}%</p>
-		<NavLink to='/' exact className='btn btn-primary'>Back</NavLink>
-	</p>
+	const useStyles = makeStyles({
+		card: {
+			padding: 25,
+			marginBottom: 25,
+		},
+	})
+	const classes = useStyles();
+	let data = [
+		{ label: question.optionOne.text, value: q1Votes },
+		{ label: question.optionTwo.text, value: q2Votes }
+	];
+
+	return <Card className={classes.card}>
+		<BarChar data={data} />
+		<Button
+			variant="outlined"
+			color="primary"
+			size="large"
+			startIcon={<ArrowBackIosRoundedIcon fontSize="inherit" />}
+		>
+			<NavLink to='/' exact className='btn btn-primary'> Back</NavLink>
+		</Button>
+	</Card>
 }
 
 interface PropsVoteQuestionDetailedItem {
@@ -155,6 +177,46 @@ const VoteQuestionDetailedItem: React.FC<PropsVoteQuestionDetailedItem> = ({ que
 				>Submit
             </button>
 			</form>
+		</>
+	)
+}
+
+interface PropsBarChar {
+	data: any
+}
+const BarChar: React.FC<PropsBarChar> = (props) => {
+	const [data, setData] = useState(props.data)
+	const selecionData: any[] = []
+	const [selection, setSelection] = useState(selecionData)
+
+	const compare = ({ series, point }: any, { series: targetSeries, point: targetPoint }: any) =>
+		series === targetSeries && point === targetPoint;
+
+	const click = ({ targets }: any) => {
+		const target = targets[0];
+		if (target) {
+			setSelection(selection[0] && compare(selection[0], target) ? [] : [target])
+		}
+	};
+	return (
+		<>
+			{selection.length ? <Box component="span">
+				{data[selection[0].point].value} voted this option</Box> : null
+			}
+
+			<Paper>
+				<Chart data={data} >
+					<PieSeries
+						valueField="value"
+						argumentField="label"
+					/>
+					<Title text="Would you rather ?" />
+					<Legend />
+					<Animation />
+					<EventTracker onClick={click} />
+					<SelectionState selection={selection} />
+				</Chart>
+			</Paper>
 		</>
 	)
 }

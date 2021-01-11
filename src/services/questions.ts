@@ -5,11 +5,11 @@ export let questions: any = {
 		author: 'jane_smith',
 		timestamp: 1467166872634,
 		optionOne: {
-			votes: ['jane_smith'],
+			votes: ['jane_smith',],
 			text: 'have horrible short term memory',
 		},
 		optionTwo: {
-			votes: [],
+			votes: ["johndoe", "evangeloskolimitras"],
 			text: 'have horrible long term memory'
 		}
 	},
