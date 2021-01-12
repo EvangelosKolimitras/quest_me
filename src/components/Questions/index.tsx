@@ -56,7 +56,7 @@ const render = (props: { match: { url: any } }, classes: { header: string, headi
 			{ questions(false).map(((answer: any) => <QuestionItem key={answer.id} id={answer.id} />))}
 
 			<Modal styles={{
-				position: "absolute",
+				position: "fixed",
 				bottom: "5%",
 				right: "5%"
 			}} />
