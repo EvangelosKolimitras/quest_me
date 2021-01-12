@@ -34,5 +34,4 @@ export const UsersReducer = (state: any = initialState, action: UsersProps) => {
 		default:
 			return state
 	}
-
 }

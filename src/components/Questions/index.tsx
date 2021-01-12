@@ -1,9 +1,9 @@
-import { Button, Container, Typography, makeStyles, Box, Fab } from '@material-ui/core'
+import { Button, Container, Typography, makeStyles, Box } from '@material-ui/core'
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { IQuestions } from '../../services/declarations'
 import { QuestionItem } from '../QuestionItem'
-import AddIcon from '@material-ui/icons/Add';
+import { Modal } from '../Modal'
 
 interface DefaultRootState {
 	questions: IQuestions
@@ -51,11 +51,15 @@ const render = (props: { match: { url: any } }, classes: { header: string, headi
 					Answered {questions(true).length}
 				</Button>
 			</Box>
+
 			{ questions(true).map(((answer: any) => <QuestionItem key={answer.id} id={answer.id} />))}
 			{ questions(false).map(((answer: any) => <QuestionItem key={answer.id} id={answer.id} />))}
-			<Fab className={classes.addIcon} size="large" color="primary" aria-label="add">
-				<AddIcon />
-			</Fab>
+
+			<Modal styles={{
+				position: "absolute",
+				bottom: "5%",
+				right: "5%"
+			}} />
 		</Container>
 	)
 }
