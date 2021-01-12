@@ -29,14 +29,14 @@ const questions = (link: string | undefined) => <Box ml={2}>
 	> Questions</Link >
 </Box>
 
-const newQuestion = (link: string | undefined) => <Box ml={2}>
-	<Link
-		to="/new"
-		component={RouterLink}
-		underline="none"
-		className={link}
-	> New </Link >
-</Box>
+// const newQuestion = (link: string | undefined) => <Box ml={2}>
+// 	<Link
+// 		to="/new"
+// 		component={RouterLink}
+// 		underline="none"
+// 		className={link}
+// 	> New </Link >
+// </Box>
 
 const jsx = (link: string | undefined) =>
 	<Grid container justify="center">

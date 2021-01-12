@@ -5,7 +5,6 @@ import { NavLink } from './NavLink';
 import { IAuthedUser, IUsers } from '../../services/declarations';
 import { useSelector } from 'react-redux';
 import { AvatarImage } from '../Avatar';
-import classes from '*.module.sass';
 import { red } from '@material-ui/core/colors';
 
 interface DefaultRootState {

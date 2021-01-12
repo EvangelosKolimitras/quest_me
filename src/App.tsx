@@ -5,7 +5,6 @@ import { initiliazer } from "./actions";
 import { Dashboard } from "./components/Dashboard";
 import { Login } from "./components/Login";
 import { NavigationBar } from "./components/NavigationBar";
-import { NewQuestion } from "./components/NewQuestion";
 import { QuestionDetail } from "./components/QuestionDetail";
 import { Questions } from "./components/Questions";
 
