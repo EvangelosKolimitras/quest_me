@@ -3,12 +3,16 @@ import ReactDOM from 'react-dom'
 import { App } from './App'
 import { initStore } from './store'
 import { BrowserRouter } from 'react-router-dom';
+import React from 'react';
+import { Theme } from './Themes';
 
 ReactDOM.render(
 	<BrowserRouter>
-		<Provider store={initStore()}>
-			<App />
-		</Provider>
+		<Theme>
+			<Provider store={initStore()}>
+				<App />
+			</Provider>
+		</Theme>
 	</BrowserRouter>,
 	document.getElementById("root")
 )

@@ -20,7 +20,7 @@ const sort = (users: IUsers) => (a: string, b: string) => calculate(users)(b) - 
 export const Dashboard = () => {
 	const useStyles = makeStyles({
 		root: {
-			marginTop: 120
+			marginTop: 120,
 		},
 	})
 	const classes = useStyles();

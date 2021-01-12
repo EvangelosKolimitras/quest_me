@@ -1,4 +1,4 @@
-import { FormControl, RadioGroup, FormControlLabel, Radio, Button, makeStyles, Grid } from "@material-ui/core";
+import { FormControl, RadioGroup, FormControlLabel, Radio, Button, makeStyles, Grid, useTheme } from "@material-ui/core";
 import React from "react";
 import { useState } from "react";
 import { IQuestion } from "../../services/declarations";
@@ -9,13 +9,14 @@ interface PropsVoteQuestionDetailedItem {
 }
 
 export const VoteQuestionDetailedItem: React.FC<PropsVoteQuestionDetailedItem> = ({ question, saveQuestionAnswer }) => {
-
+	const mainColor = useTheme().palette.primary.main
 	const [currentOption, setCurrentOption] = useState("");
 	const useStyles = makeStyles({
 		btn: {
 			marginTop: 25,
 			width: "50%",
-			fontSize: 20
+			fontSize: 20,
+			backgroundColor: mainColor
 		},
 		radios: {
 			display: "block",
@@ -65,8 +66,7 @@ export const VoteQuestionDetailedItem: React.FC<PropsVoteQuestionDetailedItem> =
 					<Button
 						className={classes.btn}
 						type='submit'
-						variant="contained"
-						color="primary"
+						variant="outlined"
 						endIcon={<SendIcon style={{ fontSize: 30 }} />}
 					>
 						Submit
