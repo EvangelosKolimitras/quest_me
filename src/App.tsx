@@ -42,7 +42,7 @@ const jsx = (isInitialized: any, isAuthed: any) =>
 					<Route exact path="/questions" component={Questions} />
 					<Route path="/questions/:id" component={QuestionDetail} />
 					<Route path="/leaderboard" component={Dashboard} />
-					<Route path="/new" component={NewQuestion} />
+					{/* <Route path="/new" component={NewQuestion} /> */}
 				</>
 			}
 			{

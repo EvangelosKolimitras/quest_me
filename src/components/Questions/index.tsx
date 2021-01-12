@@ -12,6 +12,9 @@ interface DefaultRootState {
 
 export const Questions: React.FC = (props: any) => {
 	const useStyles = makeStyles({
+		root: {
+			marginTop: 120
+		},
 		header: {
 			margin: "2rem auto",
 			textAlign: "center"
@@ -36,9 +39,9 @@ export const Questions: React.FC = (props: any) => {
 	return render(props, classes, useSelector((state: DefaultRootState) => check(state.authedUser)(state.questions)))
 }
 
-const render = (props: { match: { url: any } }, classes: { header: string, heading: string, button: string, addIcon: any }, questions: any) => {
+const render = (props: { match: { url: any } }, classes: any, questions: any) => {
 	return (
-		<Container>
+		<Container className={classes.root}>
 			<Box component="div" className={classes.header}>
 				<Typography className={classes.heading} variant="h1">Questions</Typography>
 				<Button variant="outlined" color="primary" className={classes.button}>

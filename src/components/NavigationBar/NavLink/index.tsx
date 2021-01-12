@@ -40,9 +40,9 @@ const newQuestion = (link: string | undefined) => <Box ml={2}>
 
 const jsx = (link: string | undefined) =>
 	<Grid container justify="center">
-		<Grid item>
+		{/* <Grid item>
 			{newQuestion(link)}
-		</Grid>
+		</Grid> */}
 		<Grid item>
 			{leaderboard(link)}
 		</Grid>

@@ -28,6 +28,9 @@ export const QuestionDetail = (props: any) => {
 	const saveQuestionAnswer = (selectedQuestion?: any) => dispatch(addAnswerHandler(authedUser, id, selectedQuestion));
 
 	const useStyles = makeStyles({
+		root: {
+			marginTop: 120
+		},
 		card: {
 			marginTop: 50,
 			margin: "auto",
@@ -42,7 +45,7 @@ export const QuestionDetail = (props: any) => {
 		<>
 			{
 				isQuestion &&
-				<Grid container justify="center">
+				<Grid container justify="center" className={classes.root}>
 					<Card className={classes.card} >
 						<Grid item>{createHeader(user!.id, user!.name, user!.avatarURL, question.timestamp)}</Grid>
 						<Grid item>{createContent(question, vote, saveQuestionAnswer)}</Grid>
