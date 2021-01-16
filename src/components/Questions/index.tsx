@@ -1,10 +1,11 @@
-import { Button, Container, Typography, makeStyles, Box, Avatar, Chip, Badge, Portal } from '@material-ui/core'
-import React, { useRef, useState } from 'react'
+import { Button, Container, Typography, makeStyles, Box, Avatar, Badge, Portal } from '@material-ui/core'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { IQuestion, IQuestions, IUser, IUsers } from '../../services/declarations'
 import { QuestionItem } from '../QuestionItem'
 import { Modal } from '../Modal'
-import DoneIcon from '@material-ui/icons/Done';
+import { useStyles } from './styles'
+
 interface DefaultRootState {
 	questions: IQuestions
 	authedUser: string
@@ -16,38 +17,9 @@ export const Questions: React.FC = (props: any) => {
 	const authedUser = useSelector((state: DefaultRootState) => state.authedUser)
 	const questions = useSelector((state: DefaultRootState) => state.questions)
 	const users = useSelector((state: DefaultRootState) => state.users)
-
 	const [showQuestions, setShowQuestions] = useState(false)
 	const [allQuestions, setAllQuestions] = useState(Object.values(questions))
 	const [filterSelected, setFilterSelected] = useState(false)
-
-	const useStyles = makeStyles({
-		root: {
-			marginTop: 120
-		},
-		header: {
-			margin: "2rem auto",
-			textAlign: "center"
-		},
-		heading: {
-			fontSize: "4rem",
-			textAlign: "center"
-		},
-		button: {
-			marginTop: "1.2rem",
-			marginLeft: ".5rem",
-			marginRight: ".5rem",
-		},
-		addIcon: {
-			position: "fixed",
-			bottom: "5%",
-			right: "5%"
-		},
-		ss: {
-			backgroundColor: "red"
-		}
-	})
-
 	const classes = useStyles();
 
 	const questionsUnAnswered = Object.values(questions).filter((question) =>

@@ -1,8 +1,9 @@
-import { FormControl, RadioGroup, FormControlLabel, Radio, Button, makeStyles, Grid, useTheme } from "@material-ui/core";
+import { FormControl, RadioGroup, FormControlLabel, Radio, Button, Grid } from "@material-ui/core";
 import React from "react";
 import { useState } from "react";
 import { IQuestion } from "../../services/declarations";
 import SendIcon from '@material-ui/icons/Send';
+import { useStyles } from "./styles";
 
 interface PropsVoteQuestionDetailedItem {
 	question: IQuestion
@@ -10,23 +11,7 @@ interface PropsVoteQuestionDetailedItem {
 }
 
 export const VoteQuestionDetailedItem: React.FC<PropsVoteQuestionDetailedItem> = ({ question, saveQuestionAnswer }) => {
-	const mainColor = useTheme().palette.primary.main
 	const [currentOption, setCurrentOption] = useState("");
-	const useStyles = makeStyles({
-		btn: {
-			marginTop: 25,
-			width: "50%",
-			fontSize: 20,
-			backgroundColor: mainColor
-		},
-		radios: {
-			display: "block",
-			margin: "auto",
-			padding: 25,
-			color: "black",
-			borderRadius: 10
-		}
-	})
 	const classes = useStyles();
 
 	const handleChange = (e: any) => setCurrentOption(e.currentTarget.value)

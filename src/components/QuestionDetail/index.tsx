@@ -5,6 +5,7 @@ import { IAuthedUser, IQuestion, IQuestions, IUsers } from '../../services/decla
 import { formatDate } from '../QuestionItem';
 import { SummaryQuestionDetailedItem } from '../SummaryQuestionDetailedItem';
 import { VoteQuestionDetailedItem } from '../VoteQuestionDetailedItem';
+import { useStyles } from './styles';
 
 interface DefaultRootState {
 	authedUser: IAuthedUser
@@ -17,6 +18,8 @@ export const QuestionDetail = (props: any) => {
 	const authedUser = useSelector((state: DefaultRootState) => state.authedUser)
 	const questions = useSelector((state: DefaultRootState) => state.questions)
 	const users = useSelector((state: DefaultRootState) => state.users)
+	const classes = useStyles();
+
 	const id = props.match.params.id;
 	const authedID = Object.keys(users).filter((el: any) => el === authedUser)[0]
 	const question = questions[id]
@@ -24,22 +27,7 @@ export const QuestionDetail = (props: any) => {
 	const isAnswered = !!question ? (question.optionOne.votes.includes(authedID) || question.optionTwo.votes.includes(authedID)) : false;
 	const vote = isAnswered ? (question.optionTwo.votes.includes(authedID) ? 'optionOne' : 'optionTwo') : null;
 	const user = (users && question) ? users[question.author] : null;
-
 	const saveQuestionAnswer = (selectedQuestion?: any) => dispatch(addAnswerHandler(authedUser, id, selectedQuestion));
-
-	const useStyles = makeStyles({
-		root: {
-			marginTop: 120
-		},
-		card: {
-			marginTop: 50,
-			margin: "auto",
-			width: "75%",
-			maxWidth: 900,
-		}
-	})
-
-	const classes = useStyles();
 
 	return (
 		<>

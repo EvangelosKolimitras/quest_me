@@ -1,15 +1,7 @@
 import { Box, Grid, Link } from '@material-ui/core';
-import { makeStyles } from "@material-ui/core/styles";
 import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
-
-const useStyles = makeStyles({
-	link: {
-		color: "white",
-		height: 48,
-		padding: "0 30px"
-	}
-});
+import { useStyles } from './styles';
 
 const leaderboard = (link: string | undefined) => <Box ml={2}>
 	<Link
@@ -29,20 +21,8 @@ const questions = (link: string | undefined) => <Box ml={2}>
 	> Questions</Link >
 </Box>
 
-// const newQuestion = (link: string | undefined) => <Box ml={2}>
-// 	<Link
-// 		to="/new"
-// 		component={RouterLink}
-// 		underline="none"
-// 		className={link}
-// 	> New </Link >
-// </Box>
-
 const jsx = (link: string | undefined) =>
 	<Grid container justify="center">
-		{/* <Grid item>
-			{newQuestion(link)}
-		</Grid> */}
 		<Grid item>
 			{leaderboard(link)}
 		</Grid>

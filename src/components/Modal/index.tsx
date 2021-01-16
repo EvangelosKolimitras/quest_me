@@ -2,6 +2,7 @@ import { Dialog, DialogTitle, DialogContent, DialogContentText, useMediaQuery, u
 import React from 'react'
 import { NewQuestion } from '../NewQuestion';
 import AddIcon from '@material-ui/icons/Add';
+import { useStyles } from './styles';
 
 export const Modal: React.FC = () => {
 	const [open, setOpen] = React.useState(false);
@@ -10,14 +11,6 @@ export const Modal: React.FC = () => {
 
 	const handleClickOpen = () => setOpen(true);
 	const handleClose = () => setOpen(false);
-
-	const useStyles = makeStyles({
-		modal: {
-			position: "fixed",
-			bottom: "5%",
-			right: "5%"
-		}
-	})
 
 	const classes = useStyles();
 

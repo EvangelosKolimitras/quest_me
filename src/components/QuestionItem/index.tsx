@@ -1,30 +1,15 @@
 import React from 'react'
-import { Avatar, CardActionArea, createStyles, makeStyles, Theme, Card, Typography, CardHeader, IconButton, CardContent } from '@material-ui/core';
-import { lightBlue } from '@material-ui/core/colors';
+import { Avatar, CardActionArea, Card, Typography, CardHeader, IconButton, CardContent } from '@material-ui/core';
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom';
 import { IQuestions, IUsers } from '../../services/declarations'
+import { useStyles } from './styles';
 
 interface DefaultRootState { users?: IUsers, questions?: IQuestions }
 
 interface Props {
 	id: string
 }
-
-const useStyles = makeStyles((theme: Theme) => {
-	return createStyles({
-		card: {
-			maxWidth: 445,
-			height: 300,
-			margin: "auto",
-			marginBottom: 20,
-			color: "white"
-		},
-		avatar: {
-			backgroundColor: lightBlue[700],
-		},
-	})
-})
 
 export const QuestionItem: React.FC<Props> = (props) => {
 

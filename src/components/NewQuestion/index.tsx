@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { addQuestionHandler } from '../../actions/';
+import { useStyles } from './styles';
 
 interface DefaultRootState { authedUser: string }
 
@@ -16,24 +17,7 @@ export const NewQuestion: React.FC<Props> = (props) => {
 	const [option01, setOption01] = useState("")
 	const [option02, setOption02] = useState("")
 	const [backToHome, setBackToHome] = useState(false)
-
-	const useStyles = makeStyles({
-		container: {
-			marginTop: 10,
-			width: "90%",
-			maxWidth: 1000,
-			padding: 10,
-			height: "90vh",
-		},
-		card: {
-			height: 400
-		},
-		btn: {
-			marginTop: 25,
-			marginBottom: 25,
-			width: "100%"
-		}
-	})
+	const classes = useStyles();
 
 	const submitHandler = (e: { preventDefault: Function }) => {
 		e.preventDefault();
@@ -49,8 +33,6 @@ export const NewQuestion: React.FC<Props> = (props) => {
 		option01: { value: option01, fn: setOption01 },
 		option02: { value: option02, fn: setOption02 },
 	}
-
-	const classes = useStyles();
 
 	if (backToHome === true)
 		return <Redirect to='/questions' />

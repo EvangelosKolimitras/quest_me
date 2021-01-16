@@ -1,41 +1,19 @@
-import { CardContent, Card, CardMedia, makeStyles, Typography, Button, Grid } from '@material-ui/core'
+import { CardContent, Card, CardMedia, Typography, Button, Grid } from '@material-ui/core'
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { IUser, IUsers } from '../../services/declarations'
+import { useStyles } from './styles'
 
 interface DefaultRootState { users: IUsers }
 interface Props { loginHandler: Function, id: string }
 
 export const User: React.FC<Props> = ({ id, loginHandler }) => {
-	const users = useSelector((state: DefaultRootState) => state.users)
-	const useStyles = makeStyles({
-		card: {
-			margin: 10,
-			width: 200,
-			height: 275,
-			float: "left",
-			textAlign: "center",
-			padding: 10
-		},
-		img: {
-			width: "100%",
-			height: 150,
-			margin: "auto"
-		},
-		name: {
-			marginTop: 20
-		},
-		btn: {
-			marginTop: 20
-		}
-	})
-
+	const users = useSelector((state: DefaultRootState) => state.users);
+	const classes = useStyles();
 	const loginClickHandler = () => loginHandler(id)
-	return jsx(users[id], useStyles(), loginClickHandler)
-}
+	const user = users[id]
 
-const jsx = (user: IUser, classes: any, loginClickHandler: Function): JSX.Element =>
-	<Grid className={classes.container} item xs={12} sm={6} md={3}>
+	return <Grid item xs={12} sm={6} md={3}>
 		<Card className={classes.card}>
 			<Grid item >
 				<CardContent>
@@ -52,6 +30,7 @@ const jsx = (user: IUser, classes: any, loginClickHandler: Function): JSX.Elemen
 			</Grid>
 		</Card>
 	</Grid>
+}
 
 const renderLoginBtn = (fn: Function): JSX.Element =>
 	<Button variant="contained" color="primary" onClick={() => fn()}>Login</Button>

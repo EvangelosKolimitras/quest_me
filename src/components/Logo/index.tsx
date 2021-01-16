@@ -1,8 +1,10 @@
 import { ReactComponent as Logo } from '../../images/logo.svg'
 import SvgIcon from '@material-ui/core/SvgIcon'
+import { useStyles } from './styles'
 
-const styles = { fontSize: 50, backgroundColor: "#fff", height: "100", width: "100", marginRight: 10 }
-
-export const LogoIcon = (props: any) => jsx()
-
-const jsx = () => <SvgIcon style={styles} component={Logo} viewBox="-100 0 800 476.6" />
+export const LogoIcon = (props: any) => {
+	const classes = useStyles()
+	return (
+		<SvgIcon className={classes.root} component={Logo} viewBox="-100 0 800 476.6" />
+	)
+}
