@@ -1,4 +1,4 @@
-import { Button, Container, Typography, makeStyles, Box, Avatar, Chip, Badge } from '@material-ui/core'
+import { Button, Container, Typography, makeStyles, Box, Avatar, Chip, Badge, Portal } from '@material-ui/core'
 import React, { useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { IQuestion, IQuestions, IUser, IUsers } from '../../services/declarations'
@@ -100,7 +100,9 @@ export const Questions: React.FC = (props: any) => {
 
 			{ allQuestions.map((q: IQuestion) => <QuestionItem key={q.id} id={q.id} />)}
 
-			<Modal />
+			<Portal>
+				<Modal />
+			</Portal>
 		</Container>
 	)
 }
