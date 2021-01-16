@@ -3,6 +3,7 @@ import React from "react";
 import { useState } from "react";
 import { IQuestion } from "../../services/declarations";
 import SendIcon from '@material-ui/icons/Send';
+
 interface PropsVoteQuestionDetailedItem {
 	question: IQuestion
 	saveQuestionAnswer: (selectedQuestion?: any) => void

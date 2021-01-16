@@ -1,16 +1,26 @@
-import { Button, Container, Typography, makeStyles, Box } from '@material-ui/core'
-import React from 'react'
+import { Button, Container, Typography, makeStyles, Box, Avatar, Chip, Badge } from '@material-ui/core'
+import React, { useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { IQuestions } from '../../services/declarations'
+import { IQuestion, IQuestions, IUser, IUsers } from '../../services/declarations'
 import { QuestionItem } from '../QuestionItem'
 import { Modal } from '../Modal'
-
+import DoneIcon from '@material-ui/icons/Done';
 interface DefaultRootState {
 	questions: IQuestions
 	authedUser: string
+	users: IUsers
 }
 
 export const Questions: React.FC = (props: any) => {
+
+	const authedUser = useSelector((state: DefaultRootState) => state.authedUser)
+	const questions = useSelector((state: DefaultRootState) => state.questions)
+	const users = useSelector((state: DefaultRootState) => state.users)
+
+	const [showQuestions, setShowQuestions] = useState(false)
+	const [allQuestions, setAllQuestions] = useState(Object.values(questions))
+	const [filterSelected, setFilterSelected] = useState(false)
+
 	const useStyles = makeStyles({
 		root: {
 			marginTop: 120
@@ -32,46 +42,65 @@ export const Questions: React.FC = (props: any) => {
 			position: "fixed",
 			bottom: "5%",
 			right: "5%"
+		},
+		ss: {
+			backgroundColor: "red"
 		}
 	})
 
 	const classes = useStyles();
-	return render(props, classes, useSelector((state: DefaultRootState) => check(state.authedUser)(state.questions)))
-}
 
-const render = (props: { match: { url: any } }, classes: any, questions: any) => {
+	const questionsUnAnswered = Object.values(questions).filter((question) =>
+		!question.optionOne.votes.includes(authedUser) && !question.optionTwo.votes.includes(authedUser))
+	const questionsAnswered = Object.values(questions).filter((question) =>
+		question.optionOne.votes.includes(authedUser) || question.optionTwo.votes.includes(authedUser))
+	const questionsUnAnsweredOrdered = Object.values(questionsUnAnswered).sort((a, b) => b.timestamp - a.timestamp).map((q) => q.id);
+	const questionsAnsweredOrdered = Object.values(questionsAnswered).sort((a, b) => b.timestamp - a.timestamp).map((q) => q.id);
+
+	const handleQuestionState = () => {
+		if (showQuestions) {
+			setShowQuestions(!showQuestions)
+			setFilterSelected(!filterSelected)
+		}
+	}
+
+	const filteredUsers = Object.values(users).filter((user: IUser) => user.id !== authedUser)
+
+	const filterQuestionsPerUser = (e: any, userID: string) => {
+		e.preventDefault()
+		const selectedUserQuetions = Object.values(questions).filter((question: IQuestion) => question.author == userID)
+		setAllQuestions(selectedUserQuetions)
+		setFilterSelected(!filterSelected)
+	}
+
 	return (
 		<Container className={classes.root}>
 			<Box component="div" className={classes.header}>
 				<Typography className={classes.heading} variant="h1">Questions</Typography>
-				<Button variant="outlined" color="primary" className={classes.button}>
-					All {questions(false).length + questions(false).length}
-				</Button>
-				<Button variant="contained" color="primary" className={classes.button}>
-					Not answered {questions(false).length}
-				</Button>
-				<Button variant="contained" color="secondary" className={classes.button}>
-					Answered {questions(true).length}
-				</Button>
+				<Box component="div" mt={2} >
+					{
+						filteredUsers.map((user: IUser) =>
+							<Button
+								color="primary"
+								name={user.id}
+								size="small"
+								className={classes.button}
+								startIcon={<Avatar alt={`Avatar from ${user.name}`} src={user.avatarURL} />}
+								onClick={(e: any) => filterQuestionsPerUser(e, user.id)}
+							>
+								<Badge style={{ padding: 5, left: -15, top: -10 }} badgeContent={
+									Object.values(questions).filter((q: IQuestion) => q.author == user.id).length} color="primary">
+								</Badge>
+								{user.name}
+							</Button>
+						)
+					}
+				</Box>
 			</Box>
 
-			{ questions(true).map(((answer: any) => <QuestionItem key={answer.id} id={answer.id} />))}
-			{ questions(false).map(((answer: any) => <QuestionItem key={answer.id} id={answer.id} />))}
+			{ allQuestions.map((q: IQuestion) => <QuestionItem key={q.id} id={q.id} />)}
 
-			<Modal styles={{
-				position: "fixed",
-				bottom: "5%",
-				right: "5%"
-			}} />
+			<Modal />
 		</Container>
 	)
-}
-
-const check = (authedUser: string) => (questions: IQuestions) => {
-	return (isAnswered: boolean) => {
-		return Object.values(questions).filter((question) => {
-			if (isAnswered) return (!question.optionOne.votes.includes(authedUser) || !question.optionTwo.votes.includes(authedUser))
-			return (!question.optionOne.votes.includes(authedUser) && !question.optionTwo.votes.includes(authedUser))
-		})
-	}
 }
