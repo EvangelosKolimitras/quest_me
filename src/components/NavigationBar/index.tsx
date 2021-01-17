@@ -22,7 +22,7 @@ export const NavigationBar: React.FC = () => {
 		<AppBar position="fixed" className={classes.nav}>
 			<Toolbar>
 				<LogoIcon />
-				<Typography variant="h5">Quest Me</Typography>
+				<Typography variant="h5" className={classes.brand}>Quest Me</Typography>
 				<NavLink />
 				{<AvatarImage avatar={avatar} name={`${name} avatar`} />}
 			</Toolbar>

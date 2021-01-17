@@ -1,4 +1,4 @@
-import { Dialog, DialogTitle, DialogContent, DialogContentText, useMediaQuery, useTheme, Fab, makeStyles } from '@material-ui/core';
+import { Dialog, DialogTitle, DialogContent, DialogContentText, useMediaQuery, useTheme, Fab } from '@material-ui/core';
 import React from 'react'
 import { NewQuestion } from '../NewQuestion';
 import AddIcon from '@material-ui/icons/Add';
@@ -16,7 +16,7 @@ export const Modal: React.FC = () => {
 
 	return (
 		<>
-			<Fab onClick={handleClickOpen} className={classes.modal} size="medium" color="primary" aria-label="add">
+			<Fab onClick={handleClickOpen} className={classes.modalBtn} size="medium" aria-label="add">
 				<AddIcon />
 			</Fab>
 			<Dialog fullScreen={fullScreen} open={open} onClose={handleClose} aria-labelledby="form-dialog-title">

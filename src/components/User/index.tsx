@@ -1,7 +1,7 @@
 import { CardContent, Card, CardMedia, Typography, Button, Grid } from '@material-ui/core'
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { IUser, IUsers } from '../../services/declarations'
+import { IUsers } from '../../services/declarations'
 import { useStyles } from './styles'
 
 interface DefaultRootState { users: IUsers }

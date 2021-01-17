@@ -24,5 +24,10 @@ export const useStyles = makeStyles((theme: Theme) => ({
 	},
 	ss: {
 		backgroundColor: "red"
+	},
+	badge: {
+		padding: 5,
+		left: -15,
+		top: -10
 	}
 }))

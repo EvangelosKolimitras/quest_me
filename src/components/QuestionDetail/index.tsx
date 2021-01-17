@@ -1,4 +1,4 @@
-import { Avatar, Box, Card, CardContent, CardHeader, Grid, IconButton, makeStyles, Typography } from '@material-ui/core';
+import { Avatar, Box, Card, CardContent, CardHeader, Grid, IconButton, Typography } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { addAnswerHandler } from '../../actions';
 import { IAuthedUser, IQuestion, IQuestions, IUsers } from '../../services/declarations';
