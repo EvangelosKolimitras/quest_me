@@ -9,7 +9,7 @@ import { useStyles } from './styles'
 
 interface DefaultRootState { users: IUsers }
 
-export const Login: React.FC = () => {
+export const Login: React.FC = React.memo(() => {
 	const dispatch = useDispatch();
 	const usrs = useSelector((state: DefaultRootState) => state.users)
 	const users = Object.values(usrs)
@@ -39,4 +39,4 @@ export const Login: React.FC = () => {
 			</Grid>
 		</Container >
 	)
-}
+})

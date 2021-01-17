@@ -12,7 +12,7 @@ interface DefaultRootState {
 	users: IUsers
 }
 
-export const Questions: React.FC = (props: any) => {
+export const Questions: React.FC = React.memo((props: any) => {
 
 	const authedUser = useSelector((state: DefaultRootState) => state.authedUser)
 	const questions = useSelector((state: DefaultRootState) => state.questions)
@@ -64,4 +64,4 @@ export const Questions: React.FC = (props: any) => {
 			</Portal>
 		</Container>
 	)
-}
+})
