@@ -13,5 +13,11 @@ export const useStyles = makeStyles((theme: Theme) => ({
 		padding: 25,
 		color: "black",
 		borderRadius: 10
+	},
+	radioOption01: {
+		color: "#42A5F5"
+	},
+	radioOption02: {
+		color: "#FF7043"
 	}
 }))

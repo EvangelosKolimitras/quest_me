@@ -30,6 +30,7 @@ export const VoteQuestionDetailedItem: React.FC<PropsVoteQuestionDetailedItem> =
 							<FormControlLabel
 								labelPlacement="end"
 								control={<Radio value="optionOne"
+									className={classes.radioOption01}
 									name='answer'
 									id='optionOne'
 									onChange={handleChange}
@@ -39,6 +40,7 @@ export const VoteQuestionDetailedItem: React.FC<PropsVoteQuestionDetailedItem> =
 							<FormControlLabel
 								labelPlacement="start"
 								control={<Radio name='answer'
+									className={classes.radioOption02}
 									value="optionTwo"
 									onChange={handleChange}
 									id='optionTwo'

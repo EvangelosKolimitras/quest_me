@@ -15,7 +15,8 @@ export const useStyles = makeStyles((theme: Theme) => ({
 		margin: "auto"
 	},
 	name: {
-		marginTop: 20
+		marginTop: 20,
+		color: theme.palette.text.secondary
 	},
 	btn: {
 		marginTop: 20

@@ -13,18 +13,20 @@ export const User: React.FC<Props> = ({ id, loginHandler }) => {
 	const loginClickHandler = () => loginHandler(id)
 	const user = users[id]
 
-	return <Grid item xs={12} sm={6} md={3}>
+	return <Grid item>
 		<Card className={classes.card}>
 			<Grid item >
 				<CardContent>
-					<Grid item>
-						{renderAvatar(classes.img, user.avatarURL, user.name)}
-					</Grid>
-					<Grid item className={classes.name}>
-						{renderName(user.name.split(" ")[0])}
-					</Grid>
-					<Grid item className={classes.btn}>
-						{renderLoginBtn(loginClickHandler)}
+					<Grid container>
+						<Grid item xs={12}>
+							{renderAvatar(classes.img, user.avatarURL, user.name)}
+						</Grid>
+						<Grid item xs={12} className={classes.name}>
+							{renderName(user.name.split(" ")[0])}
+						</Grid>
+						<Grid item xs={12} className={classes.btn}>
+							{renderLoginBtn(loginClickHandler)}
+						</Grid>
 					</Grid>
 				</CardContent>
 			</Grid>

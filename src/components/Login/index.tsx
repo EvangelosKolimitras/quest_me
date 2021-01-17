@@ -29,7 +29,7 @@ export const Login: React.FC = React.memo(() => {
 						<Typography variant="inherit" component="p">Please pick up a user to login</Typography>
 					</Grid>
 				</Grid>
-				<Grid container justify="center">
+				<Grid container justify="center" xs={12} sm={12} md={12}>
 					{users.map((user: IUser) => <User
 						id={user.id}
 						key={user.id}

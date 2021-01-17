@@ -8,6 +8,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
 		margin: "auto",
 		marginBottom: 20,
 		color: "white",
+		paddingBottom: 10
 	},
 	header: {
 		backgroundColor: theme.palette.background.default

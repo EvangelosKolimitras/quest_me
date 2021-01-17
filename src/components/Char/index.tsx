@@ -2,7 +2,9 @@ import Paper from '@material-ui/core/Paper';
 import { Chart, Legend, PieSeries, Title, Tooltip, } from '@devexpress/dx-react-chart-material-ui';
 import { Animation, EventTracker, SelectionState } from '@devexpress/dx-react-chart';
 import React, { useState } from "react";
-import { Box } from '@material-ui/core';
+import { Box, withStyles } from '@material-ui/core';
+import { useStyles } from './styles';
+import classes from '*.module.css';
 
 interface PropsBarChar {
 	data: any,
@@ -16,6 +18,7 @@ export const BarChar: React.FC<PropsBarChar> = (props) => {
 	const [data] = useState(props.data)
 	const selecionData: any[] = []
 	const [selection, setSelection] = useState(selecionData)
+	const classes = useStyles()
 
 	const compare = ({ series, point }: any, { series: targetSeries, point: targetPoint }: any) =>
 		series === targetSeries && point === targetPoint;
@@ -27,8 +30,13 @@ export const BarChar: React.FC<PropsBarChar> = (props) => {
 		}
 	};
 
+	const TitleText = (props: any) => <Title.Text {...props} className={classes.chartTitle} />
+	const LabelText = (props: any) => <Legend.Label {...props} className={classes.chartTitle} />
+	const PieSeriesComponent = (props: any) => <PieSeries.Point {...props} className={classes.pieSeriesChart} maxRadius={140} />
+	const TooltipContentComponent = (props: any) => <Tooltip.Content placement="right" {...props} className={classes.tooltip} />
+
 	return (
-		<>
+		<Legend.Root>
 			{
 				selection.length
 					? <Box component="span"> {data[selection[0].point].value} voted this option</Box>
@@ -39,15 +47,18 @@ export const BarChar: React.FC<PropsBarChar> = (props) => {
 					<PieSeries
 						valueField="value"
 						argumentField="label"
+						pointComponent={PieSeriesComponent}
 					/>
-					<Legend />
-					<Title text="Would you rather ?" />
+
+					<Title text="Would you rather?" textComponent={TitleText} />
 					<Animation />
 					<EventTracker onClick={click} />
 					<SelectionState selection={selection} />
-					<Tooltip />
+					<Tooltip contentComponent={TooltipContentComponent} />
+					<Legend position="bottom" labelComponent={LabelText} />
+
 				</Chart>
 			</Paper>
-		</>
+		</Legend.Root>
 	)
 }

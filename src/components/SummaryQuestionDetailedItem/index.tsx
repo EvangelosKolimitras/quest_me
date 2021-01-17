@@ -31,7 +31,7 @@ export const SummaryQuestionDetailedItem: React.FC<PropsSummaryQuestionDetailedI
 		<Grid container justify="flex-end">
 			<NavLink style={{ textDecoration: "none", marginTop: 10 }} to='/questions' exact>
 				<Button
-					variant="outlined"
+					variant="text"
 					color="primary"
 					size="large"
 					startIcon={<ArrowBackIosRoundedIcon fontSize="inherit" />}
