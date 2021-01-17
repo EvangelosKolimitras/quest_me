@@ -18,17 +18,19 @@ export const QuestionsReducer = (state: any = initialState, action: QuestionsAct
 				[payload.id as string]: payload
 			}
 
-		case ADD_ANSWER:
+		case ADD_ANSWER: {
+
 			return {
 				...state,
-				[action.answer.qid]: {
-					...state[action.answer.qid],
-					[action.answer.answer]: {
-						...state[action.answer.qid][action.answer.answer],
-						votes: state[action.answer.qid][action.answer.answer].votes.concat([action.answer.authedUser])
+				[payload.qid]: {
+					...state[payload.qid],
+					[payload.answer]: {
+						...state[payload.qid][payload.answer],
+						votes: state[payload.qid][payload.answer].votes.concat([payload.authedUser])
 					}
 				}
 			}
+		}
 
 		default:
 			return state

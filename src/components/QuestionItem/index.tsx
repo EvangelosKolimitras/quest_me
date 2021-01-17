@@ -63,7 +63,7 @@ export const QuestionItem: React.FC<Props> = (props) => {
 								className={classes.cardContentTitle}
 							>
 								<Box component="p">
-									<Box component="span">Option 01: </Box>{capitalizeFirstLetter(optionOne.text)}
+									<Box component="span">Option 01: </Box>{optionOne.text}
 								</Box>
 							</Typography>
 						</Box>
@@ -75,7 +75,7 @@ export const QuestionItem: React.FC<Props> = (props) => {
 								className={classes.cardContentTitle}
 							>
 								<Box component="p">
-									<Box component="span">Option 02: </Box>{capitalizeFirstLetter(optionTwo.text)}
+									<Box component="span">Option 02: </Box>{optionTwo.text}
 								</Box>
 							</Typography>
 						</Box>
@@ -118,6 +118,3 @@ export function formatDate(timestamp: number) {
 	return time + ' | ' + date.toLocaleDateString()
 }
 
-function capitalizeFirstLetter(sentence: string) {
-	return sentence.split("")[0].toUpperCase() + sentence.slice(1)
-}

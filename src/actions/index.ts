@@ -1,6 +1,6 @@
 import { IQuestions, IUsers } from './../services/declarations.d';
 import { initializations, saveQuestion, saveQuestionAnswer } from '../services';
-import { addQuestion, receiveQuestions } from './questions';
+import { addAnswer, addQuestion, receiveQuestions } from './questions';
 import { addUserAnswer, addUserQuestions, receiveUsers } from './users';
 import { showLoading, hideLoading } from 'react-redux-loading'
 
@@ -34,7 +34,7 @@ export function addAnswerHandler(authedUser: any, qid: any, answer?: any) {
 			qid,
 			answer
 		});
-		dispatch(addUserQuestions({ authedUser, qid, answer }));
+		dispatch(addAnswer({ authedUser, qid, answer }));
 		dispatch(addUserAnswer({ authedUser, qid, answer }));
 		dispatch(hideLoading());
 	}

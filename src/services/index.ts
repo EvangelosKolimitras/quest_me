@@ -16,25 +16,25 @@ export const initializations = () =>
 	}))
 
 const _getUsers = () =>
-	new Promise((res, rej) => setTimeout(() => res({ ...users }), 3333))
+	new Promise((res, rej) => setTimeout(() => res({ ...users }), 500))
 
 const _getQuestions = () =>
-	new Promise((res, rej) => setTimeout(() => res({ ...questions }), 3333))
+	new Promise((res, rej) => setTimeout(() => res({ ...questions }), 500))
 
 const generateUID = (): string =>
 	Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
 
-const formatQuestion = ({ optionOne, optionTwo, author }: any) => ({
+const formatQuestion = ({ optionOneText, optionTwoText, author }: any) => ({
 	id: generateUID(),
 	timestamp: Date.now(),
 	author,
 	optionOne: {
 		votes: [],
-		text: optionOne,
+		text: optionOneText,
 	},
 	optionTwo: {
 		votes: [],
-		text: optionTwo,
+		text: optionTwoText,
 	}
 })
 
@@ -49,7 +49,7 @@ const _saveQuestion = (question: any) =>
 				[formattedQuestion.id]: formattedQuestion
 			}
 			U = {
-				...users,
+				...U,
 				[authedUser]: {
 					...U[authedUser],
 					questions: U[authedUser].questions.concat([formattedQuestion.id])

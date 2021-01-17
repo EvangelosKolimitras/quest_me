@@ -21,8 +21,8 @@ export const QuestionDetail = (props: any) => {
 	const classes = useStyles();
 
 	const id = props.match.params.id;
-	const authedID = Object.keys(users).filter((el: any) => el === authedUser)[0]
-	const question = questions[id]
+	const authedID = Object.keys(users).filter((el: any) => el === authedUser)[0];
+	const question = questions[id];
 	const isQuestion = question ? true : false;
 	const isAnswered = !!question ? (question.optionOne.votes.includes(authedID) || question.optionTwo.votes.includes(authedID)) : false;
 	const vote = isAnswered ? (question.optionTwo.votes.includes(authedID) ? 'optionOne' : 'optionTwo') : null;
@@ -34,7 +34,7 @@ export const QuestionDetail = (props: any) => {
 			{
 				isQuestion &&
 				<Grid container justify="center" className={classes.root}>
-					<Card className={classes.card} >
+					<Card className={classes.card}>
 						<Grid item>{createHeader(user!.id, user!.name, user!.avatarURL, question.timestamp)}</Grid>
 						<Grid item>{createContent(question, vote, saveQuestionAnswer)}</Grid>
 					</Card>

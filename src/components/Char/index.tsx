@@ -15,8 +15,8 @@ interface PropsBarChar {
 
 export const BarChar: React.FC<PropsBarChar> = (props) => {
 	const [data] = useState(props.data)
-	const selecionData: any[] = []
-	const [selection, setSelection] = useState(selecionData)
+	const selectionData: any[] = []
+	const [selection, setSelection] = useState(selectionData)
 	const classes = useStyles()
 
 	const compare = ({ series, point }: any, { series: targetSeries, point: targetPoint }: any) =>
@@ -48,14 +48,12 @@ export const BarChar: React.FC<PropsBarChar> = (props) => {
 						argumentField="label"
 						pointComponent={PieSeriesComponent}
 					/>
-
 					<Title text="Would you rather?" textComponent={TitleText} />
 					<Animation />
 					<EventTracker onClick={click} />
 					<SelectionState selection={selection} />
 					<Tooltip contentComponent={TooltipContentComponent} />
 					<Legend position="bottom" labelComponent={LabelText} />
-
 				</Chart>
 			</Paper>
 		</Legend.Root>

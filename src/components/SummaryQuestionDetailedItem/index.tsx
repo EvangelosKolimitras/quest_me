@@ -1,4 +1,4 @@
-import { Button, Card, Grid } from "@material-ui/core";
+import { Box, Button, Card, Grid } from "@material-ui/core";
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { BarChar } from "../Char";
@@ -35,8 +35,9 @@ export const SummaryQuestionDetailedItem: React.FC<PropsSummaryQuestionDetailedI
 					color="primary"
 					size="large"
 					startIcon={<ArrowBackIosRoundedIcon fontSize="inherit" />}
-				> Back </Button>
+				> Back 			<Box component="div">{data.length}</Box> </Button>
 			</NavLink>
+
 		</Grid>
 	</Card>
 }

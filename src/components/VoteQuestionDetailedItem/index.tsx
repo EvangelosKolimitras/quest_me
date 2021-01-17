@@ -29,22 +29,28 @@ export const VoteQuestionDetailedItem: React.FC<PropsVoteQuestionDetailedItem> =
 						<RadioGroup row>
 							<FormControlLabel
 								labelPlacement="end"
-								control={<Radio value="optionOne"
-									className={classes.radioOption01}
-									name='answer'
-									id='optionOne'
-									onChange={handleChange}
-									checked={currentOption === 'optionOne' ? true : false} color="default" />}
+								control={
+									<Radio value="optionOne"
+										className={classes.radioOption01}
+										name='answer'
+										id='optionOne'
+										onChange={handleChange}
+										checked={currentOption === 'optionOne' ? true : false} color="default"
+									/>
+								}
 								label="Option 1"
 							/>
 							<FormControlLabel
 								labelPlacement="start"
-								control={<Radio name='answer'
-									className={classes.radioOption02}
-									value="optionTwo"
-									onChange={handleChange}
-									id='optionTwo'
-									checked={currentOption === 'optionTwo' ? true : false} color="default" />}
+								control={
+									<Radio name='answer'
+										className={classes.radioOption02}
+										value="optionTwo"
+										onChange={handleChange}
+										id='optionTwo'
+										checked={currentOption === 'optionTwo' ? true : false} color="default"
+									/>
+								}
 								label="Option 2"
 							/>
 						</RadioGroup>
@@ -55,7 +61,11 @@ export const VoteQuestionDetailedItem: React.FC<PropsVoteQuestionDetailedItem> =
 						className={classes.btn}
 						type='submit'
 						variant="outlined"
-						endIcon={<SendIcon style={{ fontSize: 30 }} />}
+						endIcon={
+							<SendIcon
+								style={{ fontSize: 30 }}
+							/>
+						}
 					>
 						Submit
 					</Button>

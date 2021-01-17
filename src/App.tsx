@@ -15,39 +15,42 @@ interface DefaultRootState {
 	authedUser: string
 }
 
-export const App: React.FC = React.memo(() => {
-	const dispatch = useDispatch();
-	const authedUser = useSelector((state: DefaultRootState) => state.authedUser)
-	const users = useSelector((state: DefaultRootState) => state.users)
-	const questions = useSelector((state: DefaultRootState) => state.questions)
-	const isAuthed = authedUser != null
-	const isInitialized = [Object.keys(users), Object.keys(questions)].every((el: any[]) => el.length > 0)
+export const App: React.FC = React.memo(
+	() => {
+		const dispatch = useDispatch();
+		const authedUser = useSelector((state: DefaultRootState) => state.authedUser)
+		const users = useSelector((state: DefaultRootState) => state.users)
+		const questions = useSelector((state: DefaultRootState) => state.questions)
+		const isAuthed = authedUser != null
+		const isInitialized = [Object.keys(users), Object.keys(questions)].every((el: any[]) => el.length > 0)
 
-	useEffect(() => {
-		dispatch(initiliazer())
-	}, [dispatch])
-	return jsx(isInitialized, isAuthed)
-})
+		useEffect(() => {
+			dispatch(initiliazer())
+		}, [dispatch])
+		// return jsx(isInitialized, isAuthed)
+		return (
+			<>
+				<LoadingBar />
+				{
+					(isAuthed && isInitialized) && <NavigationBar />
+				}
+				<Switch>
+					{
+						(isAuthed && isInitialized) &&
+						<>
+							<Route exact path="/" component={Questions} />
+							<Route exact path="/questions" component={Questions} />
+							<Route path="/questions/:id" component={QuestionDetail} />
+							<Route path="/leaderboard" component={Dashboard} />
+						</>
+					}
+					{
+						(!isAuthed && isInitialized) &&
+						<Route redirect="/login" component={Login} />
+					}
+				</Switch>
+			</>
+		)
+	}
+)
 
-const jsx = (isInitialized: any, isAuthed: any) =>
-	<>
-		<LoadingBar />
-		{
-			(isAuthed && isInitialized) && <NavigationBar />
-		}
-		<Switch>
-			{
-				(isAuthed && isInitialized) &&
-				<>
-					<Route exact path="/" component={Questions} />
-					<Route exact path="/questions" component={Questions} />
-					<Route path="/questions/:id" component={QuestionDetail} />
-					<Route path="/leaderboard" component={Dashboard} />
-				</>
-			}
-			{
-				(!isAuthed && isInitialized) &&
-				<Route redirect="/login" component={Login} />
-			}
-		</Switch>
-	</>
