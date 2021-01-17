@@ -1,4 +1,4 @@
-import { Button, Container, Typography, Box, Avatar, Badge, Portal, useTheme } from '@material-ui/core'
+import { Button, Container, Typography, Box, Avatar, Badge, Portal } from '@material-ui/core'
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { IQuestion, IQuestions, IUser, IUsers } from '../../services/declarations'
@@ -29,7 +29,6 @@ export const Questions: React.FC = React.memo((props: any) => {
 		setAllQuestions(selectedUserQuetions)
 		setFilterSelected(!filterSelected)
 	}
-	const theme = useTheme().palette.primary.light
 	return (
 		<Container className={classes.root}>
 			<Box component="div" className={classes.header}>

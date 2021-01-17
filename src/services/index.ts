@@ -16,10 +16,10 @@ export const initializations = () =>
 	}))
 
 const _getUsers = () =>
-	new Promise((res, rej) => setTimeout(() => res({ ...users }), 1000))
+	new Promise((res, rej) => setTimeout(() => res({ ...users }), 3333))
 
 const _getQuestions = () =>
-	new Promise((res, rej) => setTimeout(() => res({ ...questions }), 1000))
+	new Promise((res, rej) => setTimeout(() => res({ ...questions }), 3333))
 
 const generateUID = (): string =>
 	Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)

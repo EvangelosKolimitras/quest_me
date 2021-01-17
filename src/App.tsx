@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { LoadingBar } from "react-redux-loading";
 import { Switch, Route } from 'react-router-dom'
 import { initiliazer } from "./actions";
 import { Dashboard } from "./components/Dashboard";
@@ -30,6 +31,7 @@ export const App: React.FC = React.memo(() => {
 
 const jsx = (isInitialized: any, isAuthed: any) =>
 	<>
+		<LoadingBar />
 		{
 			(isAuthed && isInitialized) && <NavigationBar />
 		}
@@ -41,7 +43,6 @@ const jsx = (isInitialized: any, isAuthed: any) =>
 					<Route exact path="/questions" component={Questions} />
 					<Route path="/questions/:id" component={QuestionDetail} />
 					<Route path="/leaderboard" component={Dashboard} />
-					{/* <Route path="/new" component={NewQuestion} /> */}
 				</>
 			}
 			{

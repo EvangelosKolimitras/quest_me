@@ -2,9 +2,8 @@ import Paper from '@material-ui/core/Paper';
 import { Chart, Legend, PieSeries, Title, Tooltip, } from '@devexpress/dx-react-chart-material-ui';
 import { Animation, EventTracker, SelectionState } from '@devexpress/dx-react-chart';
 import React, { useState } from "react";
-import { Box, withStyles } from '@material-ui/core';
+import { Box } from '@material-ui/core';
 import { useStyles } from './styles';
-import classes from '*.module.css';
 
 interface PropsBarChar {
 	data: any,
