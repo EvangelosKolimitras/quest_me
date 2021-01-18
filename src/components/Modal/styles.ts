@@ -7,5 +7,8 @@ export const useStyles = makeStyles((theme: Theme) => ({
 		right: "5%",
 		backgroundColor: theme.palette.background.default,
 		color: theme.palette.text.primary
+	},
+	dialogTitle: {
+		color: theme.palette.text.secondary
 	}
 }))

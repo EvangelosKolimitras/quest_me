@@ -5,7 +5,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
 		marginTop: 25,
 		width: "50%",
 		fontSize: 20,
-		backgroundColor: theme.palette.primary.main
+		backgroundColor: theme.palette.background.default
 	},
 	radios: {
 		display: "block",

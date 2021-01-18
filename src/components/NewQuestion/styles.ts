@@ -15,5 +15,8 @@ export const useStyles = makeStyles((theme: Theme) => ({
 		marginTop: 25,
 		marginBottom: 25,
 		width: "100%"
+	},
+	input: {
+		color: theme.palette.text.secondary
 	}
 }))

@@ -42,8 +42,8 @@ export const NewQuestion: React.FC<Props> = (props) => {
 
 const jsx = (submitHandler: any, options: any, classes: any) =>
 	<form onSubmit={submitHandler} >
-		<Option01 option01={options.option01} />
-		<Option02 option02={options.option02} />
+		<Option01 option01={options.option01} classes={classes} />
+		<Option02 option02={options.option02} classes={classes} />
 		<Button
 			variant="contained"
 			color="primary"
@@ -55,8 +55,9 @@ const jsx = (submitHandler: any, options: any, classes: any) =>
 	</Button>
 	</form>
 
-const Option01: React.FC<{ option01: any }> = ({ option01 }) =>
+const Option01: React.FC<{ option01: any, classes: any }> = ({ option01, classes }) =>
 	<TextField
+		inputProps={{ className: classes.input }}
 		autoComplete='off'
 		autoFocus
 		required
@@ -69,8 +70,9 @@ const Option01: React.FC<{ option01: any }> = ({ option01 }) =>
 		onChange={(e) => option01.fn(e.target.value)}
 	/>
 
-const Option02: React.FC<{ option02: any }> = ({ option02 }) =>
+const Option02: React.FC<{ option02: any, classes: any }> = ({ option02, classes }) =>
 	<TextField
+		inputProps={{ className: classes.input }}
 		autoComplete='off'
 		margin="dense"
 		fullWidth

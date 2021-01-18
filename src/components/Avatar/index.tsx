@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { unsetAuthedUser } from "../../actions/authedUser";
 import { IAuthedUser, IUsers } from "../../services/declarations";
+import { useStyles } from "./styles";
 
 interface DefaultRootState {
 	users: IUsers
@@ -18,6 +19,7 @@ export const AvatarImage: React.FC<Props> = ({ avatar, name }) => {
 	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 	const dispatch = useDispatch()
 	const authedUser = useSelector((state: DefaultRootState) => state.authedUser)
+	const classes = useStyles()
 
 	const logoutHandler = (event: { currentTarget: any }) => {
 		if (authedUser !== null) {
@@ -25,11 +27,12 @@ export const AvatarImage: React.FC<Props> = ({ avatar, name }) => {
 			return
 		}
 	}
-	return jsx({ avatar, name }, anchorEl, setAnchorEl, logoutHandler)
+	return jsx(classes, { avatar, name }, anchorEl, setAnchorEl, logoutHandler)
 }
 
-const jsx = ({ avatar, name }: Props, anchorEl: any, setAnchorEl: Function, logoutHandler: any) =>
-	<Box ml={2}>
+const jsx = (classes: any, { avatar, name }: Props, anchorEl: any, setAnchorEl: Function, logoutHandler: any) =>
+	<Box
+		ml={2}>
 		<Button
 			aria-controls="logout"
 			aria-haspopup="true"
@@ -41,7 +44,9 @@ const jsx = ({ avatar, name }: Props, anchorEl: any, setAnchorEl: Function, logo
 			anchorEl={anchorEl}
 			keepMounted
 			open={Boolean(anchorEl)}
-			onClose={() => setAnchorEl(null)} >
+			onClose={() => setAnchorEl(null)}
+			classes={{ paper: classes.menuPaper }}
+		>
 			<MenuItem onClick={logoutHandler}>Logout</MenuItem>
 		</Menu>
-	</Box>
+	</Box >

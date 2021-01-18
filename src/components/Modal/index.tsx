@@ -20,10 +20,10 @@ export const Modal: React.FC = () => {
 				<AddIcon />
 			</Fab>
 			<Dialog fullScreen={fullScreen} open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-				<DialogTitle id="form-dialog-title">New Poll</DialogTitle>
+				<DialogTitle className={classes.dialogTitle} id="form-dialog-title">New Poll</DialogTitle>
 				<DialogContent>
 					<DialogContentText>
-						Please enter your options below
+						Please enter your options below.
           </DialogContentText>
 					<NewQuestion closeModalOnSubmit={() => handleClose()} />
 				</DialogContent>
