@@ -50,7 +50,7 @@ const jsx = (submitHandler: any, options: any, classes: any) =>
 			type="submit"
 			className={classes.btn}
 			onClick={submitHandler}
-			disabled={options.option01.value.length === 0 || options.option02.value.length === 0}>
+			disabled={[options.option01.value, options.option02.value].some((option: string) => option.length === 0)}>
 			Submit
 	</Button>
 	</form>

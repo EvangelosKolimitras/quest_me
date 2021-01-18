@@ -1,5 +1,5 @@
 import { Button, Container, Typography, Box, Avatar, Badge, Portal } from '@material-ui/core'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { IQuestion, IQuestions, IUser, IUsers } from '../../services/declarations'
 import { QuestionItem } from '../QuestionItem'
@@ -12,15 +12,21 @@ interface DefaultRootState {
 	users: IUsers
 }
 
-export const Questions: React.FC = React.memo((props: any) => {
+export const Questions: React.FC = (props: any) => {
 
 	const authedUser = useSelector((state: DefaultRootState) => state.authedUser)
 	const questions = useSelector((state: DefaultRootState) => state.questions)
 	const users = useSelector((state: DefaultRootState) => state.users)
-	const [allQuestions, setAllQuestions] = useState(Object.values(questions))
+
+	const [allQuestions, setAllQuestions] = useState<any[]>([])
 	const [filterSelected, setFilterSelected] = useState(false)
 	const classes = useStyles();
 
+	/*
+		Creats a section of all users that have created a post except from the user who is currently logged in
+		For example.
+		if Jhn is logged in the the filter options to select will be all the users except john
+	*/
 	const filteredUsers = Object.values(users).filter((user: IUser) => user.id !== authedUser)
 
 	const filterQuestionsPerUser = (e: any, userID: string) => {
@@ -29,6 +35,11 @@ export const Questions: React.FC = React.memo((props: any) => {
 		setAllQuestions(selectedUserQuetions)
 		setFilterSelected(!filterSelected)
 	}
+
+	useEffect(() => {
+		setAllQuestions(Object.values(questions))
+	}, [questions])
+
 	return (
 		<Container className={classes.root}>
 			<Box component="div" className={classes.header}>
@@ -63,4 +74,4 @@ export const Questions: React.FC = React.memo((props: any) => {
 			</Portal>
 		</Container>
 	)
-})
+}
