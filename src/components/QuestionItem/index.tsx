@@ -63,7 +63,7 @@ export const QuestionItem: React.FC<Props> = (props) => {
 								className={classes.cardContentTitle}
 							>
 								<Box component="p">
-									<Box component="span">Option 01: </Box>{optionOne.text}
+									<Box component="span">Option 01: </Box>{optionOne.text !== undefined && capsIt(optionOne.text)}.
 								</Box>
 							</Typography>
 						</Box>
@@ -75,7 +75,7 @@ export const QuestionItem: React.FC<Props> = (props) => {
 								className={classes.cardContentTitle}
 							>
 								<Box component="p">
-									<Box component="span">Option 02: </Box>{optionTwo.text}
+									<Box component="span">Option 02: </Box>{optionTwo.text && capsIt(optionTwo.text)}.
 								</Box>
 							</Typography>
 						</Box>
@@ -112,9 +112,31 @@ export const QuestionItem: React.FC<Props> = (props) => {
 	)
 }
 
-export function formatDate(timestamp: number) {
+
+// Date formater 
+
+export const formatDate = (timestamp: number) => {
 	const date = new Date(timestamp)
 	const time = date.toLocaleTimeString('de-DE')
 	return time + ' | ' + date.toLocaleDateString()
 }
+
+/* 
+	Sentence capitalizer with point free style
+*/
+
+// Transforms a string to an array
+const toArr = (str: string) => Array.from(str)
+
+// Gets the first letter of the array
+const getFirstLetter = (arr: string[]) => arr.slice(0, 1).join("")
+
+// Cappitalizes a letter
+const capitalizeFirstLetter = (char: string) => char.toLocaleUpperCase()
+
+// Gets the sentence back by omitting the first char
+const getRestLettersOfTheSentece = (sentence: string) => sentence.slice(1)
+
+// Capitalizes the string
+const capsIt = (sentence: string) => capitalizeFirstLetter(getFirstLetter(toArr(sentence))) + getRestLettersOfTheSentece(sentence)
 
