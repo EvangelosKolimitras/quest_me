@@ -28,7 +28,9 @@ export const QuestionDetail = (props: any) => {
 	const vote = isAnswered ? (question.optionTwo.votes.includes(authedID) ? 'optionOne' : 'optionTwo') : null;
 	const user = (users && question) ? users[question.author] : null;
 
-	const saveQuestionAnswer = (selectedQuestion?: any) => dispatch(addAnswerHandler(authedUser, id, selectedQuestion));
+	const saveQuestionAnswer = (selectedQuestion?: any) => {
+		return dispatch(addAnswerHandler(authedUser, id, selectedQuestion));
+	}
 
 	return (
 		<>

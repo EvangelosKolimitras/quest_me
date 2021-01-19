@@ -17,14 +17,13 @@ export const initiliazer = () =>
 		dispatch(hideLoading());
 	}
 
-export const addQuestionHandler = (optionOne: string, optionTwo: string, author: string) =>
-	async (dispatch: any) => {
-		dispatch(showLoading())
-		const question: any = await saveQuestion({ optionOne, optionTwo, author })
-		dispatch(addQuestion(question))
-		dispatch(addUserQuestions(question))
-		dispatch(hideLoading())
-	}
+export const addQuestionHandler = (optionOneText: string, optionTwoText: string, author: string) => async (dispatch: any) => {
+	dispatch(showLoading())
+	const question: any = await saveQuestion({ optionOneText, optionTwoText, author })
+	dispatch(addQuestion(await question))
+	dispatch(addUserQuestions(await question))
+	dispatch(hideLoading())
+}
 
 export function addAnswerHandler(authedUser: any, qid: any, answer?: any) {
 	return async (dispatch: (arg0: any) => void) => {

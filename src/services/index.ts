@@ -39,8 +39,8 @@ const formatQuestion = ({ optionOneText, optionTwoText, author }: any) => ({
 })
 
 export const saveQuestion = (question: any) => _saveQuestion(question)
-const _saveQuestion = (question: any) =>
-	new Promise((res, rej) => {
+const _saveQuestion = (question: any) => {
+	return new Promise((res, rej) => {
 		const authedUser = question.author;
 		const formattedQuestion = formatQuestion(question)
 		setTimeout(() => {
@@ -58,6 +58,7 @@ const _saveQuestion = (question: any) =>
 			res(formattedQuestion)
 		}, 1000)
 	})
+}
 
 export const saveQuestionAnswer = (info: any) =>
 	_saveQuestionAnswer(info)
