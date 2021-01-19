@@ -5,6 +5,7 @@ import { IQuestion, IQuestions, IUser, IUsers } from '../../services/declaration
 import { QuestionItem } from '../QuestionItem'
 import { Modal } from '../Modal'
 import { useStyles } from './styles'
+import { sortQuestions } from '../../utils'
 interface DefaultRootState {
 	questions: IQuestions
 	authedUser: string
@@ -74,4 +75,3 @@ export const Questions: React.FC = (props: any) => {
 	)
 }
 
-const sortQuestions = (arr: IQuestion[]) => arr.sort((a: IQuestion, b: IQuestion) => b.timestamp - a.timestamp)

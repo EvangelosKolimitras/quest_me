@@ -2,7 +2,7 @@ import { Avatar, Box, Card, CardContent, CardHeader, Grid, IconButton, Typograph
 import { useDispatch, useSelector } from 'react-redux';
 import { addAnswerHandler } from '../../actions';
 import { IAuthedUser, IQuestion, IQuestions, IUsers } from '../../services/declarations';
-import { formatDate } from '../QuestionItem';
+import { formatDate } from '../../utils';
 import { SummaryQuestionDetailedItem } from '../SummaryQuestionDetailedItem';
 import { VoteQuestionDetailedItem } from '../VoteQuestionDetailedItem';
 import { useStyles } from './styles';
