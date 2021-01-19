@@ -35,6 +35,7 @@ export const Questions: React.FC = (props: any) => {
 		setAllQuestions(selectedUserQuetions)
 		setFilterSelected(!filterSelected)
 	}
+
 	useEffect(() => {
 		setAllQuestions(Object.values(questions))
 	}, [questions])
@@ -47,6 +48,7 @@ export const Questions: React.FC = (props: any) => {
 					{
 						filteredUsers.map((user: IUser) =>
 							<Button
+								key={user.id}
 								color="primary"
 								name={user.id}
 								size="small"

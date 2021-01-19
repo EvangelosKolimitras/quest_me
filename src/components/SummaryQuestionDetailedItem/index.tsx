@@ -1,4 +1,4 @@
-import { Box, Button, Card, Grid } from "@material-ui/core";
+import { Button, Card, Grid } from "@material-ui/core";
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { BarChar } from "../Char";
@@ -10,12 +10,13 @@ interface PropsSummaryQuestionDetailedItem {
 	vote: any,
 }
 
-export const SummaryQuestionDetailedItem: React.FC<PropsSummaryQuestionDetailedItem> = ({ question, vote }) => {
+export const SummaryQuestionDetailedItem: React.FC<PropsSummaryQuestionDetailedItem> = (props) => {
+	const { question } = props;
 	const classes = useStyles();
-
 	const q1Votes = question.optionOne.votes.length
 	const q2Votes = question.optionTwo.votes.length;
 	const totalAnswers = q1Votes + q2Votes;
+
 	const percentages = {
 		q1: q1Votes === 0 ? 0 : Math.round((q1Votes / totalAnswers) * 100),
 		q2: q2Votes === 0 ? 0 : Math.round((q2Votes / totalAnswers) * 100)

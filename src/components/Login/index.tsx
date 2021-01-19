@@ -30,11 +30,13 @@ export const Login: React.FC = React.memo(() => {
 					</Grid>
 				</Grid>
 				<Grid container justify="center">
-					{users.map((user: IUser) => <User
-						id={user.id}
-						key={user.id}
-						loginHandler={loginHandler} />)
-					}
+					{users.map((user: IUser) =>
+						<User
+							id={user.id}
+							key={user.id}
+							loginHandler={loginHandler}
+						/>
+					)}
 				</Grid>
 			</Grid>
 		</Container >

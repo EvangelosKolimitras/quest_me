@@ -10,7 +10,8 @@ interface PropsVoteQuestionDetailedItem {
 	saveQuestionAnswer: (selectedQuestion?: any) => void
 }
 
-export const VoteQuestionDetailedItem: React.FC<PropsVoteQuestionDetailedItem> = ({ question, saveQuestionAnswer }) => {
+export const VoteQuestionDetailedItem: React.FC<PropsVoteQuestionDetailedItem> = (props) => {
+	const { saveQuestionAnswer } = props
 	const [currentOption, setCurrentOption] = useState("");
 	const classes = useStyles();
 
@@ -30,7 +31,8 @@ export const VoteQuestionDetailedItem: React.FC<PropsVoteQuestionDetailedItem> =
 							<FormControlLabel
 								labelPlacement="end"
 								control={
-									<Radio value="optionOne"
+									<Radio
+										value="optionOne"
 										className={classes.radioOption01}
 										name='answer'
 										id='optionOne'
@@ -43,7 +45,8 @@ export const VoteQuestionDetailedItem: React.FC<PropsVoteQuestionDetailedItem> =
 							<FormControlLabel
 								labelPlacement="start"
 								control={
-									<Radio name='answer'
+									<Radio
+										name='answer'
 										className={classes.radioOption02}
 										value="optionTwo"
 										onChange={handleChange}
