@@ -5,7 +5,6 @@ import { IQuestion, IQuestions, IUser, IUsers } from '../../services/declaration
 import { QuestionItem } from '../QuestionItem'
 import { Modal } from '../Modal'
 import { useStyles } from './styles'
-
 interface DefaultRootState {
 	questions: IQuestions
 	authedUser: string
@@ -35,7 +34,6 @@ export const Questions: React.FC = (props: any) => {
 		setAllQuestions(selectedUserQuetions)
 		setFilterSelected(!filterSelected)
 	}
-
 	useEffect(() => {
 		setAllQuestions(Object.values(questions))
 	}, [questions])
@@ -67,7 +65,7 @@ export const Questions: React.FC = (props: any) => {
 				</Box>
 			</Box>
 
-			{ allQuestions.map((q: IQuestion) => <QuestionItem key={q.id} id={q.id} />)}
+			{ sortQuestions(allQuestions).map((q: IQuestion) => <QuestionItem key={q.id} id={q.id} />)}
 
 			<Portal>
 				<Modal />
@@ -75,3 +73,5 @@ export const Questions: React.FC = (props: any) => {
 		</Container>
 	)
 }
+
+const sortQuestions = (arr: IQuestion[]) => arr.sort((a: IQuestion, b: IQuestion) => b.timestamp - a.timestamp)
