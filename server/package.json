@@ -1,0 +1,19 @@
+{
+  "name": "quest_me_server",
+  "version": "1.0.0",
+  "description": "The backend of the quest me app.",
+  "main": "index.js",
+  "author": "Evangelos Kolimitras",
+  "license": "MIT",
+  "dependencies": {
+    "@types/cors": "^2.8.9",
+    "@types/express": "^4.17.11",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongodb": "^3.6.3",
+    "ts-node-dev": "^1.1.1"
+  },
+  "scripts": {
+    "start": "ts-node-dev src/index.ts"
+  }
+}
