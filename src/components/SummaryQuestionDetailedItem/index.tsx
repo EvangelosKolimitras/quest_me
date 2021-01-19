@@ -35,9 +35,9 @@ export const SummaryQuestionDetailedItem: React.FC<PropsSummaryQuestionDetailedI
 					color="primary"
 					size="large"
 					startIcon={<ArrowBackIosRoundedIcon fontSize="inherit" />}
-				> Back 			<Box component="div">{data.length}</Box> </Button>
+				> Back
+				</Button>
 			</NavLink>
-
 		</Grid>
 	</Card>
 }
