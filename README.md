@@ -9,8 +9,7 @@ Quest me is an application where a user is being asked a question with two possi
 - ReactJS
 - Redux
 - Material UI
-<!-- - NodeJS
-- MongoDB
-- ExpressJS -->
+- NodeJS
+- ExpressJS
 
 ## Licence MIT
