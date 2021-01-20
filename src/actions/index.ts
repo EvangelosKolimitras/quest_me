@@ -26,17 +26,13 @@ export const addQuestionHandler = (optionOneText: string, optionTwoText: string,
 	dispatch(hideLoading())
 }
 
-export function addAnswerHandler(authedUser: any, qid: any, answer?: any) {
-	return async (dispatch: (arg0: any) => void) => {
+export const addAnswerHandler = (authedUser: any, qid: any, answer: any) =>
+	async (dispatch: (arg0: any) => void) => {
 		dispatch(showLoading())
 		const { saveQuestionAnswer } = await initializations();
-		await saveQuestionAnswer({
-			authedUser,
-			qid,
-			answer
-		});
+		saveQuestionAnswer({ authedUser, qid, answer });
 		dispatch(addAnswer({ authedUser, qid, answer }));
 		dispatch(addUserAnswer({ authedUser, qid, answer }));
 		dispatch(hideLoading());
 	}
-}
+

@@ -44,7 +44,7 @@ export const initializations = async (uri: string = "http://localhost:9999"): Pr
 			res(formattedQuestion)
 		})
 
-	const saveQuestionAnswer = async ({ authedUser, qid, answer }: { authedUser: string, qid: string, answer: string }) =>
+	const saveQuestionAnswer = async ({ authedUser, qid, answer }: { authedUser: string, qid: string, answer: string }) => {
 		await new Promise<void>((res, rej) => {
 			users = {
 				...users,
@@ -56,7 +56,6 @@ export const initializations = async (uri: string = "http://localhost:9999"): Pr
 					}
 				}
 			}
-
 			questions = {
 				...questions,
 				[qid]: {
@@ -69,6 +68,7 @@ export const initializations = async (uri: string = "http://localhost:9999"): Pr
 			}
 			res()
 		})
+	}
 
 	return {
 		users,
