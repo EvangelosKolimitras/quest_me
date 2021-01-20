@@ -74,6 +74,6 @@ export const initializations = async (uri: string = "http://localhost:9999"): Pr
 		users,
 		questions,
 		saveQuestion,
-		saveQuestionAnswer
+		saveQuestionAnswer: () => saveQuestionAnswer
 	}
 }
