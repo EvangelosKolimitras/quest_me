@@ -51,3 +51,16 @@ export interface IAnswer {
 		}
 	}
 }
+
+type InitializationsReturnType = {
+	users: IUsers,
+	questions: IQuestions,
+	saveQuestion: Function,
+	saveQuestionAnswer: Function
+}
+
+interface INewQuestion {
+	optionOneText: string,
+	optionTwoText: string,
+	author: string
+}

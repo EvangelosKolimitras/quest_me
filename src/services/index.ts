@@ -1,95 +1,79 @@
+import axios from 'axios';
+import { INewQuestion, InitializationsReturnType } from './declarations';
 
-// Services API
-import { users } from './users'
-import { questions } from './questions'
+export const initializations = async (uri: string = "http://localhost:9999"): Promise<InitializationsReturnType> => {
 
-let Q = questions;
-let U = users;
+	const getUsers = async () => await axios.get(`${uri}/users`)
+	const getQuestions = async () => await axios.get(`${uri}/questions`)
 
-export const initializations = () =>
-	Promise.all([
-		_getUsers(),
-		_getQuestions(),
-	]).then(([users, questions]) => ({
-		users,
-		questions,
-	}))
+	let { data: users } = await getUsers();
+	let { data: questions } = await getQuestions();
 
-const _getUsers = () =>
-	new Promise((res, rej) => setTimeout(() => res({ ...users }), 500))
+	const generateUID = async (): Promise<string> =>
+		Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
 
-const _getQuestions = () =>
-	new Promise((res, rej) => setTimeout(() => res({ ...questions }), 500))
+	const formatQuestion = async ({ optionOneText, optionTwoText, author }: INewQuestion) => ({
+		id: await generateUID(),
+		timestamp: Date.now(),
+		author,
+		optionOne: {
+			votes: [],
+			text: optionOneText,
+		},
+		optionTwo: {
+			votes: [],
+			text: optionTwoText,
+		}
+	})
 
-const generateUID = (): string =>
-	Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
-
-const formatQuestion = ({ optionOneText, optionTwoText, author }: any) => ({
-	id: generateUID(),
-	timestamp: Date.now(),
-	author,
-	optionOne: {
-		votes: [],
-		text: optionOneText,
-	},
-	optionTwo: {
-		votes: [],
-		text: optionTwoText,
-	}
-})
-
-export const saveQuestion = (question: any) => _saveQuestion(question)
-const _saveQuestion = (question: any) => {
-	return new Promise((res, rej) => {
-		const authedUser = question.author;
-		const formattedQuestion = formatQuestion(question)
-		setTimeout(() => {
-			Q = {
-				...Q,
+	const saveQuestion = async (question: INewQuestion) =>
+		await new Promise<{}>(async (res, rej) => {
+			const authedUser = question.author;
+			const formattedQuestion = await formatQuestion(question)
+			questions = {
+				...questions,
 				[formattedQuestion.id]: formattedQuestion
 			}
-			U = {
-				...U,
+			users = {
+				...users,
 				[authedUser]: {
-					...U[authedUser],
-					questions: U[authedUser].questions.concat([formattedQuestion.id])
+					...users[authedUser],
+					questions: users[authedUser].questions.concat([formattedQuestion.id])
 				}
 			}
 			res(formattedQuestion)
-		}, 1000)
-	})
-}
+		})
 
-export const saveQuestionAnswer = (info: any) =>
-	_saveQuestionAnswer(info)
-
-function _saveQuestionAnswer({ authedUser, qid, answer }: any) {
-	return new Promise<void>((res, rej) => {
-		setTimeout(() => {
-			U = {
-				...U,
+	const saveQuestionAnswer = async ({ authedUser, qid, answer }: { authedUser: string, qid: string, answer: string }) =>
+		await new Promise<void>((res, rej) => {
+			users = {
+				...users,
 				[authedUser]: {
-					...U[authedUser],
+					...users[authedUser],
 					answers: {
-						...U[authedUser].answers,
+						...users[authedUser].answers,
 						[qid]: answer
 					}
 				}
 			}
 
-			Q = {
-				...Q,
+			questions = {
+				...questions,
 				[qid]: {
-					...Q[qid],
+					...questions[qid],
 					[answer]: {
-						...Q[qid][answer],
-						votes: Q[qid][answer].votes.concat([authedUser])
+						...questions[qid][answer],
+						votes: questions[qid][answer].votes.concat([authedUser])
 					}
 				}
 			}
 			res()
-		}, 500)
-	})
-}
+		})
 
-export { users, questions }
+	return {
+		users,
+		questions,
+		saveQuestion,
+		saveQuestionAnswer
+	}
+}
