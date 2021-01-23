@@ -3,18 +3,44 @@ import { INewQuestion, InitializationsReturnType } from './declarations';
 
 export const initializations = async (uri: string = "http://localhost:9999"): Promise<InitializationsReturnType> => {
 
-	const getUsers = async () => await axios.get(`${uri}/users`)
-	const getQuestions = async () => await axios.get(`${uri}/questions`)
+	let data = await axios.get(`${uri}/api`)
 
-	let { data: users } = await getUsers();
-	let { data: questions } = await getQuestions();
+	/* 
+		Response normalizer for users data
+	*/
+	let users:any = {};
+	for await(let doc of JSON.parse(data.data).users){
+		let user = {
+			id: doc._id,
+			name: doc.name,
+			avatarURL: doc.avatarURL,
+			answers: doc.answers,
+			questions: doc.questions
+		}
+		users = {
+			...users,
+			[user.id] : user
+		}
+	}
 
-	const generateUID = async (): Promise<string> =>
-		Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
-
-	const formatQuestion = async ({ optionOneText, optionTwoText, author }: INewQuestion) => ({
-		id: await generateUID(),
-		timestamp: Date.now(),
+	/*	
+		Response normilizer for questions data
+	*/
+	let questions:any = {};
+	for await(let doc of JSON.parse(data.data).questions) {
+		let question = {
+			id: doc._id,
+			author: doc.author,
+			optionOne: doc.optionOne,
+			optionTwo: doc.optionTwo
+		}
+		questions = {
+			[question.id] : question
+		}
+	}
+		
+	const formatQuestion = async ({ optionOneText, optionTwoText, author }: INewQuestion) =>  ({
+		id:Math.random(),
 		author,
 		optionOne: {
 			votes: [],
@@ -22,7 +48,7 @@ export const initializations = async (uri: string = "http://localhost:9999"): Pr
 		},
 		optionTwo: {
 			votes: [],
-			text: optionTwoText,
+			text: optionTwoText, 
 		}
 	})
 
@@ -30,10 +56,12 @@ export const initializations = async (uri: string = "http://localhost:9999"): Pr
 		await new Promise<{}>(async (res, rej) => {
 			const authedUser = question.author;
 			const formattedQuestion = await formatQuestion(question)
+
 			questions = {
 				...questions,
 				[formattedQuestion.id]: formattedQuestion
 			}
+
 			users = {
 				...users,
 				[authedUser]: {
@@ -41,6 +69,7 @@ export const initializations = async (uri: string = "http://localhost:9999"): Pr
 					questions: users[authedUser].questions.concat([formattedQuestion.id])
 				}
 			}
+
 			res(formattedQuestion)
 		})
 
@@ -56,6 +85,7 @@ export const initializations = async (uri: string = "http://localhost:9999"): Pr
 					}
 				}
 			}
+
 			questions = {
 				...questions,
 				[qid]: {
@@ -66,6 +96,7 @@ export const initializations = async (uri: string = "http://localhost:9999"): Pr
 					}
 				}
 			}
+
 			res()
 		})
 	}

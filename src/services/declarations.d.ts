@@ -1,3 +1,5 @@
+import { ObjectDestructuringAssignment } from "typescript"
+
 export interface IQuestion {
 	id: string
 	author: string

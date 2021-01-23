@@ -1,26 +1,41 @@
 import express, { NextFunction, Request, Response } from 'express'
-import { users, questions } from './data';
 
 const app = express();
 const PORT = process.env.PORT || 9999;
 import cors from "cors";
 import { connect } from './connection';
+import { IMongoData, IMongoQuestionObject, IMongoUserObject } from './model';
+
+async function fetchDataFromDB(): Promise<IMongoData>{
+	let data = await connect()
+
+	let users:IMongoUserObject[] = []
+	for await(let doc of data?.users as any){
+		users.push(doc)
+	}
+
+	let questions:IMongoQuestionObject[] = [];
+	for await(let doc of data?.questions as any){
+		questions.push(doc)
+	}
+
+	let datei:IMongoData = {
+		users,
+		questions
+	}
+
+	return datei
+}
 
 app.use(cors());
+
 app
-	.get("/users", getUsers)
-	.get("/questions", getQuestions)
+	.get("/api", getData)
 	.listen(PORT, () =>
-		console.log(`Listening on port ${PORT}`))
-
+		console.log(`Listening on port ${PORT}`)
+	)
   
-async function getUsers(req: Request, res: Response, next: NextFunction) {
-	let users = await connect()
-	res.status(200).json(users);
+async function getData(req: Request, res: Response, next: NextFunction) {
+	const serveData = await fetchDataFromDB();
+	res.status(200).json(JSON.stringify(serveData));
 }
-
-function getQuestions(req: Request, res: Response, next: NextFunction) {
-	res.status(200).json(questions);
-}
-
-
