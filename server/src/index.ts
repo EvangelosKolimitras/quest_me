@@ -15,7 +15,7 @@ app
 
   
 async function getUsers(req: Request, res: Response, next: NextFunction) {
-	connect()
+	let users = await connect()
 	res.status(200).json(users);
 }
 
