@@ -31,14 +31,16 @@ export const initializations = async (uri: string = "http://localhost:9999"): Pr
 		let question = {
 			id: doc._id,
 			author: doc.author,
+			timestamp: parseInt(doc.timestamp, 10),
 			optionOne: doc.optionOne,
 			optionTwo: doc.optionTwo
 		}
 		questions = {
+			...questions,
 			[question.id] : question
 		}
 	}
-		
+	
 	const formatQuestion = async ({ optionOneText, optionTwoText, author }: INewQuestion) =>  ({
 		id:Math.random(),
 		author,
