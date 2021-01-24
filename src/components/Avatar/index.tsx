@@ -1,8 +1,9 @@
-import { Avatar, Box, Button, Menu, MenuItem } from "@material-ui/core";
+import { Avatar, Box, Button, Menu, MenuItem,Typography } from "@material-ui/core";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { unsetAuthedUser } from "../../actions/authedUser";
 import { IAuthedUser, IUsers } from "../../services/declarations";
+import { formatName } from "../../utils";
 import { useStyles } from "./styles";
 
 interface DefaultRootState {
@@ -38,6 +39,9 @@ const jsx = (classes: any, { avatar, name }: Props, anchorEl: any, setAnchorEl: 
 			aria-haspopup="true"
 			onClick={(e) => setAnchorEl(e.currentTarget)}>
 			<Avatar alt={name} src={avatar} />
+			<Typography variant="body2" className={classes.textName} >
+				{formatName(name)}
+			</Typography>
 		</Button>
 		<Menu
 			id="logout"

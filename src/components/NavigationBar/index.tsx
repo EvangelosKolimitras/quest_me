@@ -24,7 +24,7 @@ export const NavigationBar: React.FC = () => {
 				<LogoIcon />
 				<Typography variant="h5" className={classes.brand}>Quest Me</Typography>
 				<NavLink />
-				{<AvatarImage avatar={avatar} name={`${name} avatar`} />}
+				{<AvatarImage avatar={avatar} name={name} />}
 			</Toolbar>
 		</AppBar >
 	</AppBar>

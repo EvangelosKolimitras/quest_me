@@ -26,3 +26,11 @@ const getRestLettersOfTheSentece = (sentence: string) => sentence.slice(1)
 // Capitalizes the string
 export const capsIt = (sentence: string) => capitalizeFirstLetter(getFirstLetter(toArr(sentence))) + getRestLettersOfTheSentece(sentence)
 
+/*
+	Name formater
+*/
+
+export const formatName = (name: string) => {
+	const [firstName, lastName] = name.split(" ");
+	return `${firstName[0]}. ${lastName}`
+}
