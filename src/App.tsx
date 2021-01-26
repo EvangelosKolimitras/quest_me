@@ -6,6 +6,7 @@ import { initiliazer } from "./actions";
 import { Dashboard } from "./components/Dashboard";
 import { Login } from "./components/Login";
 import { NavigationBar } from "./components/NavigationBar";
+import { NotFound } from "./components/NotFound";
 import { QuestionDetail } from "./components/QuestionDetail";
 import { Questions } from "./components/Questions";
 
@@ -40,7 +41,7 @@ export const App: React.FC = React.memo(
 						<>
 							<Route exact path="/" component={Questions} />
 							<Route exact path="/questions" component={Questions} />
-							<Route path="/questions/:id" component={QuestionDetail} />
+							<Route  path="/questions/:id" component={QuestionDetail} />
 							<Route path="/leaderboard" component={Dashboard} />
 						</>
 					}
@@ -48,6 +49,7 @@ export const App: React.FC = React.memo(
 						(!isAuthed && isInitialized) &&
 						<Route redirect="/login" component={Login} />
 					}
+				{(isAuthed && isInitialized) &&	<Route exact path="*" component={NotFound} />}
 				</Switch>
 			</>
 		)
