@@ -6,13 +6,16 @@
 
 Quest me is an application where a user is being asked a question with two possible answers to choose from. His answer is recorded is such a way where his choices will be reflected in a global ranking table.
 
+### Instalation 
+* Run ```npm install ``` or ```yarn install``` to install the dependencies.
+* Run ```npm start``` or ```yarn start``` to start the development server.
+
 ### Tech-stack used
 
 - ReactJS
+- Typescript
 - Redux
 - React Router
 - Material UI
-- NodeJS
-- ExpressJS
 
 ## Licence MIT
