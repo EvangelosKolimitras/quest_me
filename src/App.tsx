@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React, { FC, memo, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { LoadingBar } from "react-redux-loading";
-import { Switch, Route } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom';
 import { initiliazer } from "./actions";
 import { Dashboard } from "./components/Dashboard";
 import { Login } from "./components/Login";
@@ -16,7 +16,7 @@ interface DefaultRootState {
 	authedUser: string
 }
 
-export const App: React.FC = React.memo(
+export const App: FC = memo(
 	() => {
 		const dispatch = useDispatch();
 		const authedUser = useSelector((state: DefaultRootState) => state.authedUser)
@@ -41,7 +41,7 @@ export const App: React.FC = React.memo(
 						<>
 							<Route exact path="/" component={Questions} />
 							<Route exact path="/questions" component={Questions} />
-							<Route  path="/questions/:id" component={QuestionDetail} />
+							<Route path="/questions/:id" component={QuestionDetail} />
 							<Route path="/leaderboard" component={Dashboard} />
 						</>
 					}
@@ -49,7 +49,7 @@ export const App: React.FC = React.memo(
 						(!isAuthed && isInitialized) &&
 						<Route redirect="/login" component={Login} />
 					}
-				{(isAuthed && isInitialized) &&	<Route exact path="*" component={NotFound} />}
+					{(isAuthed && isInitialized) && <Route exact path="*" component={NotFound} />}
 				</Switch>
 			</>
 		)

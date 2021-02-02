@@ -1,5 +1,5 @@
 import { Box, Grid, Link } from '@material-ui/core';
-import React from 'react';
+import React, { FC } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import { useStyles } from './styles';
 
@@ -31,4 +31,4 @@ const jsx = (link: string | undefined) =>
 		</Grid>
 	</Grid>
 
-export const NavLink: React.FC = () => jsx(useStyles().link)
+export const NavLink: FC = () => jsx(useStyles().link)

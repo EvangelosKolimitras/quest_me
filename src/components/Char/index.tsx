@@ -1,7 +1,7 @@
 import Paper from '@material-ui/core/Paper';
 import { Chart, Legend, PieSeries, Title, Tooltip, } from '@devexpress/dx-react-chart-material-ui';
 import { Animation, EventTracker, SelectionState } from '@devexpress/dx-react-chart';
-import React, { useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { Box } from '@material-ui/core';
 import { useStyles } from './styles';
 
@@ -13,7 +13,7 @@ interface PropsBarChar {
 	}
 }
 
-export const BarChar: React.FC<PropsBarChar> = (props) => {
+export const BarChar: FC<PropsBarChar> = (props) => {
 	const [data, setData] = useState<any>([])
 	const selectionData: any[] = []
 	const [selection, setSelection] = useState(selectionData)

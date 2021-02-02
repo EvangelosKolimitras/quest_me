@@ -1,6 +1,6 @@
 import { Container, Grid } from '@material-ui/core'
 import { Typography } from '@material-ui/core'
-import React from 'react'
+import React, { FC, memo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setAuthedUser } from '../../actions/authedUser'
 import { IAuthedUser, IUser, IUsers } from '../../services/declarations'
@@ -9,7 +9,7 @@ import { useStyles } from './styles'
 
 interface DefaultRootState { users: IUsers }
 
-export const Login: React.FC = React.memo(() => {
+export const Login: FC = memo(() => {
 	const dispatch = useDispatch();
 	const usrs = useSelector((state: DefaultRootState) => state.users)
 	const users = Object.values(usrs)

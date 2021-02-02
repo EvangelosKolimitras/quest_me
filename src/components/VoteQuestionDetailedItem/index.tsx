@@ -1,5 +1,5 @@
 import { FormControl, RadioGroup, FormControlLabel, Radio, Button, Grid } from "@material-ui/core";
-import React from "react";
+import React, { FC } from "react";
 import { useState } from "react";
 import { IQuestion } from "../../services/declarations";
 import SendIcon from '@material-ui/icons/Send';
@@ -10,15 +10,15 @@ interface PropsVoteQuestionDetailedItem {
 	saveQuestionAnswer: (selectedQuestion?: any) => void
 }
 
-export const VoteQuestionDetailedItem: React.FC<PropsVoteQuestionDetailedItem> = (props) => {
+export const VoteQuestionDetailedItem: FC<PropsVoteQuestionDetailedItem> = (props) => {
 	const { saveQuestionAnswer } = props
 	const [currentOption, setCurrentOption] = useState("");
 	const classes = useStyles();
 
-	const handleChange = (e: any) => setCurrentOption(e.currentTarget.value)
+	const handleChange = (event: any) => setCurrentOption(event.currentTarget.value)
 
-	const handleSubmit = (e: any) => {
-		e.preventDefault()
+	const handleSubmit = (event: any) => {
+		event.preventDefault()
 		saveQuestionAnswer(currentOption);
 	}
 

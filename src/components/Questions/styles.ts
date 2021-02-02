@@ -5,7 +5,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
 		marginTop: 120
 	},
 	checkBox: {
-		marginTop: 10
+		marginTop: 10,
 	},
 	chip: {
 		margin: theme.spacing(0.5),
@@ -27,9 +27,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
 		position: "fixed",
 		bottom: "5%",
 		right: "5%"
-	},
-	ss: {
-		backgroundColor: "red"
 	},
 	badge: {
 		padding: 5,

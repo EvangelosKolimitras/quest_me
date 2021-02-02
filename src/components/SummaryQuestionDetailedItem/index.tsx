@@ -1,5 +1,5 @@
 import { Button, Card, Grid } from "@material-ui/core";
-import React from "react";
+import React, { FC } from "react";
 import { NavLink } from "react-router-dom";
 import { BarChar } from "../Char";
 import ArrowBackIosRoundedIcon from '@material-ui/icons/ArrowBackIosRounded';
@@ -10,7 +10,7 @@ interface PropsSummaryQuestionDetailedItem {
 	vote: any,
 }
 
-export const SummaryQuestionDetailedItem: React.FC<PropsSummaryQuestionDetailedItem> = (props) => {
+export const SummaryQuestionDetailedItem: FC<PropsSummaryQuestionDetailedItem> = (props) => {
 	const { question } = props;
 	const classes = useStyles();
 	const q1Votes = question.optionOne.votes.length

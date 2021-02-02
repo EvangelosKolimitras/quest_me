@@ -1,5 +1,5 @@
 import { CardContent, Card, CardMedia, Typography, Button, Grid } from '@material-ui/core'
-import React from 'react'
+import React, { FC } from 'react'
 import { useSelector } from 'react-redux'
 import { IUsers } from '../../services/declarations'
 import { useStyles } from './styles'
@@ -7,7 +7,7 @@ import { useStyles } from './styles'
 interface DefaultRootState { users: IUsers }
 interface Props { loginHandler: Function, id: string }
 
-export const User: React.FC<Props> = ({ id, loginHandler }) => {
+export const User: FC<Props> = ({ id, loginHandler }) => {
 	const users = useSelector((state: DefaultRootState) => state.users);
 	const classes = useStyles();
 	const loginClickHandler = () => loginHandler(id)

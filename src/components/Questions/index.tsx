@@ -1,11 +1,11 @@
-import { Button, Container, Typography, Box, Avatar, Badge, Portal, FormControlLabel, Checkbox } from '@material-ui/core'
-import React, { MouseEvent, useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
-import { IQuestion, IQuestions, IUser, IUsers } from '../../services/declarations'
-import { QuestionItem } from '../QuestionItem'
-import { Modal } from '../Modal'
-import { useStyles } from './styles'
-import { sortQuestions } from '../../utils'
+import { Avatar, Badge, Box, Button, Checkbox, Container, FormControlLabel, Portal, Typography } from '@material-ui/core';
+import React, { ChangeEvent, FC, MouseEvent, useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { IQuestion, IQuestions, IUser, IUsers } from '../../services/declarations';
+import { sortQuestions } from '../../utils';
+import { Modal } from '../Modal';
+import { QuestionItem } from '../QuestionItem';
+import { useStyles } from './styles';
 
 interface DefaultRootState {
 	questions: IQuestions
@@ -13,7 +13,7 @@ interface DefaultRootState {
 	users: IUsers
 }
 
-export const Questions: React.FC = (props: any): JSX.Element => {
+export const Questions: FC = (props: any): JSX.Element => {
 
 	const authedUser = useSelector((state: DefaultRootState) => state.authedUser)
 	const questions = useSelector((state: DefaultRootState) => state.questions)
@@ -21,26 +21,36 @@ export const Questions: React.FC = (props: any): JSX.Element => {
 
 	const [allQuestions, setAllQuestions] = useState<any[]>([])
 	const [filterSelected, setFilterSelected] = useState(false)
+	const [rendersUnanswered, setRendersUnanswered] = useState(true);
 	const classes = useStyles();
 
 	/*
 		Creats a section of all users that have created a post except from the user who is currently logged in
 		For example.
 		if John is logged in the the filter options to select will be all the users except John
-	*/
-	const filteredUsers = Object.values(users).filter((user: IUser) => user.id !== authedUser)
+	*/ const filteredUsers = Object.values(users).filter((user: IUser) => user.id !== authedUser)
 
-	const filterQuestionsPerUser = (e: any, userID: string) => {
-		e.preventDefault();
-
-		const selectedUserQuetions = Object.values(questions)
-			.filter((question: IQuestion) =>
-				userID !== "all" ?
-					(question.author === userID) :
-					(question.author !== userID));
-
-		setAllQuestions(selectedUserQuetions)
+	const filterQuestionsPerUser = (event: MouseEvent, userID: string) => {
+		event.preventDefault();
+		const selectedUserQuetions = Object.values(questions).filter((question: IQuestion) => (question.author === userID));
+		if (userID === "all") {
+			return setAllQuestions(Object.values(questions));
+		}
+		setAllQuestions(selectedUserQuetions);
 		setFilterSelected(!filterSelected)
+	}
+
+	const showUnansweredQuestionsHandler = (event: CheckInputElementUnansweredQuestions) => {
+		if (event.target.checked) {
+			setAllQuestions(
+				Object.values(questions).filter((q: IQuestion) => {
+					return ![q.optionOne, q.optionTwo].some(q => {
+						return q.votes.includes(authedUser);
+					});
+				}));
+		} else {
+			setAllQuestions(Object.values(questions))
+		}
 	}
 
 	useEffect(() => {
@@ -56,35 +66,29 @@ export const Questions: React.FC = (props: any): JSX.Element => {
 						color="primary"
 						size="small"
 						className={classes.button}
-						onClick={(e: MouseEvent) => filterQuestionsPerUser(e, "all")}
+						onClick={(event: MouseEvent) => filterQuestionsPerUser(event, "all")}
 					>All</Button>
-					{
-						filteredUsers.map((user: IUser) =>
-							<Button
-								key={user.id}
-								color="primary"
-								name={user.id}
-								size="small"
-								className={classes.button}
-								startIcon={<Avatar alt={`Avatar from ${user.name}`} src={user.avatarURL} />}
-								onClick={(e: MouseEvent) => filterQuestionsPerUser(e, user.id)}
-							>
-								<Badge
-									className={classes.badge}
-									color={"primary"}
-									badgeContent={Object.values(questions).filter((q: IQuestion) => q.author === user.id).length} >
-								</Badge>
-								{user.name}
-							</Button>
-						)
-					}
-					<OnlyAnswered />
+					{filteredUsers.map((user: IUser) =>
+						<Button
+							key={user.id}
+							color="primary"
+							name={user.id}
+							size="small"
+							className={classes.button}
+							startIcon={<Avatar alt={`Avatar from ${user.name}`} src={user.avatarURL} />}
+							onClick={(event: MouseEvent) => filterQuestionsPerUser(event, user.id)} >
+							<Badge
+								className={classes.badge}
+								color={"primary"}
+								badgeContent={Object.values(questions).filter((q: IQuestion) => q.author === user.id).length} >
+							</Badge>
+							{user.name}
+						</Button>
+					)}
+					<OnlyAnswered showUnansweredQuestionsHandler={showUnansweredQuestionsHandler} />
 				</Box>
 			</Box>
-			{
-				(sortQuestions(allQuestions).map((q: IQuestion) => <QuestionItem key={q.id} id={q.id} />))
-			}
-
+			{ (sortQuestions(allQuestions).map((q: IQuestion) => <QuestionItem key={q.id} id={q.id} />))}
 			<Portal>
 				<Modal />
 			</Portal>
@@ -92,12 +96,20 @@ export const Questions: React.FC = (props: any): JSX.Element => {
 	)
 }
 
-const OnlyAnswered = () => {
-	const [state, setState] = useState(true);
-	const classes = useStyles();
+type CheckInputElementUnansweredQuestions = ChangeEvent<HTMLInputElement>
 
-	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		setState(event.target.checked);
+interface Props {
+	showUnansweredQuestionsHandler: (event: CheckInputElementUnansweredQuestions) => void
+}
+
+const OnlyAnswered: FC<Props> = (props) => {
+	const [state, setState] = useState(false);
+	const classes = useStyles();
+	const { showUnansweredQuestionsHandler } = props;
+
+	const handleChange = <E extends CheckInputElementUnansweredQuestions>(event: E) => {
+		showUnansweredQuestionsHandler(event);
+		setState(!state);
 	};
 
 	return (

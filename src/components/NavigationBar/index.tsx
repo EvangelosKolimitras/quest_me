@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { AppBar, Toolbar, Typography, } from '@material-ui/core'
 import { LogoIcon } from '../Logo';
 import { NavLink } from './NavLink';
@@ -12,7 +12,7 @@ interface DefaultRootState {
 	authedUser: IAuthedUser
 }
 
-export const NavigationBar: React.FC = () => {
+export const NavigationBar: FC = () => {
 	const users = useSelector((state: DefaultRootState) => state.users)
 	const authedUser = useSelector((state: DefaultRootState) => state.authedUser)
 	const { avatarURL: avatar, name } = users[Object.keys(users).filter((el: any) => el === authedUser)[0]]

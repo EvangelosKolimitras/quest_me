@@ -1,5 +1,5 @@
-import { Avatar, Box, Button, Menu, MenuItem,Typography } from "@material-ui/core";
-import React, { useState } from "react";
+import { Avatar, Box, Button, Menu, MenuItem, Typography } from "@material-ui/core";
+import React, { FC, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { unsetAuthedUser } from "../../actions/authedUser";
 import { IAuthedUser, IUsers } from "../../services/declarations";
@@ -16,7 +16,7 @@ interface Props {
 	name: string
 }
 
-export const AvatarImage: React.FC<Props> = ({ avatar, name }) => {
+export const AvatarImage: FC<Props> = ({ avatar, name }) => {
 	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 	const dispatch = useDispatch()
 	const authedUser = useSelector((state: DefaultRootState) => state.authedUser)
@@ -37,7 +37,7 @@ const jsx = (classes: any, { avatar, name }: Props, anchorEl: any, setAnchorEl: 
 		<Button
 			aria-controls="logout"
 			aria-haspopup="true"
-			onClick={(e) => setAnchorEl(e.currentTarget)}>
+			onClick={(event) => setAnchorEl(event.currentTarget)}>
 			<Avatar alt={name} src={avatar} />
 			<Typography variant="body2" className={classes.textName} >
 				{formatName(name)}

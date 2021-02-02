@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { FC, useState } from 'react'
 import { Avatar, Card, Typography, CardHeader, IconButton, CardContent, Grid, CardActions, Button, Box } from '@material-ui/core';
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom';
@@ -11,7 +11,7 @@ interface DefaultRootState { authedUser: string, users?: IUsers, questions?: IQu
 
 interface Props { id: string }
 
-export const QuestionItem: React.FC<Props> = (props) => {
+export const QuestionItem: FC<Props> = (props) => {
 	const authedUser = useSelector((state: DefaultRootState) => state.authedUser)
 	const users = useSelector((state: DefaultRootState) => state.users);
 	const questions = useSelector((state: DefaultRootState) => state.questions);

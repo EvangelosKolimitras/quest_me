@@ -1,11 +1,11 @@
 import { Dialog, DialogTitle, DialogContent, DialogContentText, useMediaQuery, useTheme, Fab } from '@material-ui/core';
-import React from 'react'
+import React, { FC, useState } from 'react'
 import { NewQuestion } from '../NewQuestion';
 import AddIcon from '@material-ui/icons/Add';
 import { useStyles } from './styles';
 
-export const Modal: React.FC = () => {
-	const [open, setOpen] = React.useState(false);
+export const Modal: FC = () => {
+	const [open, setOpen] = useState(false);
 	const theme = useTheme();
 	const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
 

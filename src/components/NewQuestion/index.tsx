@@ -1,5 +1,5 @@
 import { Button, TextField } from '@material-ui/core';
-import React, { useState } from 'react'
+import React, { FC, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { addQuestionHandler } from '../../actions/';
@@ -11,7 +11,7 @@ interface Props {
 	closeModalOnSubmit: Function;
 }
 
-export const NewQuestion: React.FC<Props> = (props) => {
+export const NewQuestion: FC<Props> = (props) => {
 	const authedUser = useSelector((state: DefaultRootState) => state.authedUser)
 	const dispatch = useDispatch()
 	const [option01, setOption01] = useState("")
@@ -19,8 +19,8 @@ export const NewQuestion: React.FC<Props> = (props) => {
 	const [backToHome, setBackToHome] = useState(false)
 	const classes = useStyles();
 
-	const submitHandler = (e: { preventDefault: Function }) => {
-		e.preventDefault();
+	const submitHandler = (event: { preventDefault: Function }) => {
+		event.preventDefault();
 		dispatch(addQuestionHandler(option01, option02, authedUser))
 		//Reset form
 		setOption01("")
@@ -55,7 +55,7 @@ const jsx = (submitHandler: any, options: any, classes: any) =>
 	</Button>
 	</form>
 
-const Option01: React.FC<{ option01: any, classes: any }> = ({ option01, classes }) =>
+const Option01: FC<{ option01: any, classes: any }> = ({ option01, classes }) =>
 	<TextField
 		inputProps={{ className: classes.input }}
 		autoComplete='off'
@@ -67,10 +67,10 @@ const Option01: React.FC<{ option01: any, classes: any }> = ({ option01, classes
 		type="text"
 		fullWidth
 		value={option01.value}
-		onChange={(e) => option01.fn(e.target.value)}
+		onChange={(event) => option01.fn(event.target.value)}
 	/>
 
-const Option02: React.FC<{ option02: any, classes: any }> = ({ option02, classes }) =>
+const Option02: FC<{ option02: any, classes: any }> = ({ option02, classes }) =>
 	<TextField
 		inputProps={{ className: classes.input }}
 		autoComplete='off'
@@ -81,5 +81,5 @@ const Option02: React.FC<{ option02: any, classes: any }> = ({ option02, classes
 		label="Option 2"
 		type="text"
 		value={option02.value}
-		onChange={(e) => option02.fn(e.target.value)}
+		onChange={(event) => option02.fn(event.target.value)}
 	/>
