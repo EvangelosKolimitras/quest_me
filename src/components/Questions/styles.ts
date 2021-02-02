@@ -4,6 +4,12 @@ export const useStyles = makeStyles((theme: Theme) => ({
 	root: {
 		marginTop: 120
 	},
+	checkBox: {
+		marginTop: 10
+	},
+	chip: {
+		margin: theme.spacing(0.5),
+	},
 	header: {
 		margin: "2rem auto",
 		textAlign: "center"
