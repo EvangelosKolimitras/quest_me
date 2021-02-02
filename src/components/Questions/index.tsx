@@ -21,7 +21,6 @@ export const Questions: FC = (props: any): JSX.Element => {
 
 	const [allQuestions, setAllQuestions] = useState<any[]>([])
 	const [filterSelected, setFilterSelected] = useState(false)
-	const [rendersUnanswered, setRendersUnanswered] = useState(true);
 	const classes = useStyles();
 
 	/*
