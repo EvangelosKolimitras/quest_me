@@ -1,7 +1,7 @@
-import { IUsers, IQuestions, AnswersType } from '../../../common/types'
+import { IUsers, IQuestions, Answer } from '../../../common/types/types'
 import { actionType } from './actions'
 
-type payload = IUsers | IQuestions | AnswersType
+type payload = IUsers | IQuestions | Answer
 export interface UsersProps {
 	type: actionType,
 	payload: payload

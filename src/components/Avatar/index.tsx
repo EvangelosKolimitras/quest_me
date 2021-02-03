@@ -1,15 +1,10 @@
 import { Avatar, Box, Button, Menu, MenuItem, Typography } from "@material-ui/core";
 import { FC, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { IUsers, IAuthedUser } from "../../../common/types";
+import { AuthedUserPartialRootState } from "../../../common/types";
 import { unsetAuthedUser } from "../../actions/authedUser";
 import { formatName } from "../../utils";
 import { useStyles } from "./styles";
-
-interface DefaultRootState {
-	users: IUsers
-	authedUser: IAuthedUser
-}
 
 interface Props {
 	avatar: string
@@ -19,10 +14,10 @@ interface Props {
 export const AvatarImage: FC<Props> = ({ avatar, name }) => {
 	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 	const dispatch = useDispatch()
-	const authedUser = useSelector((state: DefaultRootState) => state.authedUser)
+	const authedUser = useSelector((state: AuthedUserPartialRootState) => state.authedUser)
 	const classes = useStyles()
 
-	const logoutHandler = (event: { currentTarget: any }) => {
+	const logoutHandler = () => {
 		if (authedUser !== null) {
 			dispatch(unsetAuthedUser())
 			return

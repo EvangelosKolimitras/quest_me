@@ -1,14 +1,13 @@
 import { CardContent, Card, CardMedia, Typography, Button, Grid } from '@material-ui/core'
 import { FC } from 'react'
 import { useSelector } from 'react-redux'
-import { IUsers } from '../../../common/types'
+import { UsersPartialRootState } from '../../../common/types'
 import { useStyles } from './styles'
 
-interface DefaultRootState { users: IUsers }
 interface Props { loginHandler: Function, id: string }
 
 export const User: FC<Props> = ({ id, loginHandler }) => {
-	const users = useSelector((state: DefaultRootState) => state.users);
+	const users = useSelector((state: UsersPartialRootState) => state.users!);
 	const classes = useStyles();
 	const loginClickHandler = () => loginHandler(id)
 	const user = users[id]

@@ -1,23 +1,18 @@
 import { Avatar, Box, Card, CardContent, CardHeader, Grid, IconButton, Typography } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
-import { IAuthedUser, IQuestion, IQuestions, IUsers } from '../../../common/types';
+import { AuthedUserPartialRootState, QuestionsPartialRootState, UsersPartialRootState } from '../../../common/types';
+import { IQuestion, IUser, } from '../../../common/types/types';
 import { addAnswerHandler } from '../../actions';
 import { formatDate } from '../../utils';
 import { SummaryQuestionDetailedItem } from '../SummaryQuestionDetailedItem';
 import { VoteQuestionDetailedItem } from '../VoteQuestionDetailedItem';
 import { useStyles } from './styles';
 
-interface DefaultRootState {
-	authedUser: IAuthedUser
-	questions: IQuestions
-	users: IUsers
-}
-
 export const QuestionDetail = (props: any) => {
 	const dispatch = useDispatch()
-	const authedUser = useSelector((state: DefaultRootState) => state.authedUser)
-	const questions = useSelector((state: DefaultRootState) => state.questions)
-	const users = useSelector((state: DefaultRootState) => state.users)
+	const authedUser = useSelector((state: AuthedUserPartialRootState) => state.authedUser)
+	const questions = useSelector((state: QuestionsPartialRootState) => state.questions!)
+	const users = useSelector((state: UsersPartialRootState) => state.users!)
 	const classes = useStyles();
 
 	const id = props.match.params.id;
@@ -37,7 +32,7 @@ export const QuestionDetail = (props: any) => {
 				isQuestion &&
 				<Grid container justify="center" className={classes.root}>
 					<Card className={classes.card}>
-						<Grid item>{createHeader(user!.id, user!.name, user!.avatarURL, question.timestamp)}</Grid>
+						<Grid item>{createHeader({ id: user!.id, name: user!.name, avatar: user!.avatarURL, timestamp: question!.timestamp })}</Grid>
 						<Grid item>{createContent(question, vote, saveQuestionAnswer)}</Grid>
 					</Card>
 				</Grid>
@@ -46,9 +41,9 @@ export const QuestionDetail = (props: any) => {
 	)
 }
 
-const createHeader = (id: string, name: string, avatar: string, timestamp: number) =>
+const createHeader = <T extends Partial<IUser & IQuestion>>({ id, name, avatarURL, timestamp }: T): JSX.Element =>
 	<CardHeader
-		avatar={<Avatar aria-label="recipe" src={avatar} ></Avatar>}
+		avatar={<Avatar aria-label="recipe" src={avatarURL!} ></Avatar>}
 		action={<IconButton aria-label="settings"> </IconButton>}
 		title={
 			<>
@@ -60,7 +55,7 @@ const createHeader = (id: string, name: string, avatar: string, timestamp: numbe
 		}
 		subheader={
 			<Typography variant="caption" color="textSecondary" component="p">
-				{formatDate(timestamp)}
+				{formatDate(timestamp!)}
 			</Typography>
 		}
 	/>

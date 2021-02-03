@@ -1,4 +1,4 @@
-import { IAuthedUser } from '../../../common/types'
+import { IAuthedUser } from '../../../common/types/types'
 import { actionTypes } from './actions'
 
 export interface AuthedUserProps {

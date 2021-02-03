@@ -5,18 +5,17 @@ import { Link } from 'react-router-dom';
 import { useStyles } from './styles';
 import CheckIcon from '@material-ui/icons/Check';
 import { capsIt, formatDate } from '../../utils';
-import { IUsers, IQuestions } from '../../../common/types';
+import { AuthedUserPartialRootState, QuestionsPartialRootState, UsersPartialRootState } from '../../../common/types';
+import { ID } from '../../../common/types/types';
 
-interface DefaultRootState { authedUser: string, users?: IUsers, questions?: IQuestions }
-
-interface Props { id: string }
+interface Props { id: ID }
 
 export const QuestionItem: FC<Props> = (props) => {
-	const authedUser = useSelector((state: DefaultRootState) => state.authedUser)
-	const users = useSelector((state: DefaultRootState) => state.users);
-	const questions = useSelector((state: DefaultRootState) => state.questions);
+	const authedUser = useSelector((state: AuthedUserPartialRootState) => state.authedUser!)
+	const users = useSelector((state: UsersPartialRootState) => state.users);
+	const questions = useSelector((state: QuestionsPartialRootState) => state.questions);
 
-	const question = questions![props.id];
+	const question = questions![props.id as string];
 
 	const [answeredQ1] = useState(question.optionOne.votes.includes(authedUser))
 	const [answeredQ2] = useState(question.optionTwo.votes.includes(authedUser))

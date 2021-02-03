@@ -4,14 +4,13 @@ import { TableContainer } from '@material-ui/core';
 import { Box, Card, CardContent } from '@material-ui/core';
 import React from 'react';
 import { useSelector } from 'react-redux'
-import { IUsers, IAuthedUser } from '../../../common/types';
+import { UsersPartialRootState } from '../../../common/types';
 import { useStyles } from './styles';
 
-interface DefaultRootState { users?: IUsers, authedUser: IAuthedUser }
 interface Props { id: string }
 
 export const DashboardItem = (props: Props) => {
-	const users = useSelector((state: DefaultRootState) => state.users)
+	const users = useSelector((state: UsersPartialRootState) => state.users)
 	const currentUser = users![props.id];
 	const classes = useStyles();
 

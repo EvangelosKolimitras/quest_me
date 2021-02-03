@@ -1,10 +1,10 @@
-import { IQuestions, IQuestion, AnswersType, AddedAnswer } from '../../../common/types'
+import { IQuestions, IQuestion, Answer, AddedAnswer } from '../../../common/types/types'
 import { actionTypes } from './actions'
 
 export interface QuestionsActionProps {
 	[x: string]: any
 	type: actionTypes,
-	payload: IQuestions | IQuestion | AnswersType | AddedAnswer | any
+	payload: IQuestions | IQuestion | Answer | AddedAnswer | any
 }
 
 // Custom hook for creating action creators

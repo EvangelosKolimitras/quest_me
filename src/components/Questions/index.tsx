@@ -1,23 +1,18 @@
 import { Avatar, Badge, Box, Button, Checkbox, Container, FormControlLabel, Portal, Typography } from '@material-ui/core';
 import { ChangeEvent, FC, MouseEvent, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { IQuestions, IUsers, IUser, IQuestion } from '../../../common/types';
+import { AuthedUserPartialRootState, QuestionsPartialRootState, UsersPartialRootState } from '../../../common/types';
+import { IUser, IQuestion } from '../../../common/types/types';
 import { sortQuestions } from '../../utils';
 import { Modal } from '../Modal';
 import { QuestionItem } from '../QuestionItem';
 import { useStyles } from './styles';
 
-interface DefaultRootState {
-	questions: IQuestions
-	authedUser: string
-	users: IUsers
-}
-
 export const Questions: FC = (props: any): JSX.Element => {
 
-	const authedUser = useSelector((state: DefaultRootState) => state.authedUser)
-	const questions = useSelector((state: DefaultRootState) => state.questions)
-	const users = useSelector((state: DefaultRootState) => state.users)
+	const authedUser = useSelector((state: AuthedUserPartialRootState) => state.authedUser!)
+	const questions = useSelector((state: QuestionsPartialRootState) => state.questions!)
+	const users = useSelector((state: UsersPartialRootState) => state.users!)
 
 	const [allQuestions, setAllQuestions] = useState<any[]>([])
 	const [filterSelected, setFilterSelected] = useState(false)
@@ -87,7 +82,7 @@ export const Questions: FC = (props: any): JSX.Element => {
 					<OnlyAnswered showUnansweredQuestionsHandler={showUnansweredQuestionsHandler} />
 				</Box>
 			</Box>
-			{ (sortQuestions(allQuestions).map((q: IQuestion) => <QuestionItem key={q.id} id={q.id} />))}
+			{ (sortQuestions(allQuestions).map((q: Partial<IQuestion>) => <QuestionItem key={q.id} id={q.id!} />))}
 			<Portal>
 				<Modal />
 			</Portal>

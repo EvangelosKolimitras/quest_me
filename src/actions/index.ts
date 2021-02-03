@@ -2,7 +2,7 @@ import { initializations, saveQuestion, saveQuestionAnswer } from '../services';
 import { addAnswer, addQuestion, receiveQuestions } from './questions';
 import { addUserAnswer, addUserQuestions, receiveUsers } from './users';
 import { showLoading, hideLoading } from 'react-redux-loading'
-import { IUsers, IQuestions } from '../../common/types';
+import { IUsers, IQuestions } from '../../common/types/types';
 
 export { usersAction } from './users';
 export { questionsAction } from './questions';

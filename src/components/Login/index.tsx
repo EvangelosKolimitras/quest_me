@@ -2,16 +2,16 @@ import { Container, Grid } from '@material-ui/core'
 import { Typography } from '@material-ui/core'
 import { FC, memo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { IUsers, IAuthedUser, IUser } from '../../../common/types'
+import { UsersPartialRootState } from '../../../common/types'
+import { IAuthedUser, IUser } from '../../../common/types/types'
 import { setAuthedUser } from '../../actions/authedUser'
 import { User } from '../User'
 import { useStyles } from './styles'
 
-interface DefaultRootState { users: IUsers }
 
 export const Login: FC = memo(() => {
 	const dispatch = useDispatch();
-	const usrs = useSelector((state: DefaultRootState) => state.users)
+	const usrs = useSelector((state: UsersPartialRootState) => state.users!)
 	const users = Object.values(usrs)
 	const loginHandler = (userId: IAuthedUser) => dispatch(setAuthedUser(userId))
 	const classes = useStyles();

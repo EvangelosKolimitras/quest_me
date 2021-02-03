@@ -5,16 +5,11 @@ import { NavLink } from './NavLink';
 import { useSelector } from 'react-redux';
 import { AvatarImage } from '../Avatar';
 import { useStyles } from './styles';
-import { IUsers, IAuthedUser } from '../../../common/types';
-
-interface DefaultRootState {
-	users: IUsers
-	authedUser: IAuthedUser
-}
+import { AuthedUserPartialRootState, UsersPartialRootState } from '../../../common/types';
 
 export const NavigationBar: FC = () => {
-	const users = useSelector((state: DefaultRootState) => state.users)
-	const authedUser = useSelector((state: DefaultRootState) => state.authedUser)
+	const users = useSelector((state: UsersPartialRootState) => state.users!)
+	const authedUser = useSelector((state: AuthedUserPartialRootState) => state.authedUser)
 	const { avatarURL: avatar, name } = users[Object.keys(users).filter((el: any) => el === authedUser)[0]]
 	const classes = useStyles()
 

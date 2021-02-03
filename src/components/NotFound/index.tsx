@@ -2,6 +2,7 @@
 import { FC } from 'react';
 import notFoundImage from '../../images/404.png'
 import { useStyles } from './style';
+
 export const NotFound: FC = () => {
     const classes = useStyles();
     return (

@@ -1,11 +1,17 @@
-import { IQuestion } from "../../common/types";
+import { SortQuestions } from '../../common/types';
+import { IQuestion, Timestamp } from '../../common/types/types';
+import { Questions } from "../../common/types/types";
 
-export const sortQuestions = (arr: IQuestion[]) => arr.sort((a: IQuestion, b: IQuestion) => b.timestamp - a.timestamp)
+export const sortQuestions: SortQuestions = (questions: Questions) =>
+	questions.sort(
+		(questionA: IQuestion, questionB: IQuestion) =>
+			questionB.timestamp.valueOf() - questionA.timestamp.valueOf()
+	)
 
 // Date formater 
-const getDate = (timestamp: number) => new Date(timestamp).toLocaleDateString("de-DE");
-const getTime = (timestamp: number) => new Date(timestamp).toLocaleTimeString("de-DE");
-export const formatDate = (timestamp: number) => `${getTime(timestamp)}  | ${getDate(timestamp)}`
+const getDate = (timestamp: Timestamp) => new Date(timestamp).toLocaleDateString("de-DE");
+const getTime = (timestamp: Timestamp) => new Date(timestamp).toLocaleTimeString("de-DE");
+export const formatDate = (timestamp: Timestamp) => `${getTime(timestamp)}  | ${getDate(timestamp)}`
 
 /* 
 	Sentence capitalizer with point free style

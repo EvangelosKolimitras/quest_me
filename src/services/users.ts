@@ -1,4 +1,4 @@
-import { IUsers } from "../../common/types";
+import { IUsers } from "../../common/types/types";
 
 export let users: IUsers = {
 	jane_smith: {

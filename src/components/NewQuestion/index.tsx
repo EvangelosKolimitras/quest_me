@@ -2,17 +2,16 @@ import { Button, TextField } from '@material-ui/core';
 import { FC, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import { AuthedUserPartialRootState } from '../../../common/types';
 import { addQuestionHandler } from '../../actions/';
 import { useStyles } from './styles';
-
-interface DefaultRootState { authedUser: string }
 
 interface Props {
 	closeModalOnSubmit: Function;
 }
 
 export const NewQuestion: FC<Props> = (props) => {
-	const authedUser = useSelector((state: DefaultRootState) => state.authedUser)
+	const authedUser = useSelector((state: AuthedUserPartialRootState) => state.authedUser!)
 	const dispatch = useDispatch()
 	const [option01, setOption01] = useState("")
 	const [option02, setOption02] = useState("")

@@ -3,7 +3,7 @@ import { FC } from "react";
 import { useState } from "react";
 import SendIcon from '@material-ui/icons/Send';
 import { useStyles } from "./styles";
-import { IQuestion } from "../../../common/types";
+import { IQuestion } from "../../../common/types/types";
 
 interface PropsVoteQuestionDetailedItem {
 	question: IQuestion

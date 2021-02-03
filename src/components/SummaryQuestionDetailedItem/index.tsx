@@ -4,7 +4,6 @@ import { NavLink } from "react-router-dom";
 import { BarChar } from "../Char";
 import ArrowBackIosRoundedIcon from '@material-ui/icons/ArrowBackIosRounded';
 import { useStyles } from "./styles";
-
 interface PropsSummaryQuestionDetailedItem {
 	question: any,
 	vote: any,

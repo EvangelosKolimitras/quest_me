@@ -1,6 +1,6 @@
 import * as Actions from './actions';
 import { createActionCreator } from './actionCreators';
-import { IUsers, IQuestions } from '../../../common/types';
+import { IUsers, IQuestions } from '../../../common/types/types';
 
 const AC = createActionCreator();
 
