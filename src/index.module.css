@@ -2,6 +2,27 @@ body {
 	background: linear-gradient(-45deg, #434343, #212121);
 	background-size: 500% 500%;
 	animation: gradient 15s ease infinite;
+	overflow-x: hidden;
+}
+
+/* width */
+::-webkit-scrollbar {
+	width: .25rem;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	background: #444;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: #212121;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: #212121;
 }
 
 @keyframes gradient {
