@@ -1,4 +1,4 @@
-<img src="./src/images/logo.png" alt="alt text" width="50" >
+<img src="./src/images/raise-hand.svg" alt="alt text" width="50" >
 <br/>
 
 # Quest me [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
