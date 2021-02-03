@@ -23,20 +23,16 @@ export const AvatarImage: FC<Props> = ({ avatar, name }) => {
 			return
 		}
 	}
-	return jsx(classes, { avatar, name }, anchorEl, setAnchorEl, logoutHandler)
-}
-
-const jsx = (classes: any, { avatar, name }: Props, anchorEl: any, setAnchorEl: Function, logoutHandler: any) =>
-	<Box
+	return <Box
 		ml={2}>
 		<Button
 			aria-controls="logout"
 			aria-haspopup="true"
 			onClick={(event) => setAnchorEl(event.currentTarget)}>
-			<Avatar alt={name} src={avatar} />
 			<Typography variant="body2" className={classes.textName} >
 				{formatName(name)}
 			</Typography>
+			<Avatar alt={name} src={avatar} />
 		</Button>
 		<Menu
 			id="logout"
@@ -49,3 +45,4 @@ const jsx = (classes: any, { avatar, name }: Props, anchorEl: any, setAnchorEl: 
 			<MenuItem onClick={logoutHandler}>Logout</MenuItem>
 		</Menu>
 	</Box >
+}
