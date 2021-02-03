@@ -69,11 +69,8 @@ export const QuestionItem: FC<Props> = (props) => {
 					</Grid>
 					<Grid item xs={12} sm={12} md={12} xl={12}>
 						<Box component="div">
-							<Typography
-								variant="subtitle2"
-								className={classes.cardContentTitle}
-							>
-								<Box component="p">
+							<Typography variant="subtitle2" className={classes.cardContentTitle}>
+								<Box component="div" className={classes.optionsContainer}>
 									<Chip label={`${calculatePercentages(question.optionOne.votes.length > 0)(question.optionOne.votes.length, totalVotesPerPoll)}%`} size="small" style={{ marginRight: 5 }} />
 									<Box component="span">Option 01: </Box>{optionOne.text !== undefined && capsIt(optionOne.text)}.
 								</Box>
@@ -81,12 +78,9 @@ export const QuestionItem: FC<Props> = (props) => {
 						</Box>
 					</Grid>
 					<Grid item xs={12} sm={12} md={12} xl={12}>
-						<Box component="div">
-							<Typography
-								variant="subtitle2"
-								className={classes.cardContentTitle}
-							>
-								<Box component="p">
+						<Box component="div" className={classes.optionsContainer}>
+							<Typography variant="subtitle2" className={classes.cardContentTitle} >
+								<Box component="div">
 									<Chip label={`${calculatePercentages(question.optionTwo.votes.length > 0)(question.optionTwo.votes.length, totalVotesPerPoll)}%`} size="small" style={{ marginRight: 5 }} />
 									<Box component="span">Option 02: </Box>{optionTwo.text && capsIt(optionTwo.text)}.
 								</Box>
@@ -95,7 +89,7 @@ export const QuestionItem: FC<Props> = (props) => {
 					</Grid>
 				</Grid>
 			</CardContent>
-			<CardActions >
+			<CardActions style={{ position: "relative", bottom: -25 }} >
 				<Grid container justify="flex-end">
 					<Grid item>
 						<Button

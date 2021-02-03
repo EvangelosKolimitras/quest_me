@@ -28,5 +28,8 @@ export const useStyles = makeStyles((theme: Theme) => ({
 	},
 	check: {
 		color: theme.palette.success.main
+	},
+	optionsContainer: {
+		margin: 10
 	}
 }))
