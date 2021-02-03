@@ -1,10 +1,11 @@
-import { Container, Grid } from '@material-ui/core'
+import { Box, Container, Grid } from '@material-ui/core'
 import { Typography } from '@material-ui/core'
-import { FC, memo } from 'react'
+import React, { FC, memo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { UsersPartialRootState } from '../../../common/types'
 import { IAuthedUser, IUser } from '../../../common/types/types'
 import { setAuthedUser } from '../../actions/authedUser'
+import { LogoIcon } from '../Logo'
 import { User } from '../User'
 import { useStyles } from './styles'
 
@@ -19,6 +20,7 @@ export const Login: FC = memo(() => {
 	return (
 		<Container maxWidth="md" className={classes.loginRoot}>
 			<Grid container justify="center">
+				<Box component="div" mb={4}>	<LogoIcon /></Box>
 				<Grid container justify="center" >
 					<Grid item >
 						<Typography variant="h3"> Login </Typography>
