@@ -86,19 +86,6 @@ export const QuestionItem: FC<Props> = (props) => {
 							</Typography>
 						</Box>
 					</Grid>
-					<Grid item xs={12} sm={12} md={12} xl={12}>
-						<Grid container justify="flex-end">
-							<Box component="div">
-								<Typography
-									variant="body2"
-									component="p"
-									className={classes.cardContentTitle}
-								>
-									{formatDate(timestamp)}
-								</Typography>
-							</Box>
-						</Grid>
-					</Grid>
 				</Grid>
 			</CardContent>
 			<CardActions >
