@@ -5,7 +5,7 @@ import { initStore } from './store'
 import { BrowserRouter } from 'react-router-dom';
 import React from 'react';
 import { Theme } from './Themes';
-
+import "./index.module.css"
 ReactDOM.render(
 	<BrowserRouter>
 		<Theme>

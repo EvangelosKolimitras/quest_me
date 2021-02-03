@@ -2,7 +2,8 @@ import { makeStyles, Theme } from "@material-ui/core";
 
 export const useStyles = makeStyles((theme: Theme) => ({
 	root: {
-		marginTop: 120
+		marginTop: 120,
+		color: theme.palette.text.primary
 	},
 	checkBox: {
 		marginTop: 10,
@@ -12,16 +13,17 @@ export const useStyles = makeStyles((theme: Theme) => ({
 	},
 	header: {
 		margin: "2rem auto",
-		textAlign: "center"
+		textAlign: "center",
 	},
 	heading: {
-		fontSize: "4rem",
+		fontSize: "3rem",
 		textAlign: "center"
 	},
 	button: {
 		marginTop: "1.2rem",
 		marginLeft: ".5rem",
 		marginRight: ".5rem",
+		color: "inherit"
 	},
 	addIcon: {
 		position: "fixed",

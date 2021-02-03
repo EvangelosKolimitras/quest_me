@@ -4,13 +4,13 @@ import { blue, lightGreen, red } from '@material-ui/core/colors'
 const theme = createMuiTheme({
 	palette: {
 		primary: {
-			main: "#222"
+			main: blue["400"]
 		},
 		background: {
-			default: blue["400"],
+			default: "#222",
 		},
 		text: {
-			primary: "#fefefe",
+			primary: "#ffffff",
 			secondary: "#212121"
 		},
 		success: {

@@ -6,7 +6,7 @@ import { useStyles } from './styles';
 import CheckIcon from '@material-ui/icons/Check';
 import { capsIt, formatDate } from '../../utils';
 import { AuthedUserPartialRootState, QuestionsPartialRootState, UsersPartialRootState } from '../../../common/types';
-import { ID } from '../../../common/types/types';
+import { ID, IUser } from '../../../common/types/types';
 
 interface Props { id: ID }
 
@@ -25,23 +25,30 @@ export const QuestionItem: FC<Props> = (props) => {
 	const user = users![question.author];
 	const { optionOne, optionTwo, timestamp } = question;
 
+	const renderCardTitle = (user: IUser) => {
+		const { name, id } = user;
+		return `${name}@${id}`
+	}
+
 	return (
 		<Card className={classes.card} >
 			<CardHeader className={classes.header}
 				avatar={<Avatar aria-label="recipe" src={user.avatarURL} > user.name[0] </Avatar>}
-				action={<IconButton aria-label="settings">
-					{
-						(answeredQ1 || answeredQ2)
-							? <CheckIcon className={classes.check} />
-							: <Box component="span">
-								<Typography variant="subtitle2" className={classes.cardSettings}>
-									Not answered yet
+				action={
+					<Box style={{ padding: 10 }}>
+						{
+							(answeredQ1 || answeredQ2)
+								? <CheckIcon className={classes.check} />
+								: <Box component="span">
+									<Typography variant="subtitle2" className={classes.cardSettings}>
+										Not answered yet
 									</Typography>
-							</Box>
-					}
-				</IconButton>}
-				title={user.name}
-				subheader={`@${user.id}`}
+								</Box>
+						}
+					</Box>
+				}
+				title={renderCardTitle(user)}
+				subheader={formatDate(timestamp)}
 			/>
 			<CardContent>
 				<Grid container justify="flex-start">
@@ -55,7 +62,6 @@ export const QuestionItem: FC<Props> = (props) => {
 							</Typography>
 						</Box>
 					</Grid>
-					<Box component="div" className={classes.marg} />
 					<Grid item xs={12} sm={12} md={12} xl={12}>
 						<Box component="div">
 							<Typography

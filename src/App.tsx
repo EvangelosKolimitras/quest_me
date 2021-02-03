@@ -1,4 +1,5 @@
-import { FC, memo, useEffect } from "react";
+import { Container, Grid } from "@material-ui/core";
+import React, { FC, memo, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { LoadingBar } from "react-redux-loading";
 import { Route, Switch } from 'react-router-dom';
@@ -28,9 +29,9 @@ export const App: FC = memo(
 		useEffect(() => {
 			dispatch(initiliazer())
 		}, [dispatch])
-		// return jsx(isInitialized, isAuthed)
+
 		return (
-			<>
+			<Grid container>
 				<LoadingBar />
 				{
 					(isAuthed && isInitialized) && <NavigationBar />
@@ -51,7 +52,7 @@ export const App: FC = memo(
 					}
 					{(isAuthed && isInitialized) && <Route exact path="*" component={NotFound} />}
 				</Switch>
-			</>
+			</Grid>
 		)
 	}
 )

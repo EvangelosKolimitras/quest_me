@@ -7,18 +7,20 @@ export const useStyles = makeStyles((theme: Theme) => ({
 		height: 275,
 		float: "left",
 		textAlign: "center",
-		padding: 10
+		padding: 10,
+		backgroundColor: "#242424"
 	},
 	img: {
 		width: "100%",
 		height: 150,
-		margin: "auto"
+		margin: "auto",
+		borderRadius: ".5em"
 	},
 	name: {
 		marginTop: 20,
-		color: theme.palette.text.secondary
+		color: theme.palette.text.primary
 	},
 	btn: {
-		marginTop: 20
+		marginTop: 20,
 	}
 }))

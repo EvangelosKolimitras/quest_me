@@ -34,7 +34,7 @@ export const User: FC<Props> = ({ id, loginHandler }) => {
 }
 
 const renderLoginBtn = (fn: Function): JSX.Element =>
-	<Button variant="contained" color="primary" onClick={() => fn()}>Login</Button>
+	<Button variant="contained" onClick={() => fn()}>Login</Button>
 
 const renderAvatar = (classes: any, image: string, name: string): JSX.Element =>
 	<CardMedia className={classes} image={image} title={name} />
