@@ -46,5 +46,5 @@ export const formatName = (name: string) => {
 */
 
 export const calculatePercentages: PercentageCalculator = (isNaN) => (specific, total) => {
-	return isNaN && Math.round((specific / total) * 100) || 0;
+	return (isNaN && Math.round((specific / total) * 100)) || 0;
 }

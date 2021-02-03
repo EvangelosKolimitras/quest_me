@@ -5,7 +5,7 @@
     "name": "Evangelos Kolimitras",
     "email": "evangeloskolimitras@outlook.com"
   },
-  "description": "Quest me is an application where a user is being asked a question with two possible answers to choose from. His answer is recorded is such a way where his choices will be reflected in a global ranking table.",
+  "description": "Would you rather is an application where a user is being asked a question with two possible answers to choose from. His answer is recorded is such a way where his choices will be reflected in a global ranking table.",
   "private": true,
   "dependencies": {
     "@devexpress/dx-react-chart": "^2.7.4",
