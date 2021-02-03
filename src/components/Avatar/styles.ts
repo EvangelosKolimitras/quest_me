@@ -3,7 +3,9 @@ import { SportsRugbySharp } from "@material-ui/icons";
 
 export const useStyles = makeStyles((theme: Theme) => ({
 	menuPaper: {
-		color: theme.palette.text.secondary
+		color: theme.palette.text.primary,
+		marginTop: "5rem",
+		backgroundColor: theme.palette.background.default
 	},
 	textName: {
 		fontSize: ".75rem",
