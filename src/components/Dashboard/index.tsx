@@ -1,6 +1,6 @@
 import { Container } from '@material-ui/core'
 import { useSelector } from 'react-redux'
-import { IUsers } from '../../services/declarations'
+import { IUsers } from '../../../common/types'
 import { DashboardItem } from '../DashboardItem'
 import { useStyles } from './styles'
 

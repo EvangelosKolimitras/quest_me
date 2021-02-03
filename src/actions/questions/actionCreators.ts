@@ -1,4 +1,4 @@
-import { AddedAnswer, AnswersType, IQuestion, IQuestions } from '../../services/declarations'
+import { IQuestions, IQuestion, AnswersType, AddedAnswer } from '../../../common/types'
 import { actionTypes } from './actions'
 
 export interface QuestionsActionProps {

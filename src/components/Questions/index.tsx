@@ -1,7 +1,7 @@
 import { Avatar, Badge, Box, Button, Checkbox, Container, FormControlLabel, Portal, Typography } from '@material-ui/core';
-import React, { ChangeEvent, FC, MouseEvent, useEffect, useState } from 'react';
+import { ChangeEvent, FC, MouseEvent, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { IQuestion, IQuestions, IUser, IUsers } from '../../services/declarations';
+import { IQuestions, IUsers, IUser, IQuestion } from '../../../common/types';
 import { sortQuestions } from '../../utils';
 import { Modal } from '../Modal';
 import { QuestionItem } from '../QuestionItem';

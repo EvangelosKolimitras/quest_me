@@ -1,6 +1,6 @@
 import * as Actions from './actions';
 import { createActionCreator } from './actionCreators';
-import { IAuthedUser } from '../../services/declarations';
+import { IAuthedUser } from '../../../common/types';
 
 const AC = createActionCreator();
 

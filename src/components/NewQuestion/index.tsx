@@ -1,5 +1,5 @@
 import { Button, TextField } from '@material-ui/core';
-import React, { FC, useState } from 'react'
+import { FC, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { addQuestionHandler } from '../../actions/';

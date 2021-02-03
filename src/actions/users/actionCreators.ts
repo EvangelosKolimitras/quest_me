@@ -1,4 +1,4 @@
-import { IUsers, IQuestions, AnswersType } from '../../services/declarations'
+import { IUsers, IQuestions, AnswersType } from '../../../common/types'
 import { actionType } from './actions'
 
 type payload = IUsers | IQuestions | AnswersType

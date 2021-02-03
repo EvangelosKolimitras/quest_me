@@ -1,9 +1,9 @@
 import { Container, Grid } from '@material-ui/core'
 import { Typography } from '@material-ui/core'
-import React, { FC, memo } from 'react'
+import { FC, memo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { IUsers, IAuthedUser, IUser } from '../../../common/types'
 import { setAuthedUser } from '../../actions/authedUser'
-import { IAuthedUser, IUser, IUsers } from '../../services/declarations'
 import { User } from '../User'
 import { useStyles } from './styles'
 

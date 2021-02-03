@@ -1,4 +1,4 @@
-import { IUsers } from './declarations'
+import { IUsers } from "../../common/types";
 
 export let users: IUsers = {
 	jane_smith: {

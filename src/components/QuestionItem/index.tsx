@@ -1,11 +1,11 @@
-import React, { FC, useState } from 'react'
+import { FC, useState } from 'react'
 import { Avatar, Card, Typography, CardHeader, IconButton, CardContent, Grid, CardActions, Button, Box } from '@material-ui/core';
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom';
-import { IQuestions, IUsers } from '../../services/declarations'
 import { useStyles } from './styles';
 import CheckIcon from '@material-ui/icons/Check';
 import { capsIt, formatDate } from '../../utils';
+import { IUsers, IQuestions } from '../../../common/types';
 
 interface DefaultRootState { authedUser: string, users?: IUsers, questions?: IQuestions }
 

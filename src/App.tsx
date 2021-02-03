@@ -1,4 +1,4 @@
-import React, { FC, memo, useEffect } from "react";
+import { FC, memo, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { LoadingBar } from "react-redux-loading";
 import { Route, Switch } from 'react-router-dom';

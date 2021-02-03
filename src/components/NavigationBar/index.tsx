@@ -1,11 +1,11 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { AppBar, Toolbar, Typography, } from '@material-ui/core'
 import { LogoIcon } from '../Logo';
 import { NavLink } from './NavLink';
-import { IAuthedUser, IUsers } from '../../services/declarations';
 import { useSelector } from 'react-redux';
 import { AvatarImage } from '../Avatar';
 import { useStyles } from './styles';
+import { IUsers, IAuthedUser } from '../../../common/types';
 
 interface DefaultRootState {
 	users: IUsers

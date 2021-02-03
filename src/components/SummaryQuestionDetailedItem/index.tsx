@@ -1,5 +1,5 @@
 import { Button, Card, Grid } from "@material-ui/core";
-import React, { FC } from "react";
+import { FC } from "react";
 import { NavLink } from "react-router-dom";
 import { BarChar } from "../Char";
 import ArrowBackIosRoundedIcon from '@material-ui/icons/ArrowBackIosRounded';

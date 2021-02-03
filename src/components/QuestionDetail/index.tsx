@@ -1,7 +1,7 @@
 import { Avatar, Box, Card, CardContent, CardHeader, Grid, IconButton, Typography } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
+import { IAuthedUser, IQuestion, IQuestions, IUsers } from '../../../common/types';
 import { addAnswerHandler } from '../../actions';
-import { IAuthedUser, IQuestion, IQuestions, IUsers } from '../../services/declarations';
 import { formatDate } from '../../utils';
 import { SummaryQuestionDetailedItem } from '../SummaryQuestionDetailedItem';
 import { VoteQuestionDetailedItem } from '../VoteQuestionDetailedItem';

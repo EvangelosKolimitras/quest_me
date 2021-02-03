@@ -1,6 +1,6 @@
 import * as Actions from './actions';
 import { createActionCreator } from './actionCreators';
-import { IQuestion, IQuestions } from '../../services/declarations';
+import { IQuestions, IQuestion } from '../../../common/types';
 
 const AC = createActionCreator();
 

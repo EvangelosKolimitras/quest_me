@@ -1,5 +1,5 @@
 import { Box, Grid, Link } from '@material-ui/core';
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import { useStyles } from './styles';
 

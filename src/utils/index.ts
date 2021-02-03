@@ -1,4 +1,4 @@
-import { IQuestion } from "../services/declarations";
+import { IQuestion } from "../../common/types";
 
 export const sortQuestions = (arr: IQuestion[]) => arr.sort((a: IQuestion, b: IQuestion) => b.timestamp - a.timestamp)
 

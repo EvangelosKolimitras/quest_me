@@ -1,8 +1,8 @@
 import { Avatar, Box, Button, Menu, MenuItem, Typography } from "@material-ui/core";
-import React, { FC, useState } from "react";
+import { FC, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { IUsers, IAuthedUser } from "../../../common/types";
 import { unsetAuthedUser } from "../../actions/authedUser";
-import { IAuthedUser, IUsers } from "../../services/declarations";
 import { formatName } from "../../utils";
 import { useStyles } from "./styles";
 

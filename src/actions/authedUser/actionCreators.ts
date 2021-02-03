@@ -1,4 +1,4 @@
-import { IAuthedUser } from '../../services/declarations'
+import { IAuthedUser } from '../../../common/types'
 import { actionTypes } from './actions'
 
 export interface AuthedUserProps {

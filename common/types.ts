@@ -36,7 +36,7 @@ export interface AnswersType {
 	[key: string]: string
 }
 
-export export interface AddedAnswer {
+export interface AddedAnswer {
 	[key: string]: {
 		authedUser: IAuthedUser,
 		qid: AnswersType,

@@ -1,5 +1,5 @@
 import { Dialog, DialogTitle, DialogContent, DialogContentText, useMediaQuery, useTheme, Fab } from '@material-ui/core';
-import React, { FC, useState } from 'react'
+import { FC, useState } from 'react'
 import { NewQuestion } from '../NewQuestion';
 import AddIcon from '@material-ui/icons/Add';
 import { useStyles } from './styles';

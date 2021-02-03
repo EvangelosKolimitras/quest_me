@@ -4,7 +4,7 @@ import { TableContainer } from '@material-ui/core';
 import { Box, Card, CardContent } from '@material-ui/core';
 import React from 'react';
 import { useSelector } from 'react-redux'
-import { IAuthedUser, IUsers } from '../../services/declarations'
+import { IUsers, IAuthedUser } from '../../../common/types';
 import { useStyles } from './styles';
 
 interface DefaultRootState { users?: IUsers, authedUser: IAuthedUser }

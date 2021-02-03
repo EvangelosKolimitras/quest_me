@@ -1,9 +1,9 @@
 import { FormControl, RadioGroup, FormControlLabel, Radio, Button, Grid } from "@material-ui/core";
-import React, { FC } from "react";
+import { FC } from "react";
 import { useState } from "react";
-import { IQuestion } from "../../services/declarations";
 import SendIcon from '@material-ui/icons/Send';
 import { useStyles } from "./styles";
+import { IQuestion } from "../../../common/types";
 
 interface PropsVoteQuestionDetailedItem {
 	question: IQuestion
