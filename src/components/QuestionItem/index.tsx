@@ -74,7 +74,7 @@ export const QuestionItem: FC<Props> = (props) => {
 								className={classes.cardContentTitle}
 							>
 								<Box component="p">
-									<Chip label={`${calculatePercentages(question.optionOne.votes.length, totalVotesPerPoll)}%`} size="small" style={{ marginRight: 5 }} />
+									<Chip label={`${calculatePercentages(question.optionOne.votes.length > 0)(question.optionOne.votes.length, totalVotesPerPoll)}%`} size="small" style={{ marginRight: 5 }} />
 									<Box component="span">Option 01: </Box>{optionOne.text !== undefined && capsIt(optionOne.text)}.
 								</Box>
 							</Typography>
@@ -87,7 +87,7 @@ export const QuestionItem: FC<Props> = (props) => {
 								className={classes.cardContentTitle}
 							>
 								<Box component="p">
-									<Chip label={`${calculatePercentages(question.optionTwo.votes.length, totalVotesPerPoll)}%`} size="small" style={{ marginRight: 5 }} />
+									<Chip label={`${calculatePercentages(question.optionTwo.votes.length > 0)(question.optionTwo.votes.length, totalVotesPerPoll)}%`} size="small" style={{ marginRight: 5 }} />
 									<Box component="span">Option 02: </Box>{optionTwo.text && capsIt(optionTwo.text)}.
 								</Box>
 							</Typography>

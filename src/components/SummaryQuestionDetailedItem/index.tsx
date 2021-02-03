@@ -18,8 +18,8 @@ export const SummaryQuestionDetailedItem: FC<PropsSummaryQuestionDetailedItem> =
 	const totalAnswers = q1Votes + q2Votes;
 
 	const percentages = {
-		q1: q1Votes === 0 ? 0 : calculatePercentages(q1Votes, totalAnswers),
-		q2: q2Votes === 0 ? 0 : calculatePercentages(q2Votes, totalAnswers)
+		q1: q1Votes === 0 ? 0 : calculatePercentages(q1Votes > 0)(q1Votes, totalAnswers),
+		q2: q2Votes === 0 ? 0 : calculatePercentages(q1Votes > 0)(q2Votes, totalAnswers)
 	}
 
 	let data = [
