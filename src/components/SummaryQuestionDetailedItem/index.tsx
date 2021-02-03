@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import { BarChar } from "../Char";
 import ArrowBackIosRoundedIcon from '@material-ui/icons/ArrowBackIosRounded';
 import { useStyles } from "./styles";
+import { calculatePercentages } from "../../utils";
 interface PropsSummaryQuestionDetailedItem {
 	question: any,
 	vote: any,
@@ -17,8 +18,8 @@ export const SummaryQuestionDetailedItem: FC<PropsSummaryQuestionDetailedItem> =
 	const totalAnswers = q1Votes + q2Votes;
 
 	const percentages = {
-		q1: q1Votes === 0 ? 0 : Math.round((q1Votes / totalAnswers) * 100),
-		q2: q2Votes === 0 ? 0 : Math.round((q2Votes / totalAnswers) * 100)
+		q1: q1Votes === 0 ? 0 : calculatePercentages(q1Votes, totalAnswers),
+		q2: q2Votes === 0 ? 0 : calculatePercentages(q2Votes, totalAnswers)
 	}
 
 	let data = [

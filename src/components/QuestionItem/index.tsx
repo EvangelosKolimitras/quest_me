@@ -1,10 +1,10 @@
-import { FC, useState } from 'react'
-import { Avatar, Card, Typography, CardHeader, IconButton, CardContent, Grid, CardActions, Button, Box } from '@material-ui/core';
+import React, { FC, useState } from 'react'
+import { Avatar, Card, Typography, CardHeader, CardContent, Grid, CardActions, Button, Box, Chip } from '@material-ui/core';
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom';
 import { useStyles } from './styles';
 import CheckIcon from '@material-ui/icons/Check';
-import { capsIt, formatDate } from '../../utils';
+import { calculatePercentages, capsIt, formatDate } from '../../utils';
 import { AuthedUserPartialRootState, QuestionsPartialRootState, UsersPartialRootState } from '../../../common/types';
 import { ID, IUser } from '../../../common/types/types';
 
@@ -12,13 +12,18 @@ interface Props { id: ID }
 
 export const QuestionItem: FC<Props> = (props) => {
 	const authedUser = useSelector((state: AuthedUserPartialRootState) => state.authedUser!)
-	const users = useSelector((state: UsersPartialRootState) => state.users);
-	const questions = useSelector((state: QuestionsPartialRootState) => state.questions);
+	const users = useSelector((state: UsersPartialRootState) => state.users!);
+	const questions = useSelector((state: QuestionsPartialRootState) => state.questions!);
 
-	const question = questions![props.id as string];
+	const question = questions![props.id];
 
 	const [answeredQ1] = useState(question.optionOne.votes.includes(authedUser))
 	const [answeredQ2] = useState(question.optionTwo.votes.includes(authedUser))
+
+	const calculateTotalVotesPerPoll = (arr: number[]) => {
+		return [...arr].reduce((acc, currVal) => acc + currVal, 0);
+	}
+	const totalVotesPerPoll = calculateTotalVotesPerPoll([question.optionOne.votes.length, question.optionTwo.votes.length]);
 
 	const classes = useStyles();
 
@@ -69,6 +74,7 @@ export const QuestionItem: FC<Props> = (props) => {
 								className={classes.cardContentTitle}
 							>
 								<Box component="p">
+									<Chip label={`${calculatePercentages(question.optionOne.votes.length, totalVotesPerPoll)}%`} size="small" style={{ marginRight: 5 }} />
 									<Box component="span">Option 01: </Box>{optionOne.text !== undefined && capsIt(optionOne.text)}.
 								</Box>
 							</Typography>
@@ -81,6 +87,7 @@ export const QuestionItem: FC<Props> = (props) => {
 								className={classes.cardContentTitle}
 							>
 								<Box component="p">
+									<Chip label={`${calculatePercentages(question.optionTwo.votes.length, totalVotesPerPoll)}%`} size="small" style={{ marginRight: 5 }} />
 									<Box component="span">Option 02: </Box>{optionTwo.text && capsIt(optionTwo.text)}.
 								</Box>
 							</Typography>

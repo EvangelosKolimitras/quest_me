@@ -8,6 +8,8 @@ export type Name = String
 export type Url = String
 export type AuthedUser = String
 
+export type PercentageCalculator = (specific: number, total: number) => number
+
 interface Option<O> {
 	votes: Votes<O>
 	text: O

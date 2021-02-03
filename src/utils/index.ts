@@ -1,5 +1,5 @@
 import { SortQuestions } from '../../common/types';
-import { IQuestion, Timestamp } from '../../common/types/types';
+import { IQuestion, PercentageCalculator, Timestamp } from '../../common/types/types';
 import { Questions } from "../../common/types/types";
 
 export const sortQuestions: SortQuestions = (questions: Questions) =>
@@ -37,6 +37,14 @@ export const capsIt = (sentence: string) => capitalizeFirstLetter(getFirstLetter
 */
 
 export const formatName = (name: string) => {
-	const [firstName, lastName] = name.split(" ");
+	const [firstName,] = name.split(" ");
 	return `${firstName}`
+}
+
+/*
+	Calculate Percentages
+*/
+
+export const calculatePercentages: PercentageCalculator = (specific, total) => {
+	return Math.round((specific / total) * 100);
 }

@@ -1,6 +1,14 @@
 import { makeStyles, Theme } from "@material-ui/core"
 
 export const useStyles = makeStyles((theme: Theme) => ({
+	root: {
+		display: 'flex',
+		justifyContent: 'center',
+		flexWrap: 'wrap',
+		'& > *': {
+			margin: theme.spacing(0.5),
+		},
+	},
 	card: {
 		maxWidth: 445,
 		height: 300,

@@ -1,5 +1,4 @@
 import { makeStyles, Theme } from "@material-ui/core";
-import { SportsRugbySharp } from "@material-ui/icons";
 
 export const useStyles = makeStyles((theme: Theme) => ({
 	menuPaper: {
