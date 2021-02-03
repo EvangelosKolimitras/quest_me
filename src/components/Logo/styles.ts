@@ -6,6 +6,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
 		backgroundColor: "white",
 		height: 100,
 		width: 100,
-		marginRight: 10
+		marginRight: 10,
+		clipPath: `circle(50%)`
 	}
 }));

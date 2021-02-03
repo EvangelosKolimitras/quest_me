@@ -1,4 +1,4 @@
-import { ReactComponent as Logo } from '../../images/logo.svg'
+import { ReactComponent as Logo } from '../../images/raise-hand.svg'
 import SvgIcon from '@material-ui/core/SvgIcon'
 import { useStyles } from './styles'
 

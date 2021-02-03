@@ -23,8 +23,7 @@ export const AvatarImage: FC<Props> = ({ avatar, name }) => {
 			return
 		}
 	}
-	return <Box
-		ml={2}>
+	return <Box>
 		<Button
 			aria-controls="logout"
 			aria-haspopup="true"
