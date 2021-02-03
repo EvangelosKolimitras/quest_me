@@ -28,10 +28,11 @@ export const AvatarImage: FC<Props> = ({ avatar, name }) => {
 			aria-controls="logout"
 			aria-haspopup="true"
 			onClick={(event) => setAnchorEl(event.currentTarget)}>
+			<Avatar alt={name} src={avatar} />
 			<Typography variant="body2" className={classes.textName} >
 				{formatName(name)}
 			</Typography>
-			<Avatar alt={name} src={avatar} />
+
 		</Button>
 		<Menu
 			id="logout"

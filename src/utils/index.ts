@@ -38,5 +38,5 @@ export const capsIt = (sentence: string) => capitalizeFirstLetter(getFirstLetter
 
 export const formatName = (name: string) => {
 	const [firstName, lastName] = name.split(" ");
-	return `${firstName[0]}. ${lastName}`
+	return `${firstName}`
 }
